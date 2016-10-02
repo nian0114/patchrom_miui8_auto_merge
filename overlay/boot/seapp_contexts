@@ -1,0 +1,3 @@
+user=theme seinfo=platform domain=theme type=app_data_file
+user=updater seinfo=platform domain=updater type=app_data_file levelFrom=user
+user=backup seinfo=platform domain=backup type=app_data_file levelFrom=user
