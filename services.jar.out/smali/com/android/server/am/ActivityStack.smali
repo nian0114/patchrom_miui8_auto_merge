@@ -1180,7 +1180,7 @@
     invoke-virtual {v1, v4}, Lcom/android/server/am/ActivityStackSupervisor$ActivityDisplay;->setVisibleBehindActivity(Lcom/android/server/am/ActivityRecord;)V
 
     :cond_2
-    invoke-direct {p0, p1}, Lcom/android/server/am/ActivityStack;->updatePrivacyGuardNotificationLocked(Lcom/android/server/am/ActivityRecord;)V
+    #invoke-direct {p0, p1}, Lcom/android/server/am/ActivityStack;->updatePrivacyGuardNotificationLocked(Lcom/android/server/am/ActivityRecord;)V
 
     invoke-direct {p0, p1}, Lcom/android/server/am/ActivityStack;->updateProtectedAppNotificationLocked(Lcom/android/server/am/ActivityRecord;)V
 

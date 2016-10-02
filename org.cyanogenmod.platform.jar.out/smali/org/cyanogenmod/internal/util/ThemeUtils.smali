@@ -1370,40 +1370,13 @@
 .end method
 
 .method public static createUiContext(Landroid/content/Context;)Landroid/content/Context;
-    .locals 4
+    .locals 1
     .param p0, "context"    # Landroid/content/Context;
 
     .prologue
-    :try_start_0
-    const-string v2, "com.android.systemui"
+    const/4 v0, 0x0
 
-    const/4 v3, 0x4
-
-    invoke-virtual {p0, v2, v3}, Landroid/content/Context;->createPackageContext(Ljava/lang/String;I)Landroid/content/Context;
-
-    move-result-object v1
-
-    .local v1, "uiContext":Landroid/content/Context;
-    new-instance v2, Lorg/cyanogenmod/internal/util/ThemeUtils$ThemedUiContext;
-
-    invoke-virtual {p0}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
-
-    move-result-object v3
-
-    invoke-direct {v2, v1, v3}, Lorg/cyanogenmod/internal/util/ThemeUtils$ThemedUiContext;-><init>(Landroid/content/Context;Landroid/content/Context;)V
-    :try_end_0
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
-
-    return-object v2
-
-    .end local v1    # "uiContext":Landroid/content/Context;
-    :catch_0
-    move-exception v0
-
-    .local v0, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
-    const/4 v2, 0x0
-
-    return-object v2
+    return-object v0
 .end method
 
 .method private static dirExists(Ljava/lang/String;)Z
