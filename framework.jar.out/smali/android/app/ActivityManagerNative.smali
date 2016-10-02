@@ -9862,32 +9862,17 @@
 
     invoke-virtual {v0, v6}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
-    invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v150
-
-    .local v150, "stage":I
-    sget-object v6, Landroid/content/pm/ApplicationInfo;->CREATOR:Landroid/os/Parcelable$Creator;
+    sget-object v6, Landroid/text/TextUtils;->CHAR_SEQUENCE_CREATOR:Landroid/os/Parcelable$Creator;
 
     move-object/from16 v0, p2
 
     invoke-interface {v6, v0}, Landroid/os/Parcelable$Creator;->createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
 
-    move-result-object v151
+    move-result-object v152
 
-    check-cast v151, Landroid/content/pm/ApplicationInfo;
+    check-cast v152, Ljava/lang/CharSequence;
 
-    .restart local v151    # "info":Landroid/content/pm/ApplicationInfo;
-    invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v152
-
-    .local v152, "current":I
-    invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
-
-    move-result v153
-
-    .local v153, "total":I
+    .local v152, "msg":Ljava/lang/CharSequence;
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v6
@@ -9898,9 +9883,13 @@
 
     .local v154, "always":Z
     :goto_6c
-    move-object/from16 v149, p0
+    move-object/from16 v0, p0
 
-    invoke-virtual/range {v149 .. v154}, Landroid/app/ActivityManagerNative;->updateBootProgress(ILandroid/content/pm/ApplicationInfo;IIZ)V
+    move-object/from16 v1, v152
+
+    move/from16 v2, v154
+
+    invoke-virtual {v0, v1, v2}, Landroid/app/ActivityManagerNative;->showBootMessage(Ljava/lang/CharSequence;Z)V
 
     invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
 
@@ -9915,11 +9904,8 @@
     .restart local v154    # "always":Z
     goto :goto_6c
 
-    .end local v150    # "stage":I
-    .end local v151    # "info":Landroid/content/pm/ApplicationInfo;
-    .end local v152    # "current":I
-    .end local v153    # "total":I
     .end local v154    # "always":Z
+    .end local v152    # "msg":Ljava/lang/CharSequence;
     :pswitch_b1
     const-string v6, "android.app.IActivityManager"
 
