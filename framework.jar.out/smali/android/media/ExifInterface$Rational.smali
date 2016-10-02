@@ -29,33 +29,25 @@
     .prologue
     const-wide/16 v2, 0x0
 
-    .line 380
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 382
     cmp-long v0, p3, v2
 
     if-nez v0, :cond_0
 
-    .line 383
     iput-wide v2, p0, Landroid/media/ExifInterface$Rational;->numerator:J
 
-    .line 384
     const-wide/16 v0, 0x1
 
     iput-wide v0, p0, Landroid/media/ExifInterface$Rational;->denominator:J
 
-    .line 385
     return-void
 
-    .line 387
     :cond_0
     iput-wide p1, p0, Landroid/media/ExifInterface$Rational;->numerator:J
 
-    .line 388
     iput-wide p3, p0, Landroid/media/ExifInterface$Rational;->denominator:J
 
-    .line 380
     return-void
 .end method
 
@@ -76,7 +68,6 @@
     .locals 4
 
     .prologue
-    .line 397
     iget-wide v0, p0, Landroid/media/ExifInterface$Rational;->numerator:J
 
     long-to-double v0, v0
@@ -94,7 +85,6 @@
     .locals 4
 
     .prologue
-    .line 393
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -105,7 +95,7 @@
 
     move-result-object v0
 
-    const-string/jumbo v1, "/"
+    const-string v1, "/"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 

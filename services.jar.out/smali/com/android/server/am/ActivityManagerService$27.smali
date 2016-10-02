@@ -38,7 +38,6 @@
     .param p5, "val$newUserId"    # I
 
     .prologue
-    .line 20603
     iput-object p1, p0, Lcom/android/server/am/ActivityManagerService$27;->this$0:Lcom/android/server/am/ActivityManagerService;
 
     iput p2, p0, Lcom/android/server/am/ActivityManagerService$27;->val$N:I
@@ -51,12 +50,10 @@
 
     invoke-direct {p0}, Landroid/os/IRemoteCallback$Stub;-><init>()V
 
-    .line 20604
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/server/am/ActivityManagerService$27;->mCount:I
 
-    .line 20603
     return-void
 .end method
 
@@ -72,12 +69,10 @@
     .end annotation
 
     .prologue
-    .line 20607
     iget-object v1, p0, Lcom/android/server/am/ActivityManagerService$27;->this$0:Lcom/android/server/am/ActivityManagerService;
 
     monitor-enter v1
 
-    .line 20608
     :try_start_0
     iget-object v0, p0, Lcom/android/server/am/ActivityManagerService$27;->this$0:Lcom/android/server/am/ActivityManagerService;
 
@@ -85,21 +80,18 @@
 
     if-ne v0, p0, :cond_0
 
-    .line 20609
     iget v0, p0, Lcom/android/server/am/ActivityManagerService$27;->mCount:I
 
     add-int/lit8 v0, v0, 0x1
 
     iput v0, p0, Lcom/android/server/am/ActivityManagerService$27;->mCount:I
 
-    .line 20610
     iget v0, p0, Lcom/android/server/am/ActivityManagerService$27;->mCount:I
 
     iget v2, p0, Lcom/android/server/am/ActivityManagerService$27;->val$N:I
 
     if-ne v0, v2, :cond_0
 
-    .line 20611
     iget-object v0, p0, Lcom/android/server/am/ActivityManagerService$27;->this$0:Lcom/android/server/am/ActivityManagerService;
 
     iget-object v2, p0, Lcom/android/server/am/ActivityManagerService$27;->val$uss:Lcom/android/server/am/UserState;
@@ -115,10 +107,8 @@
     :cond_0
     monitor-exit v1
 
-    .line 20606
     return-void
 
-    .line 20607
     :catchall_0
     move-exception v0
 

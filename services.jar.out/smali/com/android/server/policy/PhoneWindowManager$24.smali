@@ -39,7 +39,6 @@
     .param p5, "val$totalAppCount"    # I
 
     .prologue
-    .line 7027
     iput-object p1, p0, Lcom/android/server/policy/PhoneWindowManager$24;->this$0:Lcom/android/server/policy/PhoneWindowManager;
 
     iput p2, p0, Lcom/android/server/policy/PhoneWindowManager$24;->val$stage:I
@@ -61,14 +60,12 @@
     .locals 5
 
     .prologue
-    .line 7029
     iget-object v0, p0, Lcom/android/server/policy/PhoneWindowManager$24;->this$0:Lcom/android/server/policy/PhoneWindowManager;
 
     iget-object v0, v0, Lcom/android/server/policy/PhoneWindowManager;->mBootMsgDialog:Lorg/cyanogenmod/internal/BootDexoptDialog;
 
     if-nez v0, :cond_0
 
-    .line 7030
     iget-object v0, p0, Lcom/android/server/policy/PhoneWindowManager$24;->this$0:Lcom/android/server/policy/PhoneWindowManager;
 
     iget-object v1, p0, Lcom/android/server/policy/PhoneWindowManager$24;->this$0:Lcom/android/server/policy/PhoneWindowManager;
@@ -81,7 +78,6 @@
 
     iput-object v1, v0, Lcom/android/server/policy/PhoneWindowManager;->mBootMsgDialog:Lorg/cyanogenmod/internal/BootDexoptDialog;
 
-    .line 7032
     :cond_0
     iget-object v0, p0, Lcom/android/server/policy/PhoneWindowManager$24;->this$0:Lcom/android/server/policy/PhoneWindowManager;
 
@@ -97,6 +93,5 @@
 
     invoke-virtual {v0, v1, v2, v3, v4}, Lorg/cyanogenmod/internal/BootDexoptDialog;->setProgress(ILandroid/content/pm/ApplicationInfo;II)V
 
-    .line 7028
     return-void
 .end method

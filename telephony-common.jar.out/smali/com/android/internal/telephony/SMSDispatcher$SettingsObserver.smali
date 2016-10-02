@@ -28,21 +28,16 @@
     .param p3, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 214
     invoke-direct {p0, p1}, Landroid/database/ContentObserver;-><init>(Landroid/os/Handler;)V
 
-    .line 215
     iput-object p2, p0, Lcom/android/internal/telephony/SMSDispatcher$SettingsObserver;->mPremiumSmsRule:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    .line 216
     iput-object p3, p0, Lcom/android/internal/telephony/SMSDispatcher$SettingsObserver;->mContext:Landroid/content/Context;
 
-    .line 217
     const/4 v0, 0x0
 
     invoke-virtual {p0, v0}, Lcom/android/internal/telephony/SMSDispatcher$SettingsObserver;->onChange(Z)V
 
-    .line 213
     return-void
 .end method
 
@@ -53,7 +48,6 @@
     .param p1, "selfChange"    # Z
 
     .prologue
-    .line 222
     iget-object v0, p0, Lcom/android/internal/telephony/SMSDispatcher$SettingsObserver;->mPremiumSmsRule:Ljava/util/concurrent/atomic/AtomicInteger;
 
     iget-object v1, p0, Lcom/android/internal/telephony/SMSDispatcher$SettingsObserver;->mContext:Landroid/content/Context;
@@ -62,18 +56,15 @@
 
     move-result-object v1
 
-    .line 223
-    const-string/jumbo v2, "sms_short_code_rule"
+    const-string v2, "sms_short_code_rule"
 
     const/4 v3, 0x1
 
-    .line 222
     invoke-static {v1, v2, v3}, Landroid/provider/Settings$Global;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
 
     move-result v1
 
     invoke-virtual {v0, v1}, Ljava/util/concurrent/atomic/AtomicInteger;->set(I)V
 
-    .line 221
     return-void
 .end method

@@ -24,7 +24,6 @@
     .param p1, "this$0"    # Lorg/cyanogenmod/platform/internal/ThemeManagerServiceBroker;
 
     .prologue
-    .line 68
     iput-object p1, p0, Lorg/cyanogenmod/platform/internal/ThemeManagerServiceBroker$1;->this$0:Lorg/cyanogenmod/platform/internal/ThemeManagerServiceBroker;
 
     invoke-direct {p0}, Lcyanogenmod/themes/IThemeService$Stub;-><init>()V
@@ -43,7 +42,6 @@
     .end annotation
 
     .prologue
-    .line 83
     return-void
 .end method
 
@@ -56,7 +54,6 @@
     .end annotation
 
     .prologue
-    .line 127
     const/4 v0, 0x0
 
     return v0
@@ -71,7 +68,6 @@
     .end annotation
 
     .prologue
-    .line 122
     const-wide/16 v0, 0x0
 
     return-wide v0
@@ -86,7 +82,6 @@
     .end annotation
 
     .prologue
-    .line 93
     const/4 v0, 0x0
 
     return v0
@@ -101,7 +96,6 @@
     .end annotation
 
     .prologue
-    .line 88
     const/4 v0, 0x0
 
     return v0
@@ -117,7 +111,6 @@
     .end annotation
 
     .prologue
-    .line 103
     const/4 v0, 0x0
 
     return v0
@@ -133,7 +126,6 @@
     .end annotation
 
     .prologue
-    .line 98
     const/4 v0, 0x0
 
     return v0
@@ -148,7 +140,6 @@
     .end annotation
 
     .prologue
-    .line 117
     return-void
 .end method
 
@@ -162,7 +153,6 @@
     .end annotation
 
     .prologue
-    .line 108
     return-void
 .end method
 
@@ -176,7 +166,6 @@
     .end annotation
 
     .prologue
-    .line 74
     return-void
 .end method
 
@@ -191,7 +180,6 @@
     .end annotation
 
     .prologue
-    .line 79
     return-void
 .end method
 
@@ -205,7 +193,6 @@
     .end annotation
 
     .prologue
-    .line 70
     return-void
 .end method
 
@@ -219,6 +206,5 @@
     .end annotation
 
     .prologue
-    .line 113
     return-void
 .end method

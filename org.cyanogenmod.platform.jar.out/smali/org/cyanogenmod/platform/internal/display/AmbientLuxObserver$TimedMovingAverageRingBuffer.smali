@@ -43,25 +43,20 @@
     .param p1, "period"    # I
 
     .prologue
-    .line 210
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 190
     new-instance v0, Ljava/util/LinkedList;
 
     invoke-direct {v0}, Ljava/util/LinkedList;-><init>()V
 
     iput-object v0, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
 
-    .line 194
     const/4 v0, 0x0
 
     iput v0, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mTotal:F
 
-    .line 211
     iput p1, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mPeriod:I
 
-    .line 210
     return-void
 .end method
 
@@ -69,12 +64,10 @@
     .locals 6
 
     .prologue
-    .line 238
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
-    .line 239
     .local v0, "now":J
     :goto_0
     iget-object v2, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
@@ -87,7 +80,6 @@
 
     if-le v2, v3, :cond_0
 
-    .line 240
     iget-object v2, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
 
     invoke-virtual {v2}, Ljava/util/LinkedList;->peek()Ljava/lang/Object;
@@ -108,7 +100,6 @@
 
     if-lez v2, :cond_0
 
-    .line 241
     iget v3, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mTotal:F
 
     iget-object v2, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
@@ -127,7 +118,6 @@
 
     goto :goto_0
 
-    .line 237
     :cond_0
     return-void
 .end method
@@ -141,11 +131,9 @@
     .prologue
     monitor-enter p0
 
-    .line 215
     :try_start_0
     invoke-direct {p0}, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->expire()V
 
-    .line 216
     const/4 v0, 0x0
 
     cmpl-float v0, p1, v0
@@ -164,10 +152,8 @@
 
     monitor-exit p0
 
-    .line 217
     return-void
 
-    .line 219
     :cond_0
     :try_start_1
     iget-object v0, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
@@ -182,7 +168,6 @@
 
     invoke-virtual {v0, v1}, Ljava/util/LinkedList;->offer(Ljava/lang/Object;)Z
 
-    .line 220
     iget v0, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mTotal:F
 
     add-float/2addr v0, p1
@@ -193,7 +178,6 @@
 
     monitor-exit p0
 
-    .line 214
     return-void
 
     :catchall_0
@@ -210,13 +194,11 @@
     .prologue
     monitor-enter p0
 
-    .line 233
     :try_start_0
     iget-object v0, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
 
     invoke-virtual {v0}, Ljava/util/LinkedList;->clear()V
 
-    .line 234
     const/4 v0, 0x0
 
     iput v0, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mTotal:F
@@ -225,7 +207,6 @@
 
     monitor-exit p0
 
-    .line 232
     return-void
 
     :catchall_0
@@ -242,11 +223,9 @@
     .prologue
     monitor-enter p0
 
-    .line 228
     :try_start_0
     invoke-direct {p0}, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->expire()V
 
-    .line 229
     iget-object v0, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
 
     invoke-virtual {v0}, Ljava/util/LinkedList;->size()I
@@ -296,7 +275,6 @@
     .prologue
     monitor-enter p0
 
-    .line 224
     :try_start_0
     iget-object v0, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
 
@@ -324,16 +302,13 @@
     .prologue
     monitor-enter p0
 
-    .line 247
     :try_start_0
     invoke-direct {p0}, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->expire()V
 
-    .line 248
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 249
     .local v1, "sb":Ljava/lang/StringBuilder;
     iget-object v2, p0, Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer;->mRing:Ljava/util/LinkedList;
 
@@ -349,19 +324,16 @@
 
     if-eqz v2, :cond_1
 
-    .line 250
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->length()I
 
     move-result v2
 
     if-lez v2, :cond_0
 
-    .line 251
-    const-string/jumbo v2, ", "
+    const-string v2, ", "
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 253
     :cond_0
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -382,7 +354,6 @@
 
     throw v2
 
-    .line 255
     .restart local v0    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lorg/cyanogenmod/platform/internal/display/AmbientLuxObserver$TimedMovingAverageRingBuffer$Sample;>;"
     .restart local v1    # "sb":Ljava/lang/StringBuilder;
     :cond_1
@@ -391,7 +362,7 @@
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v3, "average="
+    const-string v3, "average="
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -405,7 +376,7 @@
 
     move-result-object v2
 
-    const-string/jumbo v3, " length="
+    const-string v3, " length="
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -421,28 +392,22 @@
 
     move-result-object v2
 
-    .line 256
-    const-string/jumbo v3, " mRing=["
+    const-string v3, " mRing=["
 
-    .line 255
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
-    .line 256
     invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object v3
 
-    .line 255
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2
 
-    .line 256
-    const-string/jumbo v3, "]"
+    const-string v3, "]"
 
-    .line 255
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v2

@@ -24,8 +24,7 @@
     .locals 1
 
     .prologue
-    .line 31
-    const-string/jumbo v0, "content://com.cyanogenmod.themes"
+    const-string v0, "content://com.cyanogenmod.themes"
 
     invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
 
@@ -33,7 +32,6 @@
 
     sput-object v0, Lcyanogenmod/providers/ThemesContract;->AUTHORITY_URI:Landroid/net/Uri;
 
-    .line 27
     return-void
 .end method
 
@@ -41,7 +39,6 @@
     .locals 0
 
     .prologue
-    .line 27
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

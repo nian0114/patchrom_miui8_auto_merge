@@ -32,24 +32,18 @@
     .param p3, "format"    # I
 
     .prologue
-    .line 764
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 765
     iput-object p1, p0, Landroid/media/ExifInterface$ExifTag;->name:Ljava/lang/String;
 
-    .line 766
     iput p2, p0, Landroid/media/ExifInterface$ExifTag;->number:I
 
-    .line 767
     iput p3, p0, Landroid/media/ExifInterface$ExifTag;->primaryFormat:I
 
-    .line 768
     const/4 v0, -0x1
 
     iput v0, p0, Landroid/media/ExifInterface$ExifTag;->secondaryFormat:I
 
-    .line 764
     return-void
 .end method
 
@@ -61,22 +55,16 @@
     .param p4, "secondaryFormat"    # I
 
     .prologue
-    .line 771
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 772
     iput-object p1, p0, Landroid/media/ExifInterface$ExifTag;->name:Ljava/lang/String;
 
-    .line 773
     iput p2, p0, Landroid/media/ExifInterface$ExifTag;->number:I
 
-    .line 774
     iput p3, p0, Landroid/media/ExifInterface$ExifTag;->primaryFormat:I
 
-    .line 775
     iput p4, p0, Landroid/media/ExifInterface$ExifTag;->secondaryFormat:I
 
-    .line 771
     return-void
 .end method
 

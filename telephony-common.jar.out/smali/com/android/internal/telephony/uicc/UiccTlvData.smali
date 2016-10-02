@@ -52,22 +52,16 @@
     .prologue
     const/4 v0, -0x1
 
-    .line 34
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 32
     iput v0, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mFileType:I
 
-    .line 35
     iput v0, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mNumRecords:I
 
-    .line 36
     iput v0, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mFileSize:I
 
-    .line 37
     iput v0, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mRecordSize:I
 
-    .line 34
     return-void
 .end method
 
@@ -78,7 +72,6 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 45
     if-eqz p0, :cond_0
 
     array-length v0, p0
@@ -93,12 +86,10 @@
 
     if-ne v1, v0, :cond_0
 
-    .line 46
     const/4 v0, 0x1
 
     return v0
 
-    .line 48
     :cond_0
     return v2
 .end method
@@ -115,12 +106,10 @@
     .prologue
     const/4 v6, 0x0
 
-    .line 53
     new-instance v4, Lcom/android/internal/telephony/uicc/UiccTlvData;
 
     invoke-direct {v4}, Lcom/android/internal/telephony/uicc/UiccTlvData;-><init>()V
 
-    .line 55
     .local v4, "parsedData":Lcom/android/internal/telephony/uicc/UiccTlvData;
     if-eqz p0, :cond_0
 
@@ -128,7 +117,6 @@
 
     if-nez v5, :cond_1
 
-    .line 56
     :cond_0
     new-instance v5, Lcom/android/internal/telephony/uicc/IccFileTypeMismatch;
 
@@ -136,7 +124,6 @@
 
     throw v5
 
-    .line 55
     :cond_1
     aget-byte v5, p0, v6
 
@@ -146,13 +133,11 @@
 
     if-ne v6, v5, :cond_0
 
-    .line 61
     const/4 v0, 0x2
 
     .local v0, "currentLocation":I
     move v1, v0
 
-    .line 64
     .end local v0    # "currentLocation":I
     .local v1, "currentLocation":I
     :goto_0
@@ -163,7 +148,6 @@
 
     if-ge v1, v5, :cond_2
 
-    .line 65
     add-int/lit8 v0, v1, 0x1
 
     .end local v1    # "currentLocation":I
@@ -173,24 +157,22 @@
 
     and-int/lit16 v2, v5, 0xff
 
-    .line 67
     .local v2, "currentTag":I
     sparse-switch v2, :sswitch_data_0
 
-    .line 88
-    const-string/jumbo v5, "UiccTlvData"
+    const-string v5, "UiccTlvData"
 
     new-instance v6, Ljava/lang/StringBuilder;
 
     invoke-direct {v6}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string/jumbo v7, "Unknown tag 0x"
+    const-string v7, "Unknown tag 0x"
 
     invoke-virtual {v6, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v6
 
-    const-string/jumbo v7, "%02X"
+    const-string v7, "%02X"
 
     const/4 v8, 0x1
 
@@ -218,7 +200,6 @@
 
     invoke-static {v5, v6}, Landroid/telephony/Rlog;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 89
     invoke-direct {v4, p0, v0}, Lcom/android/internal/telephony/uicc/UiccTlvData;->parseSomeTag([BI)I
 
     move-result v0
@@ -230,7 +211,6 @@
     .restart local v1    # "currentLocation":I
     goto :goto_0
 
-    .line 69
     .end local v1    # "currentLocation":I
     .restart local v0    # "currentLocation":I
     :sswitch_0
@@ -240,7 +220,6 @@
 
     goto :goto_1
 
-    .line 73
     :sswitch_1
     invoke-direct {v4, p0, v0}, Lcom/android/internal/telephony/uicc/UiccTlvData;->parseFileSize([BI)I
 
@@ -248,7 +227,6 @@
 
     goto :goto_1
 
-    .line 84
     :sswitch_2
     invoke-direct {v4, p0, v0}, Lcom/android/internal/telephony/uicc/UiccTlvData;->parseSomeTag([BI)I
     :try_end_1
@@ -264,13 +242,11 @@
     :cond_2
     move v0, v1
 
-    .line 100
     .end local v1    # "currentLocation":I
     .restart local v0    # "currentLocation":I
     :goto_2
     return-object v4
 
-    .line 94
     .end local v0    # "currentLocation":I
     .restart local v1    # "currentLocation":I
     :catch_0
@@ -290,7 +266,6 @@
     .restart local v3    # "e":Ljava/lang/ArrayIndexOutOfBoundsException;
     goto :goto_2
 
-    .line 67
     :sswitch_data_0
     .sparse-switch
         0x80 -> :sswitch_1
@@ -321,7 +296,6 @@
 
     const/4 v4, 0x2
 
-    .line 127
     add-int/lit8 v0, p2, 0x1
 
     .end local p2    # "currentLocation":I
@@ -330,11 +304,9 @@
 
     and-int/lit16 v2, v3, 0xff
 
-    .line 128
     .local v2, "length":I
     if-ne v2, v5, :cond_0
 
-    .line 130
     add-int/lit8 v3, v0, 0x2
 
     aget-byte v3, p1, v3
@@ -343,19 +315,16 @@
 
     shl-int/lit8 v3, v3, 0x8
 
-    .line 131
     add-int/lit8 v4, v0, 0x3
 
     aget-byte v4, p1, v4
 
     and-int/lit16 v4, v4, 0xff
 
-    .line 130
     add-int/2addr v3, v4
 
     iput v3, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mRecordSize:I
 
-    .line 132
     add-int/lit8 v3, v0, 0x4
 
     aget-byte v3, p1, v3
@@ -364,7 +333,6 @@
 
     iput v3, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mNumRecords:I
 
-    .line 134
     iget v3, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mRecordSize:I
 
     iget v4, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mNumRecords:I
@@ -373,40 +341,32 @@
 
     iput v3, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mFileSize:I
 
-    .line 136
     iput v5, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mFileType:I
 
-    .line 138
     add-int/lit8 v3, v0, 0x5
 
     return v3
 
-    .line 139
     :cond_0
     if-ne v2, v4, :cond_1
 
-    .line 141
     add-int/lit8 v3, v0, 0x1
 
     aget-byte v3, p1, v3
 
     and-int/lit16 v1, v3, 0xff
 
-    .line 145
     .local v1, "descriptorByte":I
     const/4 v3, 0x1
 
     iput v3, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mNumRecords:I
 
-    .line 147
     iput v4, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mFileType:I
 
-    .line 149
     add-int/lit8 v3, v0, 0x2
 
     return v3
 
-    .line 152
     .end local v1    # "descriptorByte":I
     :cond_1
     new-instance v3, Lcom/android/internal/telephony/uicc/IccFileTypeMismatch;
@@ -422,7 +382,6 @@
     .param p2, "currentLocation"    # I
 
     .prologue
-    .line 104
     add-int/lit8 v0, p2, 0x1
 
     .end local p2    # "currentLocation":I
@@ -431,11 +390,9 @@
 
     and-int/lit16 v3, v4, 0xff
 
-    .line 106
     .local v3, "length":I
     const/4 v1, 0x0
 
-    .line 107
     .local v1, "fileSize":I
     const/4 v2, 0x0
 
@@ -443,7 +400,6 @@
     :goto_0
     if-ge v2, v3, :cond_0
 
-    .line 108
     add-int v4, v0, v2
 
     aget-byte v4, p1, v4
@@ -460,26 +416,21 @@
 
     add-int/2addr v1, v4
 
-    .line 107
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 111
     :cond_0
     iput v1, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mFileSize:I
 
-    .line 113
     iget v4, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mFileType:I
 
     const/4 v5, 0x2
 
     if-ne v4, v5, :cond_1
 
-    .line 114
     iput v1, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mRecordSize:I
 
-    .line 117
     :cond_1
     add-int v4, v0, v3
 
@@ -492,7 +443,6 @@
     .param p2, "currentLocation"    # I
 
     .prologue
-    .line 122
     add-int/lit8 v0, p2, 0x1
 
     .end local p2    # "currentLocation":I
@@ -501,7 +451,6 @@
 
     and-int/lit16 v1, v2, 0xff
 
-    .line 123
     .local v1, "length":I
     add-int v2, v0, v1
 
@@ -518,7 +467,6 @@
 
     const/4 v2, -0x1
 
-    .line 41
     iget v1, p0, Lcom/android/internal/telephony/uicc/UiccTlvData;->mNumRecords:I
 
     if-eq v1, v2, :cond_0
