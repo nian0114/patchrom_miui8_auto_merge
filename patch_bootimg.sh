@@ -25,17 +25,14 @@ $MKBOOTFS $TARGET_BOOT_DIR/ramdisk | gzip > $TARGET_BOOT_DIR/ramdisk.gz
 
 
 OLDCMDLINE=$(cat $TARGET_BOOT_DIR/boot.img-cmdline)
-NEWCMDLINE="androidboot.selinux=permissive"
-for prop in $OLDCMDLINE
-do
-    echo $prop | grep "androidboot.selinux=" > /dev/null
-    if [ $? -eq 0 ];then
-        continue
-    fi
-    NEWCMDLINE="$NEWCMDLINE $prop"
-done
 
-echo "NEWCMDLINE: $NEWCMDLINE"
+if [[ $OLDCMDLINE =~ "androidboot.selinux" ]];then
+  sed -i -e "s/androidboot\.selinux=.*/androidboot\.selinux=permissive/g" $TARGET_BOOT_DIR/boot.img-cmdline
+else
+  sed -i "1s/.*/& androidboot\.selinux=permissive/" $TARGET_BOOT_DIR/boot.img-cmdline
+fi
+
+NEWCMDLINE=$(cat $TARGET_BOOT_DIR/boot.img-cmdline)
 
 BASEADDR=$(cat $TARGET_BOOT_DIR/boot.img-base)
 PAGESIZE=$(cat $TARGET_BOOT_DIR/boot.img-pagesize)
