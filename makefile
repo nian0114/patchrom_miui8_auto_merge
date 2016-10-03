@@ -21,6 +21,8 @@ local-miui-removed-apps :=
 
 local-miui-modified-apps := TeleService
 
+PORT_PRODUCT := nian_m7
+
 # Config density for co-developers to use the aaps with HDPI or XHDPI resource,
 # Default configrations are HDPI for ics branch and XHDPI for jellybean branch
 local-density := XXHDPI
