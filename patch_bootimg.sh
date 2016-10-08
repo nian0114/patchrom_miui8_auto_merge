@@ -10,6 +10,7 @@ mkdir -p $TARGET_BOOT_DIR/ramdisk
 cd $TARGET_BOOT_DIR/ramdisk
 cpio -i < ../boot.img-ramdisk
 cd - > /dev/null
+  sed -i "/\s*superuser.*$/d" $TARGET_BOOT_DIR/ramdisk/init.cm.rc
   sed -i -e "s/ro\.secure=.*/ro\.secure=0/g" $TARGET_BOOT_DIR/ramdisk/default.prop
   sed -i -e "s/ro\.debuggable=.*/ro\.debuggable=1/g" $TARGET_BOOT_DIR/ramdisk/default.prop
   sed -i -e "s/ro\.adb\.secure=.*/ro\.adb\.secure=0/g" $TARGET_BOOT_DIR/ramdisk/default.prop
