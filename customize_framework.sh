@@ -7,13 +7,15 @@ GIT_APPLY=$PORT_ROOT/tools/git.apply
 BUILD_OUT=out
 
 function appendSmaliPart() {
+  	cd overlay
     for file in `find $1/smali -name *.part`
     do
         filepath=`dirname $file`
         filename=`basename $file .part`
-        dstfile="out/$filepath/$filename"
+        dstfile="../out/$filepath/$filename"
         cat $file >> $dstfile
     done
+	  cd ..
 }
 
 function overlaySmali() {
@@ -42,8 +44,9 @@ function applyPatch() {
 
 if [ $2 = "$BUILD_OUT/framework" ]
 then
-    cp ${2/out\//}.jar.out/smali/com/android/internal/app/ResolverActivity*.smali $2/smali/com/android/internal/app/
     applyPatch "overlay/framework"
+    appendSmaliPart "framework"
+    cp ${2/out\//}.jar.out/smali/com/android/internal/app/ResolverActivity*.smali $2/smali/com/android/internal/app/
     rm -rf $2/smali/android/widget/Editor*
     cp -rf $1/smali/android/widget/Editor*.smali $2/smali/android/widget/
 fi
