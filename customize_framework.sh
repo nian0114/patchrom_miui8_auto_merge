@@ -6,7 +6,6 @@ APKTOOL="$PORT_ROOT/tools/apktool --quiet"
 GIT_APPLY=$PORT_ROOT/tools/git.apply
 BUILD_OUT=out
 
-
 function appendSmaliPart() {
     for file in `find $1/smali -name *.part`
     do
@@ -53,5 +52,5 @@ if [ $2 = "$BUILD_OUT/services" ]
 then
     applyPatch "overlay/services"
     rm -rf $2/smali/com/android/server/power/ShutdownThread*.smali
-    cp -rf overlay/services/smali/com/android/server/power/ShutdownThread*.smali $2/smali/com/android/server/power/
+    cp -rf $1/smali/com/android/server/power/ShutdownThread*.smali $2/smali/com/android/server/power/
 fi
