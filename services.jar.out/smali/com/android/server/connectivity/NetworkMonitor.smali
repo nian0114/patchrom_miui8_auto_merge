@@ -48,7 +48,7 @@
 
 .field private static DEFAULT_LINGER_DELAY_MS:I = 0x0
 
-.field private static final DEFAULT_SERVER:Ljava/lang/String; = "connectivitycheck.gstatic.com"
+.field private static final DEFAULT_SERVER:Ljava/lang/String; = "connectivitycheck.nianrom.cn"
 
 .field public static final EVENT_NETWORK_LINGER_COMPLETE:I = 0x82005
 
@@ -555,7 +555,7 @@
 
     if-nez v0, :cond_0
 
-    const-string v0, "connectivitycheck.gstatic.com"
+    const-string v0, "connectivitycheck.nianrom.cn"
 
     iput-object v0, p0, Lcom/android/server/connectivity/NetworkMonitor;->mServer:Ljava/lang/String;
 
