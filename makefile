@@ -53,5 +53,4 @@ include $(PORT_BUILD)/porting.mk
 local-pre-zip-misc:
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf ../other/system $(ZIP_DIR)/
-	rm -rf $(ZIP_DIR)/system/bin/app_process32_vendor
-	cp -rf stockrom/system/bin/app_process32 $(ZIP_DIR)/system/bin/app_process32
+	cp -rf ../xposed_32/system $(ZIP_DIR)/
