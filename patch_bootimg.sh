@@ -17,7 +17,9 @@ cd - > /dev/null
   sed -i -e "s/persist\.sys\.usb\.config=.*/persist\.sys\.usb\.config=adb/g" $TARGET_BOOT_DIR/ramdisk/default.prop
   cat overlay/boot/file_contexts >> $TARGET_BOOT_DIR/ramdisk/file_contexts
   line=`sed -n '/BOOTCLASSPATH/=' $TARGET_BOOT_DIR/ramdisk/init.environ.rc | tail -n1`
-  sed -i "${line}s/.*/&:\/system\/app\/miui\/miui.apk:\/system\/app\/miuisystem\/miuisystem.apk/" $TARGET_BOOT_DIR/ramdisk/init.environ.rc
+  sed -i "${line}s/.*/&:\/system\/framework\/patchrom-core.jar:\/system\/app\/miui\/miui.apk:\/system\/app\/miuisystem\/miuisystem.apk/" $TARGET_BOOT_DIR/ramdisk/init.environ.rc
+  line=`sed -n '/SYSTEMSERVERCLASSPATH/=' $TARGET_BOOT_DIR/ramdisk/init.environ.rc | tail -n1`
+  sed -i "${line}s/.*/&:\/system\/framework\/patchrom-server.jar/" $TARGET_BOOT_DIR/ramdisk/init.environ.rc
   cp overlay/boot/init.miui.rc $TARGET_BOOT_DIR/ramdisk/
   cp overlay/boot/init.miui8.rc $TARGET_BOOT_DIR/ramdisk/
   echo "import /init.miui.rc" >> $TARGET_BOOT_DIR/ramdisk/init.rc
