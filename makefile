@@ -54,5 +54,3 @@ local-pre-zip-misc:
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf ../other/system $(ZIP_DIR)/
 	cp -rf ../xposed_32/system $(ZIP_DIR)/
-	sed -i "/\s*ro.telephony.default_network.*$/d" $(ZIP_DIR)/system/build.prop
-	sed -i "/\s*telephony.lteOnGsmDevice.*$/d" $(ZIP_DIR)/system/build.prop
