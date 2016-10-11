@@ -53,4 +53,5 @@ include $(PORT_BUILD)/porting.mk
 local-pre-zip-misc:
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf ../other/system $(ZIP_DIR)/
-	cp -rf ../xposed_32/system $(ZIP_DIR)/
+#	cp -rf ../xposed_32/system $(ZIP_DIR)/
+	echo "import /system/default.prop" >> $(ZIP_DIR)/system/build.prop
