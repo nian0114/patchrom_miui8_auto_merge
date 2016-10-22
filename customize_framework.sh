@@ -60,5 +60,5 @@ fi
 
 if [ $2 = "$BUILD_OUT/telephony-common" ]
 then
-    appendSmaliPart "overlay/telephony-common"
+    appendSmaliPart "telephony-common"
 fi
