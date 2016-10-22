@@ -69,139 +69,126 @@
 .end method
 
 .method private constructor <init>(Landroid/content/Context;[Lcom/android/internal/telephony/CommandsInterface;)V
-    .locals 6
+    .locals 5
     .param p1, "c"    # Landroid/content/Context;
     .param p2, "ci"    # [Lcom/android/internal/telephony/CommandsInterface;
 
     .prologue
-    const/4 v5, 0x1
+    const/4 v4, 0x1
 
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
 
     invoke-static {}, Landroid/telephony/TelephonyManager;->getDefault()Landroid/telephony/TelephonyManager;
 
-    move-result-object v3
+    move-result-object v2
 
-    invoke-virtual {v3}, Landroid/telephony/TelephonyManager;->getPhoneCount()I
+    invoke-virtual {v2}, Landroid/telephony/TelephonyManager;->getPhoneCount()I
 
-    move-result v3
+    move-result v2
 
-    new-array v3, v3, [Lcom/android/internal/telephony/uicc/UiccCard;
+    new-array v2, v2, [Lcom/android/internal/telephony/uicc/UiccCard;
 
-    iput-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mUiccCards:[Lcom/android/internal/telephony/uicc/UiccCard;
+    iput-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mUiccCards:[Lcom/android/internal/telephony/uicc/UiccCard;
 
-    new-instance v3, Landroid/os/RegistrantList;
+    new-instance v2, Landroid/os/RegistrantList;
 
-    invoke-direct {v3}, Landroid/os/RegistrantList;-><init>()V
+    invoke-direct {v2}, Landroid/os/RegistrantList;-><init>()V
 
-    iput-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mIccChangedRegistrants:Landroid/os/RegistrantList;
+    iput-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mIccChangedRegistrants:Landroid/os/RegistrantList;
 
-    new-instance v3, Ljava/util/LinkedList;
+    new-instance v2, Ljava/util/LinkedList;
 
-    invoke-direct {v3}, Ljava/util/LinkedList;-><init>()V
+    invoke-direct {v2}, Ljava/util/LinkedList;-><init>()V
 
-    iput-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCardLogs:Ljava/util/LinkedList;
+    iput-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCardLogs:Ljava/util/LinkedList;
 
-    const-string v3, "Creating UiccController"
+    const-string v2, "Creating UiccController"
 
-    invoke-direct {p0, v3}, Lcom/android/internal/telephony/uicc/UiccController;->log(Ljava/lang/String;)V
+    invoke-direct {p0, v2}, Lcom/android/internal/telephony/uicc/UiccController;->log(Ljava/lang/String;)V
 
     iput-object p1, p0, Lcom/android/internal/telephony/uicc/UiccController;->mContext:Landroid/content/Context;
 
     iput-object p2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
-    const-string v3, "persist.radio.apm_sim_not_pwdn"
-
-    const/4 v4, 0x0
-
-    invoke-static {v3, v4}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
-
-    move-result v2
-
-    .local v2, "radioApmSimNotPwdn":Z
     const/4 v0, 0x0
 
     .local v0, "i":I
     :goto_0
-    iget-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
-    array-length v3, v3
+    array-length v2, v2
 
-    if-ge v0, v3, :cond_2
+    if-ge v0, v2, :cond_2
 
     new-instance v1, Ljava/lang/Integer;
 
     invoke-direct {v1, v0}, Ljava/lang/Integer;-><init>(I)V
 
     .local v1, "index":Ljava/lang/Integer;
-    iget-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
-    aget-object v3, v3, v0
+    aget-object v2, v2, v0
 
-    invoke-interface {v3, p0, v5, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForIccStatusChanged(Landroid/os/Handler;ILjava/lang/Object;)V
+    invoke-interface {v2, p0, v4, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForIccStatusChanged(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    const-string v3, "trigger_restart_framework"
+    const-string v2, "trigger_restart_framework"
 
-    const-string v4, "vold.decrypt"
+    const-string v3, "vold.decrypt"
 
-    invoke-static {v4}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v3}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v4
+    move-result-object v3
 
-    invoke-virtual {v3, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v3
+    move-result v2
 
-    if-eqz v3, :cond_1
+    if-nez v2, :cond_0
 
-    iget-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+    const-string v2, "persist.radio.apm_sim_not_pwdn"
 
-    aget-object v3, v3, v0
+    const/4 v3, 0x0
 
-    invoke-interface {v3}, Lcom/android/internal/telephony/CommandsInterface;->getRilVersion()I
+    invoke-static {v2, v3}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
 
-    move-result v3
+    move-result v2
 
-    const/16 v4, 0x9
-
-    if-lt v3, v4, :cond_1
+    if-eqz v2, :cond_1
 
     :cond_0
-    iget-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
-    aget-object v3, v3, v0
+    aget-object v2, v2, v0
 
-    invoke-interface {v3, p0, v5, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
+    invoke-interface {v2, p0, v4, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
 
     :goto_1
-    iget-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
-    aget-object v3, v3, v0
+    aget-object v2, v2, v0
 
-    const/4 v4, 0x3
+    const/4 v3, 0x3
 
-    invoke-interface {v3, p0, v4, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForNotAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
+    invoke-interface {v2, p0, v3, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForNotAvailable(Landroid/os/Handler;ILjava/lang/Object;)V
 
-    iget-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+    iget-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
-    aget-object v3, v3, v0
+    aget-object v2, v2, v0
 
-    const/4 v4, 0x4
+    const/4 v3, 0x4
 
-    invoke-interface {v3, p0, v4, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForIccRefresh(Landroid/os/Handler;ILjava/lang/Object;)V
+    invoke-interface {v2, p0, v3, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForIccRefresh(Landroid/os/Handler;ILjava/lang/Object;)V
 
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
     :cond_1
-    if-nez v2, :cond_0
+    iget-object v2, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
 
-    iget-object v3, p0, Lcom/android/internal/telephony/uicc/UiccController;->mCis:[Lcom/android/internal/telephony/CommandsInterface;
+    aget-object v2, v2, v0
 
-    aget-object v3, v3, v0
-
-    invoke-interface {v3, p0, v5, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForOn(Landroid/os/Handler;ILjava/lang/Object;)V
+    invoke-interface {v2, p0, v4, v1}, Lcom/android/internal/telephony/CommandsInterface;->registerForOn(Landroid/os/Handler;ILjava/lang/Object;)V
 
     goto :goto_1
 

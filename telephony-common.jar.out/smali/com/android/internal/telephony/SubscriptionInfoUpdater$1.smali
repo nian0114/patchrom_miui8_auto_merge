@@ -74,30 +74,13 @@
 
     invoke-static {v4, v5}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->-wrap0(Lcom/android/internal/telephony/SubscriptionInfoUpdater;Ljava/lang/String;)V
 
-    const-string v4, "android.intent.action.ACTION_SHUTDOWN"
-
-    invoke-virtual {v0, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_0
-
-    iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
-
-    const/4 v5, 0x1
-
-    invoke-static {v4, v5}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->-set1(Lcom/android/internal/telephony/SubscriptionInfoUpdater;Z)Z
-
-    return-void
-
-    :cond_0
     const-string v4, "android.intent.action.SIM_STATE_CHANGED"
 
     invoke-virtual {v0, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-nez v4, :cond_1
+    if-nez v4, :cond_0
 
     const-string v4, "android.intent.action.internal_sim_state_changed"
 
@@ -105,9 +88,9 @@
 
     move-result v4
 
-    if-eqz v4, :cond_2
+    if-eqz v4, :cond_1
 
-    :cond_1
+    :cond_0
     const-string v4, "phone"
 
     invoke-virtual {p2, v4, v7}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
@@ -137,16 +120,16 @@
 
     invoke-static {v4, v5}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->-wrap0(Lcom/android/internal/telephony/SubscriptionInfoUpdater;Ljava/lang/String;)V
 
-    if-ne v3, v7, :cond_3
+    if-ne v3, v7, :cond_2
 
     return-void
 
     .end local v3    # "slotId":I
-    :cond_2
+    :cond_1
     return-void
 
     .restart local v3    # "slotId":I
-    :cond_3
+    :cond_2
     const-string v4, "ss"
 
     invoke-virtual {p2, v4}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
@@ -182,7 +165,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_9
+    if-eqz v4, :cond_7
 
     const-string v4, "ABSENT"
 
@@ -190,7 +173,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_6
+    if-eqz v4, :cond_4
 
     iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
 
@@ -204,38 +187,8 @@
 
     invoke-virtual {v4, v5}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->sendMessage(Landroid/os/Message;)Z
 
-    :cond_4
+    :cond_3
     :goto_0
-    iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
-
-    invoke-virtual {v4}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->isAllIccIdQueryDone()Z
-
-    move-result v4
-
-    if-eqz v4, :cond_5
-
-    const-string v4, "LOCKED"
-
-    invoke-virtual {v4, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_c
-
-    iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
-
-    invoke-static {v4}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->-get2(Lcom/android/internal/telephony/SubscriptionInfoUpdater;)Ljava/util/BitSet;
-
-    move-result-object v4
-
-    invoke-virtual {v4, v3}, Ljava/util/BitSet;->set(I)V
-
-    iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
-
-    invoke-static {v4, v3}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->-wrap1(Lcom/android/internal/telephony/SubscriptionInfoUpdater;I)V
-
-    :cond_5
-    :goto_1
     iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
 
     const-string v5, "[Receiver]-"
@@ -244,14 +197,14 @@
 
     return-void
 
-    :cond_6
+    :cond_4
     const-string v4, "UNKNOWN"
 
     invoke-virtual {v4, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_7
+    if-eqz v4, :cond_5
 
     iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
 
@@ -267,14 +220,14 @@
 
     goto :goto_0
 
-    :cond_7
+    :cond_5
     const-string v4, "CARD_IO_ERROR"
 
     invoke-virtual {v4, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_8
+    if-eqz v4, :cond_6
 
     iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
 
@@ -290,7 +243,7 @@
 
     goto :goto_0
 
-    :cond_8
+    :cond_6
     iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -315,14 +268,14 @@
 
     goto :goto_0
 
-    :cond_9
+    :cond_7
     const-string v4, "android.intent.action.internal_sim_state_changed"
 
     invoke-virtual {v0, v4}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_4
+    if-eqz v4, :cond_3
 
     const-string v4, "LOCKED"
 
@@ -330,7 +283,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_a
+    if-eqz v4, :cond_8
 
     const-string v4, "reason"
 
@@ -351,17 +304,17 @@
 
     invoke-virtual {v4, v5}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->sendMessage(Landroid/os/Message;)Z
 
-    goto/16 :goto_0
+    goto :goto_0
 
     .end local v1    # "reason":Ljava/lang/String;
-    :cond_a
+    :cond_8
     const-string v4, "LOADED"
 
     invoke-virtual {v4, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
     move-result v4
 
-    if-eqz v4, :cond_b
+    if-eqz v4, :cond_9
 
     iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
 
@@ -377,7 +330,7 @@
 
     goto/16 :goto_0
 
-    :cond_b
+    :cond_9
     iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -401,36 +354,4 @@
     invoke-static {v4, v5}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->-wrap0(Lcom/android/internal/telephony/SubscriptionInfoUpdater;Ljava/lang/String;)V
 
     goto/16 :goto_0
-
-    :cond_c
-    const-string v4, "READY"
-
-    invoke-virtual {v4, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_d
-
-    const-string v4, "LOADED"
-
-    invoke-virtual {v4, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_5
-
-    :cond_d
-    iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
-
-    invoke-static {v4}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->-get2(Lcom/android/internal/telephony/SubscriptionInfoUpdater;)Ljava/util/BitSet;
-
-    move-result-object v4
-
-    invoke-virtual {v4, v3}, Ljava/util/BitSet;->clear(I)V
-
-    iget-object v4, p0, Lcom/android/internal/telephony/SubscriptionInfoUpdater$1;->this$0:Lcom/android/internal/telephony/SubscriptionInfoUpdater;
-
-    invoke-static {v4, v3}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->-wrap1(Lcom/android/internal/telephony/SubscriptionInfoUpdater;I)V
-
-    goto/16 :goto_1
 .end method

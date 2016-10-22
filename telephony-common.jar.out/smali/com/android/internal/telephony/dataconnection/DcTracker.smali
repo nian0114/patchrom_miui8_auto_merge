@@ -974,7 +974,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_9
+    if-eqz v4, :cond_8
 
     const/4 v0, 0x1
 
@@ -1067,7 +1067,7 @@
 
     .end local v1    # "state":Lcom/android/internal/telephony/DctConstants$State;
     :cond_3
-    if-eqz p3, :cond_8
+    if-eqz p3, :cond_7
 
     const-string v4, "dataDisabled"
 
@@ -1102,57 +1102,18 @@
     goto :goto_0
 
     :cond_6
-    iget-object v4, p0, Lcom/android/internal/telephony/dataconnection/DcTracker;->mPhone:Lcom/android/internal/telephony/PhoneBase;
-
-    invoke-virtual {v4}, Lcom/android/internal/telephony/PhoneBase;->getContext()Landroid/content/Context;
-
-    move-result-object v4
-
-    const-string v5, "config_enable_mms_with_mobile_data_off"
-
-    invoke-static {v4, v5}, Lcom/android/internal/telephony/ConfigResourceUtil;->getBooleanValue(Landroid/content/Context;Ljava/lang/String;)Z
-
-    move-result v4
-
-    if-eqz v4, :cond_7
-
-    invoke-virtual {p1}, Lcom/android/internal/telephony/dataconnection/ApnContext;->getApnType()Ljava/lang/String;
-
-    move-result-object v4
-
-    const-string v5, "mms"
-
-    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v4
-
-    if-nez v4, :cond_5
-
-    :cond_7
-    iget-object v4, p0, Lcom/android/internal/telephony/dataconnection/DcTracker;->mPhone:Lcom/android/internal/telephony/PhoneBase;
-
-    invoke-virtual {v4}, Lcom/android/internal/telephony/PhoneBase;->getSubId()I
-
-    move-result v4
-
-    invoke-static {}, Landroid/telephony/SubscriptionManager;->getDefaultDataSubId()I
-
-    move-result v5
-
-    if-ne v4, v5, :cond_5
-
     const/4 v0, 0x0
 
-    goto/16 :goto_0
+    goto :goto_0
 
-    :cond_8
+    :cond_7
     const-string v4, "dependencyUnmet"
 
     invoke-virtual {p1, v4}, Lcom/android/internal/telephony/dataconnection/ApnContext;->setReason(Ljava/lang/String;)V
 
-    goto/16 :goto_0
+    goto :goto_0
 
-    :cond_9
+    :cond_8
     if-eqz p2, :cond_0
 
     if-eqz p3, :cond_0
@@ -1161,7 +1122,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_b
+    if-eqz v4, :cond_a
 
     const-string v4, "dependencyMet"
 
@@ -1174,18 +1135,18 @@
 
     sget-object v5, Lcom/android/internal/telephony/DctConstants$State;->FAILED:Lcom/android/internal/telephony/DctConstants$State;
 
-    if-ne v4, v5, :cond_a
+    if-ne v4, v5, :cond_9
 
     sget-object v4, Lcom/android/internal/telephony/DctConstants$State;->IDLE:Lcom/android/internal/telephony/DctConstants$State;
 
     invoke-virtual {p1, v4}, Lcom/android/internal/telephony/dataconnection/ApnContext;->setState(Lcom/android/internal/telephony/DctConstants$State;)V
 
-    :cond_a
+    :cond_9
     const/4 v3, 0x1
 
     goto/16 :goto_0
 
-    :cond_b
+    :cond_a
     const-string v4, "dataEnabled"
 
     invoke-virtual {p1, v4}, Lcom/android/internal/telephony/dataconnection/ApnContext;->setReason(Ljava/lang/String;)V
@@ -14631,14 +14592,6 @@
 
     invoke-virtual {p0}, Lcom/android/internal/telephony/dataconnection/DcTracker;->setInitialAttachApn()V
 
-    const-string v2, "apnChanged"
-
-    invoke-virtual {p1, v2}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_4
-
     if-eqz v0, :cond_3
 
     move v2, v3
@@ -14646,7 +14599,11 @@
     :goto_1
     invoke-direct {p0, v2}, Lcom/android/internal/telephony/dataconnection/DcTracker;->cleanUpConnectionsOnUpdatedApns(Z)V
 
+    if-eqz v0, :cond_4
+
     :goto_2
+    invoke-virtual {p0, v3, p1}, Lcom/android/internal/telephony/dataconnection/DcTracker;->cleanUpAllConnections(ZLjava/lang/String;)Z
+
     invoke-virtual {p0, p1}, Lcom/android/internal/telephony/dataconnection/DcTracker;->setupDataOnConnectableApns(Ljava/lang/String;)V
 
     return-void
@@ -14671,17 +14628,9 @@
     goto :goto_1
 
     :cond_4
-    if-eqz v0, :cond_5
-
-    :goto_3
-    invoke-virtual {p0, v3, p1}, Lcom/android/internal/telephony/dataconnection/DcTracker;->cleanUpAllConnections(ZLjava/lang/String;)Z
-
-    goto :goto_2
-
-    :cond_5
     move v3, v4
 
-    goto :goto_3
+    goto :goto_2
 .end method
 
 .method public unregisterForAllDataDisconnected(Landroid/os/Handler;)V

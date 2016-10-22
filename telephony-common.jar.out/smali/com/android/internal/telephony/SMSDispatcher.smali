@@ -48,8 +48,6 @@
 
 .field static final EVENT_STOP_SENDING:I = 0x7
 
-.field private static final MAX_LABEL_SIZE_PX:F = 500.0f
-
 .field private static final MAX_SEND_RETRIES:I = 0x3
 
 .field private static final MO_MSG_QUEUE_LIMIT:I = 0x5
@@ -430,142 +428,6 @@
     return-void
 .end method
 
-.method private convertSafeLabel(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/CharSequence;
-    .locals 8
-    .param p1, "labelStr"    # Ljava/lang/String;
-    .param p2, "appPackage"    # Ljava/lang/String;
-
-    .prologue
-    const/4 v7, 0x0
-
-    invoke-virtual {p1}, Ljava/lang/String;->length()I
-
-    move-result v1
-
-    .local v1, "labelLength":I
-    const/4 v2, 0x0
-
-    .local v2, "offset":I
-    :goto_0
-    if-ge v2, v1, :cond_1
-
-    invoke-virtual {p1, v2}, Ljava/lang/String;->codePointAt(I)I
-
-    move-result v0
-
-    .local v0, "codePoint":I
-    invoke-static {v0}, Ljava/lang/Character;->getType(I)I
-
-    move-result v4
-
-    .local v4, "type":I
-    const/16 v5, 0xd
-
-    if-eq v4, v5, :cond_0
-
-    const/16 v5, 0xf
-
-    if-ne v4, v5, :cond_2
-
-    :cond_0
-    invoke-virtual {p1, v7, v2}, Ljava/lang/String;->substring(II)Ljava/lang/String;
-
-    move-result-object p1
-
-    .end local v0    # "codePoint":I
-    .end local v4    # "type":I
-    :cond_1
-    invoke-virtual {p1}, Ljava/lang/String;->trim()Ljava/lang/String;
-
-    move-result-object p1
-
-    invoke-virtual {p1}, Ljava/lang/String;->isEmpty()Z
-
-    move-result v5
-
-    if-eqz v5, :cond_4
-
-    return-object p2
-
-    .restart local v0    # "codePoint":I
-    .restart local v4    # "type":I
-    :cond_2
-    const/16 v5, 0xe
-
-    if-eq v4, v5, :cond_0
-
-    const/16 v5, 0xc
-
-    if-ne v4, v5, :cond_3
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    invoke-virtual {p1, v7, v2}, Ljava/lang/String;->substring(II)Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    const-string v6, " "
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-static {v0}, Ljava/lang/Character;->charCount(I)I
-
-    move-result v6
-
-    add-int/2addr v6, v2
-
-    invoke-virtual {p1, v6}, Ljava/lang/String;->substring(I)Ljava/lang/String;
-
-    move-result-object v6
-
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object p1
-
-    :cond_3
-    invoke-static {v0}, Ljava/lang/Character;->charCount(I)I
-
-    move-result v5
-
-    add-int/2addr v2, v5
-
-    goto :goto_0
-
-    .end local v0    # "codePoint":I
-    .end local v4    # "type":I
-    :cond_4
-    new-instance v3, Landroid/text/TextPaint;
-
-    invoke-direct {v3}, Landroid/text/TextPaint;-><init>()V
-
-    .local v3, "paint":Landroid/text/TextPaint;
-    const/high16 v5, 0x42280000    # 42.0f
-
-    invoke-virtual {v3, v5}, Landroid/text/TextPaint;->setTextSize(F)V
-
-    sget-object v5, Landroid/text/TextUtils$TruncateAt;->END:Landroid/text/TextUtils$TruncateAt;
-
-    const/high16 v6, 0x43fa0000    # 500.0f
-
-    invoke-static {p1, v3, v6, v5}, Landroid/text/TextUtils;->ellipsize(Ljava/lang/CharSequence;Landroid/text/TextPaint;FLandroid/text/TextUtils$TruncateAt;)Ljava/lang/CharSequence;
-
-    move-result-object v5
-
-    return-object v5
-.end method
-
 .method private denyIfQueueLimitReached(Lcom/android/internal/telephony/SMSDispatcher$SmsTracker;)Z
     .locals 4
     .param p1, "tracker"    # Lcom/android/internal/telephony/SMSDispatcher$SmsTracker;
@@ -604,69 +466,59 @@
 .end method
 
 .method private getAppLabel(Ljava/lang/String;)Ljava/lang/CharSequence;
-    .locals 7
+    .locals 6
     .param p1, "appPackage"    # Ljava/lang/String;
 
     .prologue
-    iget-object v4, p0, Lcom/android/internal/telephony/SMSDispatcher;->mContext:Landroid/content/Context;
+    iget-object v3, p0, Lcom/android/internal/telephony/SMSDispatcher;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v4}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+    invoke-virtual {v3}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
-    move-result-object v3
+    move-result-object v2
 
-    .local v3, "pm":Landroid/content/pm/PackageManager;
-    const/4 v4, 0x0
+    .local v2, "pm":Landroid/content/pm/PackageManager;
+    const/4 v3, 0x0
 
     :try_start_0
-    invoke-virtual {v3, p1, v4}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
+    invoke-virtual {v2, p1, v3}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
 
     move-result-object v0
 
     .local v0, "appInfo":Landroid/content/pm/ApplicationInfo;
-    invoke-virtual {v0, v3}, Landroid/content/pm/ApplicationInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
-
-    move-result-object v4
-
-    invoke-interface {v4}, Ljava/lang/CharSequence;->toString()Ljava/lang/String;
-
-    move-result-object v2
-
-    .local v2, "label":Ljava/lang/String;
-    invoke-direct {p0, v2, p1}, Lcom/android/internal/telephony/SMSDispatcher;->convertSafeLabel(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/CharSequence;
+    invoke-virtual {v0, v2}, Landroid/content/pm/ApplicationInfo;->loadLabel(Landroid/content/pm/PackageManager;)Ljava/lang/CharSequence;
     :try_end_0
     .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
-    move-result-object v4
+    move-result-object v3
 
-    return-object v4
+    return-object v3
 
     .end local v0    # "appInfo":Landroid/content/pm/ApplicationInfo;
-    .end local v2    # "label":Ljava/lang/String;
     :catch_0
     move-exception v1
 
     .local v1, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
-    const-string v4, "SMSDispatcher"
+    const-string v3, "SMSDispatcher"
 
-    new-instance v5, Ljava/lang/StringBuilder;
+    new-instance v4, Ljava/lang/StringBuilder;
 
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v6, "PackageManager Name Not Found for package "
+    const-string v5, "PackageManager Name Not Found for package "
 
-    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-virtual {v5, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v4, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v5
+    move-result-object v4
 
-    invoke-static {v4, v5}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v3, v4}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     return-object p1
 .end method
@@ -1243,25 +1095,6 @@
     :cond_a
     if-eq v5, v10, :cond_9
 
-    iget-object v6, p0, Lcom/android/internal/telephony/SMSDispatcher;->mResolver:Landroid/content/ContentResolver;
-
-    const-string v7, "device_provisioned"
-
-    invoke-static {v6, v7, v8}, Landroid/provider/Settings$Global;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
-
-    move-result v6
-
-    if-nez v6, :cond_b
-
-    const-string v6, "SMSDispatcher"
-
-    const-string v7, "Can\'t send premium sms during Setup Wizard"
-
-    invoke-static {v6, v7}, Landroid/telephony/Rlog;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    return v8
-
-    :cond_b
     iget-object v6, p0, Lcom/android/internal/telephony/SMSDispatcher;->mUsageMonitor:Lcom/android/internal/telephony/SmsUsageMonitor;
 
     iget-object v7, p1, Lcom/android/internal/telephony/SMSDispatcher$SmsTracker;->mAppInfo:Landroid/content/pm/PackageInfo;
@@ -1273,14 +1106,14 @@
     move-result v2
 
     .local v2, "premiumSmsPermission":I
-    if-nez v2, :cond_c
+    if-nez v2, :cond_b
 
     const/4 v2, 0x1
 
-    :cond_c
+    :cond_b
     packed-switch v2, :pswitch_data_0
 
-    if-ne v5, v11, :cond_d
+    if-ne v5, v11, :cond_c
 
     const/16 v0, 0x8
 
@@ -1321,11 +1154,13 @@
 
     return v8
 
-    :cond_d
+    :cond_c
     const/16 v0, 0x9
 
     .restart local v0    # "event":I
     goto :goto_0
+
+    nop
 
     :pswitch_data_0
     .packed-switch 0x2
