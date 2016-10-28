@@ -46,7 +46,6 @@ if [ $2 = "$BUILD_OUT/framework" ]
 then
     applyPatch "overlay/framework"
     appendSmaliPart "framework"
-    cp ${2/out\//}.jar.out/smali/com/android/internal/app/ResolverActivity*.smali $2/smali/com/android/internal/app/
     rm -rf $2/smali/android/widget/Editor*
     cp -rf $1/smali/android/widget/Editor*.smali $2/smali/android/widget/
 fi
