@@ -92,8 +92,23 @@
 
     const/4 v3, 0x2
 
-    if-lt v2, v3, :cond_2
+    if-ge v2, v3, :cond_miui_0
 
+    iget v2, v1, Lcom/android/server/wifi/StateChangeResult;->networkId:I
+
+    iget-object v3, p0, Lcom/android/server/wifi/SupplicantStateTracker$DisconnectedState;->this$0:Lcom/android/server/wifi/SupplicantStateTracker;
+
+    invoke-static {v3}, Lcom/android/server/wifi/SupplicantStateTracker;->-get3(Lcom/android/server/wifi/SupplicantStateTracker;)I
+
+    move-result v3
+
+    invoke-static {v2, v3}, Landroid/net/wifi/SupplicantStateTrackerInjector;->isConformAuthFailure(II)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    :cond_miui_0
     const-string v2, "SupplicantStateTracker"
 
     new-instance v3, Ljava/lang/StringBuilder;

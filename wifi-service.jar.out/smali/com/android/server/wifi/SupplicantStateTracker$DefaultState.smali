@@ -222,6 +222,10 @@
 
     invoke-static {v2, v6}, Lcom/android/server/wifi/SupplicantStateTracker;->-set0(Lcom/android/server/wifi/SupplicantStateTracker;I)I
 
+    iget v2, p1, Landroid/os/Message;->arg1:I
+
+    invoke-static {v2}, Landroid/net/wifi/SupplicantStateTrackerInjector;->handleConnectNetwork(I)V
+
     goto :goto_0
 
     :sswitch_4
@@ -236,6 +240,8 @@
     invoke-static {v2, v3}, Lcom/android/server/wifi/SupplicantStateTracker;->-set0(Lcom/android/server/wifi/SupplicantStateTracker;I)I
 
     goto :goto_0
+
+    nop
 
     :sswitch_data_0
     .sparse-switch

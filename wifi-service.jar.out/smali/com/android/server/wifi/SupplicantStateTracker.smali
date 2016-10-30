@@ -749,6 +749,16 @@
 
     invoke-virtual {v1, p1, p2}, Lcom/android/server/wifi/WifiConfigStore;->disableNetwork(II)Z
 
+    iget-object v0, p0, Lcom/android/server/wifi/SupplicantStateTracker;->mContext:Landroid/content/Context;
+
+    iget-object v1, p0, Lcom/android/server/wifi/SupplicantStateTracker;->mWifiConfigStore:Lcom/android/server/wifi/WifiConfigStore;
+
+    invoke-virtual {v1}, Lcom/android/server/wifi/WifiConfigStore;->getConfiguredNetworks()Ljava/util/List;
+
+    move-result-object v1
+
+    invoke-static {v0, v1, p1}, Landroid/net/wifi/SupplicantStateTrackerInjector;->handleNetworkConnectionFailure(Landroid/content/Context;Ljava/util/List;I)V
+
     return-void
 .end method
 

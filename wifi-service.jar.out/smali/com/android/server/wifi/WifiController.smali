@@ -746,6 +746,26 @@
     goto :goto_0
 .end method
 
+.method static synthetic access$mContext(Lcom/android/server/wifi/WifiController;)Landroid/content/Context;
+    .locals 1
+    .param p0, "x0"    # Lcom/android/server/wifi/WifiController;
+
+    .prologue
+    iget-object v0, p0, Lcom/android/server/wifi/WifiController;->mContext:Landroid/content/Context;
+
+    return-object v0
+.end method
+
+.method static synthetic access$mStaEnabledState(Lcom/android/server/wifi/WifiController;)Lcom/android/server/wifi/WifiController$StaEnabledState;
+    .locals 1
+    .param p0, "x0"    # Lcom/android/server/wifi/WifiController;
+
+    .prologue
+    iget-object v0, p0, Lcom/android/server/wifi/WifiController;->mStaEnabledState:Lcom/android/server/wifi/WifiController$StaEnabledState;
+
+    return-object v0
+.end method
+
 .method private checkLocksAndTransitionWhenDeviceActive()V
     .locals 2
 
