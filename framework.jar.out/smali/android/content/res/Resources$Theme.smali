@@ -490,7 +490,13 @@
 
     monitor-exit v11
 
-    return-object v9
+    iget-object v0, p0, Landroid/content/res/Resources$Theme;->this$0:Landroid/content/res/Resources;
+
+    invoke-virtual {v0, v9}, Landroid/content/res/Resources;->loadOverlayTypedArray(Landroid/content/res/TypedArray;)Landroid/content/res/TypedArray;
+
+    move-result-object v0
+
+    return-object v0
 
     .end local v9    # "array":Landroid/content/res/TypedArray;
     .end local v10    # "len":I
@@ -561,7 +567,13 @@
 
     monitor-exit v14
 
-    return-object v11
+    iget-object v0, p0, Landroid/content/res/Resources$Theme;->this$0:Landroid/content/res/Resources;
+
+    invoke-virtual {v0, v11}, Landroid/content/res/Resources;->loadOverlayTypedArray(Landroid/content/res/TypedArray;)Landroid/content/res/TypedArray;
+
+    move-result-object v0
+
+    return-object v0
 
     :cond_0
     const-wide/16 v6, 0x0
@@ -621,7 +633,13 @@
 
     monitor-exit v11
 
-    return-object v9
+    iget-object v0, p0, Landroid/content/res/Resources$Theme;->this$0:Landroid/content/res/Resources;
+
+    invoke-virtual {v0, v9}, Landroid/content/res/Resources;->loadOverlayTypedArray(Landroid/content/res/TypedArray;)Landroid/content/res/TypedArray;
+
+    move-result-object v0
+
+    return-object v0
 
     .end local v9    # "array":Landroid/content/res/TypedArray;
     .end local v10    # "len":I
@@ -726,6 +744,13 @@
 
     monitor-exit v7
 
+    if-eqz v0, :cond_0
+
+    iget-object v1, p0, Landroid/content/res/Resources$Theme;->this$0:Landroid/content/res/Resources;
+
+    invoke-virtual {v1, p2, p1}, Landroid/content/res/Resources;->loadOverlayValue(Landroid/util/TypedValue;I)V
+
+    :cond_0
     return v0
 
     :catchall_0
