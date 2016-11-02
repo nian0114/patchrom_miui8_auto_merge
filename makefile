@@ -19,7 +19,7 @@ local-modified-jars := org.cyanogenmod.platform
 # All apks from MIUI
 local-miui-removed-apps := FM
 
-local-miui-modified-apps := TeleService
+local-miui-modified-apps := TeleService MiuiKeyguard
 
 PORT_PRODUCT := nian_m7
 
