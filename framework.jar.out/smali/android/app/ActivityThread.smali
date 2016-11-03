@@ -5371,6 +5371,8 @@
     .param p1, "data"    # Landroid/app/ActivityThread$AppBindData;
 
     .prologue
+    invoke-static {}, Landroid/app/ActivityThreadInjector;->raiseThreadPriority()V
+
     move-object/from16 v0, p1
 
     move-object/from16 v1, p0
@@ -5497,6 +5499,8 @@
     invoke-static {v2}, Landroid/view/HardwareRenderer;->disable(Z)V
 
     :cond_1
+    invoke-static {}, Lcom/miui/whetstone/app/WhetstoneAppManager;->setHardwareRendererIfNeeded()V
+
     move-object/from16 v0, p0
 
     iget-object v2, v0, Landroid/app/ActivityThread;->mProfiler:Landroid/app/ActivityThread$Profiler;
@@ -6300,6 +6304,26 @@
     invoke-virtual {v2}, Ldalvik/system/VMRuntime;->clearGrowthLimit()V
 
     :goto_a
+    move-object/from16 v0, p1
+
+    iget-object v2, v0, Landroid/app/ActivityThread$AppBindData;->appInfo:Landroid/content/pm/ApplicationInfo;
+
+    invoke-static {v2}, Lcom/miui/whetstone/app/WhetstoneAppManager;->trimHeapSizeIfNeeded(Landroid/content/pm/ApplicationInfo;)V
+
+    move-object/from16 v0, p1
+
+    iget-object v2, v0, Landroid/app/ActivityThread$AppBindData;->appInfo:Landroid/content/pm/ApplicationInfo;
+
+    iget v2, v2, Landroid/content/pm/ApplicationInfo;->nextActivityTheme:I
+
+    move-object/from16 v0, p1
+
+    iget-object v4, v0, Landroid/app/ActivityThread$AppBindData;->info:Landroid/app/LoadedApk;
+
+    move-object/from16 v0, p0
+
+    invoke-static {v0, v2, v4}, Landroid/app/ActivityThreadInjector;->preloadSubActivity(Landroid/app/ActivityThread;ILandroid/app/LoadedApk;)V
+
     invoke-static {}, Landroid/os/StrictMode;->allowThreadDiskWrites()Landroid/os/StrictMode$ThreadPolicy;
 
     move-result-object v29
@@ -11346,6 +11370,8 @@
     invoke-direct {v1}, Landroid/app/ActivityThread;-><init>()V
 
     .local v1, "thread":Landroid/app/ActivityThread;
+    invoke-static {}, Lcom/miui/whetstone/app/WhetstoneAppManager;->getInstance()Lcom/miui/whetstone/app/WhetstoneAppManager;
+
     invoke-direct {v1, v3}, Landroid/app/ActivityThread;->attach(Z)V
 
     sget-object v2, Landroid/app/ActivityThread;->sMainThreadHandler:Landroid/os/Handler;
@@ -16460,6 +16486,15 @@
     .param p1, "level"    # I
 
     .prologue
+    invoke-static {p1}, Lcom/miui/whetstone/app/WhetstoneAppManager;->handleTrimMemory(I)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_miui_0
+
+    goto :goto_miui_0
+
+    :cond_miui_0
     const/4 v3, 0x1
 
     const/4 v4, 0x0
@@ -16499,6 +16534,7 @@
 
     invoke-virtual {v3, p1}, Landroid/view/WindowManagerGlobal;->trimMemory(I)V
 
+    :goto_miui_0
     return-void
 .end method
 

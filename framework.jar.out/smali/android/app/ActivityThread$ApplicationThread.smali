@@ -1543,6 +1543,8 @@
 
     invoke-virtual {v0, p1, p2}, Landroid/view/WindowManagerGlobal;->dumpGfxInfo(Ljava/io/FileDescriptor;[Ljava/lang/String;)V
 
+    invoke-static {p1, p2}, Lmiui/util/DumpBitmapInfoUtils;->dumpBitmapInfo(Ljava/io/FileDescriptor;[Ljava/lang/String;)V
+
     return-void
 .end method
 

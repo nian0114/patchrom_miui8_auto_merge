@@ -7808,14 +7808,23 @@
     :cond_7
     if-eqz p3, :cond_8
 
-    const/4 v4, 0x4
+    const/4 v4, 0x5
 
     new-array v4, v4, [Ljava/lang/Object;
 
     move-object/from16 v0, p1
 
-    iget v5, v0, Lcom/android/server/am/ActivityRecord;->userId:I
+    iget-object v5, v0, Lcom/android/server/am/ActivityRecord;->app:Lcom/android/server/am/ProcessRecord;
 
+    if-eqz v5, :cond_miui_0
+
+    move-object/from16 v0, p1
+
+    iget-object v5, v0, Lcom/android/server/am/ActivityRecord;->app:Lcom/android/server/am/ProcessRecord;
+
+    iget v5, v5, Lcom/android/server/am/ProcessRecord;->pid:I
+
+    :goto_miui_0
     invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v5
@@ -7853,6 +7862,14 @@
     iget-object v5, v0, Lcom/android/server/am/ActivityRecord;->shortComponentName:Ljava/lang/String;
 
     const/4 v6, 0x3
+
+    aput-object v5, v4, v6
+
+    const/4 v6, 0x4
+
+    move-object/from16 v0, p1
+
+    iget-object v5, v0, Lcom/android/server/am/ActivityRecord;->launchedFromPackage:Ljava/lang/String;
 
     aput-object v5, v4, v6
 
@@ -8389,6 +8406,11 @@
     const/4 v4, 0x1
 
     return v4
+
+    :cond_miui_0
+    const/4 v5, 0x0
+
+    goto/16 :goto_miui_0
 
     .restart local v21    # "profilerInfo":Landroid/app/ProfilerInfo;
     .restart local v28    # "profileFd":Landroid/os/ParcelFileDescriptor;
