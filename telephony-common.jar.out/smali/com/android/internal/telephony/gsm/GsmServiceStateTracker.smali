@@ -10610,6 +10610,10 @@
 
     .local v6, "spn":Ljava/lang/String;
     :goto_3
+    invoke-static/range {p0 .. p0}, Lcom/android/internal/telephony/ServiceStateTrackerInjector;->getSpn(Lcom/android/internal/telephony/ServiceStateTracker;)Ljava/lang/String;
+
+    move-result-object v6
+
     move-object v8, v6
 
     .local v8, "dataSpn":Ljava/lang/String;
