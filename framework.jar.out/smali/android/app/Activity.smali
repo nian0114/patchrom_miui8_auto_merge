@@ -1192,9 +1192,9 @@
 
     invoke-virtual {v1, v2}, Landroid/app/FragmentController;->attachHost(Landroid/app/Fragment;)V
 
-    new-instance v1, Lcom/android/internal/policy/PhoneWindow;
+    new-instance v1, Lcom/android/internal/policy/MiuiPhoneWindow;
 
-    invoke-direct {v1, p0}, Lcom/android/internal/policy/PhoneWindow;-><init>(Landroid/content/Context;)V
+    invoke-direct {v1, p0}, Lcom/android/internal/policy/MiuiPhoneWindow;-><init>(Landroid/content/Context;)V
 
     iput-object v1, p0, Landroid/app/Activity;->mWindow:Landroid/view/Window;
 
@@ -5539,6 +5539,12 @@
     .locals 1
 
     .prologue
+    invoke-static {}, Lcom/miui/whetstone/app/WhetstoneAppManager;->getInstance()Lcom/miui/whetstone/app/WhetstoneAppManager;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p0}, Lcom/miui/whetstone/app/WhetstoneAppManager;->onResume(Landroid/app/Activity;)V
+
     invoke-virtual {p0}, Landroid/app/Activity;->getApplication()Landroid/app/Application;
 
     move-result-object v0
@@ -5552,6 +5558,8 @@
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Landroid/app/Activity;->mCalled:Z
+
+    invoke-static {p0}, Landroid/app/ActivityInjector;->checkAccessControl(Landroid/app/Activity;)V
 
     return-void
 .end method
