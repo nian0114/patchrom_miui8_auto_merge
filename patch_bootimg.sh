@@ -15,7 +15,7 @@ cd - > /dev/null
   sed -i -e "s/ro\.debuggable=.*/ro\.debuggable=1/g" $TARGET_BOOT_DIR/ramdisk/default.prop
   sed -i -e "s/ro\.adb\.secure=.*/ro\.adb\.secure=0/g" $TARGET_BOOT_DIR/ramdisk/default.prop
   sed -i -e "s/persist\.sys\.usb\.config=.*/persist\.sys\.usb\.config=adb/g" $TARGET_BOOT_DIR/ramdisk/default.prop
-  cat overlay/boot/file_contexts >> $TARGET_BOOT_DIR/ramdisk/file_contexts
+#  cat overlay/boot/file_contexts >> $TARGET_BOOT_DIR/ramdisk/file_contexts
   line=`sed -n '/BOOTCLASSPATH/=' $TARGET_BOOT_DIR/ramdisk/init.environ.rc | tail -n1`
   sed -i "${line}s/.*/&:\/system\/framework\/patchrom-core.jar:\/system\/app\/miui\/miui.apk:\/system\/app\/miuisystem\/miuisystem.apk/" $TARGET_BOOT_DIR/ramdisk/init.environ.rc
   line=`sed -n '/SYSTEMSERVERCLASSPATH/=' $TARGET_BOOT_DIR/ramdisk/init.environ.rc | tail -n1`
