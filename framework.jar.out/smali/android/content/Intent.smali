@@ -764,6 +764,8 @@
 
 .field private mSelector:Landroid/content/Intent;
 
+.field private mSenderPackageName:Ljava/lang/String;
+
 .field private mSourceBounds:Landroid/graphics/Rect;
 
 .field private mType:Ljava/lang/String;
@@ -929,6 +931,10 @@
     iput-object v0, p0, Landroid/content/Intent;->mClipData:Landroid/content/ClipData;
 
     :cond_4
+    iget-object v0, p1, Landroid/content/Intent;->mSenderPackageName:Ljava/lang/String;
+
+    iput-object v0, p0, Landroid/content/Intent;->mSenderPackageName:Ljava/lang/String;
+
     return-void
 .end method
 
@@ -977,6 +983,10 @@
     iput-object v0, p0, Landroid/content/Intent;->mCategories:Landroid/util/ArraySet;
 
     :cond_0
+    iget-object v0, p1, Landroid/content/Intent;->mSenderPackageName:Ljava/lang/String;
+
+    iput-object v0, p0, Landroid/content/Intent;->mSenderPackageName:Ljava/lang/String;
+
     return-void
 .end method
 
@@ -8072,6 +8082,12 @@
 
     iput-object v2, p0, Landroid/content/Intent;->mExtras:Landroid/os/Bundle;
 
+    invoke-virtual {p1}, Landroid/os/Parcel;->readString()Ljava/lang/String;
+
+    move-result-object v2
+
+    iput-object v2, p0, Landroid/content/Intent;->mSenderPackageName:Ljava/lang/String;
+
     return-void
 .end method
 
@@ -9907,6 +9923,10 @@
 
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeBundle(Landroid/os/Bundle;)V
 
+    iget-object v2, p0, Landroid/content/Intent;->mSenderPackageName:Ljava/lang/String;
+
+    invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeString(Ljava/lang/String;)V
+
     return-void
 
     :cond_3
@@ -9918,4 +9938,23 @@
     invoke-virtual {p1, v3}, Landroid/os/Parcel;->writeInt(I)V
 
     goto :goto_3
+.end method
+
+.method public getSender()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Landroid/content/Intent;->mSenderPackageName:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method public setSender(Ljava/lang/String;)V
+    .locals 0
+    .param p1, "packageName"    # Ljava/lang/String;
+
+    .prologue
+    iput-object p1, p0, Landroid/content/Intent;->mSenderPackageName:Ljava/lang/String;
+
+    return-void
 .end method

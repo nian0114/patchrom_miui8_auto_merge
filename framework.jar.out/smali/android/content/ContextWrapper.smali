@@ -717,6 +717,20 @@
     return-object v0
 .end method
 
+.method public getContentResolverForUser(Landroid/os/UserHandle;)Landroid/content/ContentResolver;
+    .locals 1
+    .param p1, "userHandle"    # Landroid/os/UserHandle;
+
+    .prologue
+    iget-object v0, p0, Landroid/content/ContextWrapper;->mBase:Landroid/content/Context;
+
+    invoke-virtual {v0, p1}, Landroid/content/Context;->getContentResolverForUser(Landroid/os/UserHandle;)Landroid/content/ContentResolver;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
 .method public getDatabasePath(Ljava/lang/String;)Ljava/io/File;
     .locals 1
     .param p1, "name"    # Ljava/lang/String;

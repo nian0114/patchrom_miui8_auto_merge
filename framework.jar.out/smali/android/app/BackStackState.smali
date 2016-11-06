@@ -718,6 +718,22 @@
 
     .end local v8    # "pos":I
     .restart local v7    # "pos":I
+    iget v10, v6, Landroid/app/BackStackRecord$Op;->enterAnim:I
+
+    iput v10, v1, Landroid/app/BackStackRecord;->mEnterAnim:I
+
+    iget v10, v6, Landroid/app/BackStackRecord$Op;->exitAnim:I
+
+    iput v10, v1, Landroid/app/BackStackRecord;->mExitAnim:I
+
+    iget v10, v6, Landroid/app/BackStackRecord$Op;->popEnterAnim:I
+
+    iput v10, v1, Landroid/app/BackStackRecord;->mPopEnterAnim:I
+
+    iget v10, v6, Landroid/app/BackStackRecord$Op;->popExitAnim:I
+
+    iput v10, v1, Landroid/app/BackStackRecord;->mPopExitAnim:I
+
     invoke-virtual {v1, v6}, Landroid/app/BackStackRecord;->addOp(Landroid/app/BackStackRecord$Op;)V
 
     add-int/lit8 v5, v5, 0x1

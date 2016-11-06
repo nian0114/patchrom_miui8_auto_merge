@@ -1132,6 +1132,12 @@
 
     invoke-static {v2, v3, v5, v7}, Lcom/android/server/pm/PackageManagerService;->-wrap27(Lcom/android/server/pm/PackageManagerService;Landroid/content/pm/PackageParser$Package;I[Ljava/lang/String;)V
 
+    const-string v2, "grant_runtime_permissions"
+
+    const/4 v3, 0x1
+
+    invoke-virtual {v6, v2, v3}, Landroid/os/Bundle;->putBoolean(Ljava/lang/String;Z)V
+
     :cond_16
     const/4 v2, 0x0
 
@@ -1836,8 +1842,6 @@
     iget-object v5, v5, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
 
     const/4 v7, 0x1
-
-    #invoke-virtual {v2, v3, v5, v7}, Landroid/app/AppOpsManager;->setPrivacyGuardSettingForPackage(ILjava/lang/String;Z)V
 
     goto/16 :goto_f
 
@@ -2745,6 +2749,8 @@
 
     goto/16 :goto_0
 
+    nop
+
     :pswitch_data_0
     .packed-switch 0x1
         :pswitch_6
@@ -2769,25 +2775,48 @@
 .end method
 
 .method public handleMessage(Landroid/os/Message;)V
-    .locals 2
+    .locals 3
     .param p1, "msg"    # Landroid/os/Message;
 
     .prologue
-    const/16 v1, 0xa
+    const/16 v2, 0xa
 
     :try_start_0
-    invoke-virtual {p0, p1}, Lcom/android/server/pm/PackageManagerService$PackageHandler;->doHandleMessage(Landroid/os/Message;)V
+    iget-object v0, p0, Lcom/android/server/pm/PackageManagerService$PackageHandler;->this$0:Lcom/android/server/pm/PackageManagerService;
+
+    iget-object v0, v0, Lcom/android/server/pm/PackageManagerService;->mContext:Landroid/content/Context;
+
+    iget-object v1, p0, Lcom/android/server/pm/PackageManagerService$PackageHandler;->this$0:Lcom/android/server/pm/PackageManagerService;
+
+    iget-boolean v1, v1, Lcom/android/server/pm/PackageManagerService;->mSystemReady:Z
+
+    invoke-static {v0, p1, v1}, Lcom/android/server/pm/PackageManagerServiceInjector;->checkApk(Landroid/content/Context;Landroid/os/Message;Z)Z
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    invoke-static {v1}, Landroid/os/Process;->setThreadPriority(I)V
+    move-result v0
 
+    if-nez v0, :cond_0
+
+    invoke-static {v2}, Landroid/os/Process;->setThreadPriority(I)V
+
+    :goto_0
     return-void
+
+    :cond_0
+    :try_start_1
+    invoke-virtual {p0, p1}, Lcom/android/server/pm/PackageManagerService$PackageHandler;->doHandleMessage(Landroid/os/Message;)V
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    invoke-static {v2}, Landroid/os/Process;->setThreadPriority(I)V
+
+    goto :goto_0
 
     :catchall_0
     move-exception v0
 
-    invoke-static {v1}, Landroid/os/Process;->setThreadPriority(I)V
+    invoke-static {v2}, Landroid/os/Process;->setThreadPriority(I)V
 
     throw v0
 .end method

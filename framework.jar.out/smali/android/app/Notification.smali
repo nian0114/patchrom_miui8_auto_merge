@@ -213,6 +213,8 @@
 
 .field public deleteIntent:Landroid/app/PendingIntent;
 
+.field public extraNotification:Landroid/app/MiuiNotification;
+
 .field public extras:Landroid/os/Bundle;
 
 .field public flags:I
@@ -406,6 +408,12 @@
 
     iput-object v0, p0, Landroid/app/Notification;->extras:Landroid/os/Bundle;
 
+    new-instance v0, Landroid/app/MiuiNotification;
+
+    invoke-direct {v0}, Landroid/app/MiuiNotification;-><init>()V
+
+    iput-object v0, p0, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
+
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
@@ -446,6 +454,12 @@
 
     iput-object v0, p0, Landroid/app/Notification;->extras:Landroid/os/Bundle;
 
+    new-instance v0, Landroid/app/MiuiNotification;
+
+    invoke-direct {v0}, Landroid/app/MiuiNotification;-><init>()V
+
+    iput-object v0, p0, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
+
     iput p1, p0, Landroid/app/Notification;->icon:I
 
     iput-object p2, p0, Landroid/app/Notification;->tickerText:Ljava/lang/CharSequence;
@@ -485,6 +499,12 @@
     invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
 
     iput-object v0, p0, Landroid/app/Notification;->extras:Landroid/os/Bundle;
+
+    new-instance v0, Landroid/app/MiuiNotification;
+
+    invoke-direct {v0}, Landroid/app/MiuiNotification;-><init>()V
+
+    iput-object v0, p0, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
 
     new-instance v0, Landroid/app/Notification$Builder;
 
@@ -547,6 +567,12 @@
     invoke-direct {v1}, Landroid/os/Bundle;-><init>()V
 
     iput-object v1, p0, Landroid/app/Notification;->extras:Landroid/os/Bundle;
+
+    new-instance v1, Landroid/app/MiuiNotification;
+
+    invoke-direct {v1}, Landroid/app/MiuiNotification;-><init>()V
+
+    iput-object v1, p0, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
 
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
@@ -903,6 +929,10 @@
     move-result v1
 
     iput v1, p0, Landroid/app/Notification;->color:I
+
+    iget-object v1, p0, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
+
+    invoke-virtual {v1, p1}, Landroid/app/MiuiNotification;->readFromParcel(Landroid/os/Parcel;)V
 
     return-void
 .end method
@@ -1516,6 +1546,12 @@
     invoke-virtual {p1}, Landroid/app/Notification;->lightenPayload()V
 
     :cond_b
+    iget-object v5, p1, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
+
+    iget-object v6, p0, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
+
+    invoke-virtual {v5, v6}, Landroid/app/MiuiNotification;->setTo(Landroid/app/MiuiNotification;)V
+
     return-void
 .end method
 
@@ -2392,6 +2428,10 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
+    iget-object v0, p0, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
+
+    invoke-virtual {v0, p1, p2}, Landroid/app/MiuiNotification;->writeToParcel(Landroid/os/Parcel;I)V
+
     return-void
 
     :cond_1
@@ -2442,7 +2482,7 @@
     :cond_a
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V
 
-    goto :goto_9
+    goto/16 :goto_9
 
     :cond_b
     invoke-virtual {p1, v2}, Landroid/os/Parcel;->writeInt(I)V

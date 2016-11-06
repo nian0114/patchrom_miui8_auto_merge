@@ -931,6 +931,19 @@
 
     if-eq v2, v3, :cond_0
 
+    invoke-static {p2}, Lmiui/securityspace/XSpaceUserHandle;->isUidBelongtoXSpace(I)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_miui_0
+
+    invoke-virtual {p3}, Landroid/content/Context;->getUserId()I
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    :cond_miui_0
     iget-boolean v2, p0, Landroid/content/ContentProvider;->mSingleUser:Z
 
     if-nez v2, :cond_0
@@ -1030,8 +1043,21 @@
 
     move-result v8
 
+    if-nez v8, :cond_miui_1
+
+    invoke-virtual {v4}, Landroid/content/Context;->getUserId()I
+
+    move-result v8
+
+    move-object/from16 v0, p2
+
+    invoke-static {v0, v8}, Lmiui/securityspace/CrossUserUtils;->checkCrossPermission(Ljava/lang/String;I)Z
+
+    move-result v8
+
     if-eqz v8, :cond_7
 
+    :cond_miui_1
     invoke-virtual/range {p0 .. p0}, Landroid/content/ContentProvider;->getReadPermission()Ljava/lang/String;
 
     move-result-object v12

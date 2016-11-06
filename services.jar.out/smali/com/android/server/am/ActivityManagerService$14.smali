@@ -50,7 +50,6 @@
     .locals 3
 
     .prologue
-
     iget-object v1, p0, Lcom/android/server/am/ActivityManagerService$14;->this$0:Lcom/android/server/am/ActivityManagerService;
 
     monitor-enter v1

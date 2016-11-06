@@ -316,6 +316,8 @@
 
 .field public static final INSTALL_FAILED_CONTAINER_ERROR:I = -0x12
 
+.field public static final INSTALL_FAILED_CONTAIN_VIRUS:I = -0x1b
+
 .field public static final INSTALL_FAILED_CPU_ABI_INCOMPATIBLE:I = -0x10
 
 .field public static final INSTALL_FAILED_DEXOPT:I = -0xb
@@ -340,6 +342,8 @@
 
 .field public static final INSTALL_FAILED_MISSING_SHARED_LIBRARY:I = -0x9
 
+.field public static final INSTALL_FAILED_MIUI_SDK_INCOMPATIBLE:I = -0x33
+
 .field public static final INSTALL_FAILED_NEWER_SDK:I = -0xe
 
 .field public static final INSTALL_FAILED_NO_MATCHING_ABIS:I = -0x71
@@ -357,6 +361,8 @@
 .field public static final INSTALL_FAILED_REPLACE_COULDNT_DELETE:I = -0xa
 
 .field public static final INSTALL_FAILED_SHARED_USER_INCOMPATIBLE:I = -0x8
+
+.field public static final INSTALL_FAILED_SYSTEM_INCOMPATIBLE:I = -0x1c
 
 .field public static final INSTALL_FAILED_TEST_ONLY:I = -0xf
 
@@ -386,11 +392,15 @@
 
 .field public static final INSTALL_FROM_ADB:I = 0x20
 
+.field public static final INSTALL_FROM_XIAOMI:I = 0x400
+
 .field public static final INSTALL_GRANT_RUNTIME_PERMISSIONS:I = 0x100
 
 .field public static final INSTALL_INTERNAL:I = 0x10
 
 .field public static final INSTALL_PARSE_FAILED_BAD_MANIFEST:I = -0x65
+
+.field public static final INSTALL_PARSE_FAILED_BAD_MIUI_MANIFEST:I = -0x34
 
 .field public static final INSTALL_PARSE_FAILED_BAD_PACKAGE_NAME:I = -0x6a
 
@@ -1299,7 +1309,7 @@
 
     invoke-virtual {v0, v1, p1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;[Ljava/lang/String;)Landroid/content/Intent;
 
-    invoke-virtual {p0}, Landroid/content/pm/PackageManager;->getPermissionControllerPackageName()Ljava/lang/String;
+    invoke-static {}, Landroid/content/pm/PackageManagerInjector;->getPermissionControllerPackageName()Ljava/lang/String;
 
     move-result-object v1
 

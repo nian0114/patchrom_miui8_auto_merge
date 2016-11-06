@@ -16490,11 +16490,11 @@
 
     move-result v3
 
-    if-eqz v3, :cond_miui_0
+    if-eqz v3, :cond_0
 
-    goto :goto_miui_0
+    goto :goto_1
 
-    :cond_miui_0
+    :cond_0
     const/4 v3, 0x1
 
     const/4 v4, 0x0
@@ -16513,7 +16513,7 @@
 
     .local v2, "i":I
     :goto_0
-    if-ge v2, v0, :cond_0
+    if-ge v2, v0, :cond_1
 
     invoke-virtual {v1, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
@@ -16527,14 +16527,14 @@
 
     goto :goto_0
 
-    :cond_0
+    :cond_1
     invoke-static {}, Landroid/view/WindowManagerGlobal;->getInstance()Landroid/view/WindowManagerGlobal;
 
     move-result-object v3
 
     invoke-virtual {v3, p1}, Landroid/view/WindowManagerGlobal;->trimMemory(I)V
 
-    :goto_miui_0
+    :goto_1
     return-void
 .end method
 

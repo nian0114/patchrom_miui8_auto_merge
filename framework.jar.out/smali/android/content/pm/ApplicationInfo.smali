@@ -133,6 +133,8 @@
 
 .field public nativeLibraryRootRequiresIsa:Z
 
+.field public nextActivityTheme:I
+
 .field public permission:Ljava/lang/String;
 
 .field public primaryCpuAbi:Ljava/lang/String;
@@ -724,12 +726,18 @@
     :goto_3
     iput-boolean v1, p0, Landroid/content/pm/ApplicationInfo;->isThemeable:Z
 
+    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
+
+    move-result v0
+
+    iput v0, p0, Landroid/content/pm/ApplicationInfo;->nextActivityTheme:I
+
     return-void
 
     :cond_0
     move v0, v2
 
-    goto :goto_0
+    goto/16 :goto_0
 
     :cond_1
     move v0, v2
@@ -2180,6 +2188,10 @@
 
     :goto_3
     invoke-virtual {p1, v1}, Landroid/os/Parcel;->writeInt(I)V
+
+    iget v0, p0, Landroid/content/pm/ApplicationInfo;->nextActivityTheme:I
+
+    invoke-virtual {p1, v0}, Landroid/os/Parcel;->writeInt(I)V
 
     return-void
 

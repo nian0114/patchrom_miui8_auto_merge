@@ -455,6 +455,15 @@
     return-object v2
 
     :cond_0
+    const/16 v1, 0x3e8
+
+    if-ne p1, v1, :cond_miui_0
+
+    const-string v1, "android"
+
+    return-object v1
+
+    :cond_miui_0
     const/4 v1, 0x0
 
     aget-object v1, v0, v1

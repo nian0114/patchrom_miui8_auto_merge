@@ -538,6 +538,8 @@
 
 .field public static final ZEN_MODE_IMPORTANT_INTERRUPTIONS:I = 0x1
 
+.field public static final ZEN_MODE_MIUI_SILENT:I = 0x4
+
 .field public static final ZEN_MODE_NO_INTERRUPTIONS:I = 0x2
 
 .field public static final ZEN_MODE_OFF:I = 0x0
@@ -1612,6 +1614,15 @@
     return-object v0
 
     :cond_2
+    const/4 v0, 0x4
+
+    if-ne p0, v0, :cond_3
+
+    const-string v0, "ZEN_MODE_MIUI_SILENT"
+
+    return-object v0
+
+    :cond_3
     const-string v0, "ZEN_MODE_OFF"
 
     return-object v0
