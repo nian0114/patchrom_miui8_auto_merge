@@ -1021,7 +1021,7 @@
 
     iput v2, p0, Lcom/android/internal/os/BatteryStatsImpl;->mPhoneSignalStrengthBinRaw:I
 
-    const/4 v0, 0x5
+    const/4 v0, 0x6
 
     new-array v0, v0, [Lcom/android/internal/os/BatteryStatsImpl$StopwatchTimer;
 
@@ -1563,7 +1563,7 @@
 
     iput v2, p0, Lcom/android/internal/os/BatteryStatsImpl;->mPhoneSignalStrengthBinRaw:I
 
-    const/4 v0, 0x5
+    const/4 v0, 0x6
 
     new-array v0, v0, [Lcom/android/internal/os/BatteryStatsImpl$StopwatchTimer;
 
@@ -2133,7 +2133,7 @@
 
     iput v1, p0, Lcom/android/internal/os/BatteryStatsImpl;->mPhoneSignalStrengthBinRaw:I
 
-    const/4 v1, 0x5
+    const/4 v1, 0x6
 
     new-array v1, v1, [Lcom/android/internal/os/BatteryStatsImpl$StopwatchTimer;
 
@@ -2739,7 +2739,7 @@
     const/4 v0, 0x0
 
     :goto_2
-    const/4 v1, 0x5
+    const/4 v1, 0x6
 
     if-ge v0, v1, :cond_2
 
@@ -4700,7 +4700,7 @@
     const/4 v0, 0x0
 
     :goto_1
-    const/4 v3, 0x5
+    const/4 v3, 0x6
 
     if-ge v0, v3, :cond_1
 
@@ -15490,7 +15490,7 @@
     const/4 v12, 0x0
 
     :goto_2
-    const/4 v4, 0x5
+    const/4 v4, 0x6
 
     if-ge v12, v4, :cond_3
 
@@ -17981,7 +17981,7 @@
     const/16 v16, 0x0
 
     :goto_3
-    const/16 v43, 0x5
+    const/16 v43, 0x6
 
     move/from16 v0, v16
 
@@ -22634,7 +22634,7 @@
 
     .local v2, "i":I
     :goto_0
-    const/4 v3, 0x5
+    const/4 v3, 0x6
 
     if-ge v2, v3, :cond_2
 
@@ -26231,7 +26231,7 @@
     const/16 v23, 0x0
 
     :goto_3
-    const/4 v4, 0x5
+    const/4 v4, 0x6
 
     move/from16 v0, v23
 
@@ -28400,7 +28400,7 @@
     const/16 v16, 0x0
 
     :goto_2
-    const/4 v4, 0x5
+    const/4 v4, 0x6
 
     move/from16 v0, v16
 
