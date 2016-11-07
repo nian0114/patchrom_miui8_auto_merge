@@ -32,7 +32,7 @@
 
 .field private static final LOG_TAG:Ljava/lang/String; = "SignalStrength"
 
-.field public static final NUM_SIGNAL_STRENGTH_BINS:I = 0x5
+.field public static final NUM_SIGNAL_STRENGTH_BINS:I = 0x6
 
 .field private static final RSRP_THRESH_LENIENT:[I
 
@@ -41,6 +41,8 @@
 .field private static final RSRP_THRESH_TYPE_CUSTOM:I = 0x2
 
 .field private static final RSRP_THRESH_TYPE_STRICT:I = 0x0
+
+.field public static final SIGNAL_STRENGTH_EXCELLENT:I = 0x5
 
 .field public static final SIGNAL_STRENGTH_GOOD:I = 0x3
 
@@ -90,9 +92,9 @@
     .locals 4
 
     .prologue
-    const/4 v3, 0x6
+    const/4 v3, 0x7
 
-    const/4 v0, 0x5
+    const/4 v0, 0x6
 
     new-array v0, v0, [Ljava/lang/String;
 
@@ -126,6 +128,12 @@
 
     aput-object v1, v0, v2
 
+    const-string v1, "excellent"
+
+    const/4 v2, 0x5
+
+    aput-object v1, v0, v2
+
     sput-object v0, Landroid/telephony/SignalStrength;->SIGNAL_STRENGTH_NAMES:[Ljava/lang/String;
 
     new-array v0, v3, [I
@@ -151,20 +159,22 @@
     :array_0
     .array-data 4
         -0x8c
+        -0x78
         -0x73
+        -0x6e
         -0x69
-        -0x5f
-        -0x55
+        -0x61
         -0x2c
     .end array-data
 
     :array_1
     .array-data 4
         -0x8c
-        -0x80
-        -0x76
-        -0x6c
-        -0x62
+        -0x8c
+        -0x7d
+        -0x73
+        -0x6e
+        -0x66
         -0x2c
     .end array-data
 .end method
@@ -1037,60 +1047,62 @@
     .locals 5
 
     .prologue
-    const/4 v0, 0x0
+    const/16 v4, 0xff
 
-    .local v0, "asuLevel":I
-    iget-boolean v4, p0, Landroid/telephony/SignalStrength;->isGsm:Z
+    iget-boolean v3, p0, Landroid/telephony/SignalStrength;->isGsm:Z
 
-    if-eqz v4, :cond_3
+    if-eqz v3, :cond_1
 
-    const-string v4, "signalstrength"
-
-    invoke-virtual {p0, v4}, Landroid/telephony/SignalStrength;->needsOldRilFeature(Ljava/lang/String;)Z
+    invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getLteLevel()I
 
     move-result v3
 
-    .local v3, "oldRil":Z
-    invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getLteLevel()I
+    if-nez v3, :cond_0
 
-    move-result v4
+    invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getLteAsuLevel()I
 
-    if-eqz v4, :cond_0
+    move-result v3
 
-    if-eqz v3, :cond_2
+    if-ne v3, v4, :cond_0
 
-    :cond_0
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getTdScdmaLevel()I
 
-    move-result v4
+    move-result v3
 
-    if-nez v4, :cond_1
+    if-nez v3, :cond_miui_0
+
+    invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getTdScdmaAsuLevel()I
+
+    move-result v3
+
+    if-ne v3, v4, :cond_miui_0
 
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getGsmAsuLevel()I
 
     move-result v0
 
-    .end local v3    # "oldRil":Z
+    .local v0, "asuLevel":I
     :goto_0
     return v0
 
-    .restart local v3    # "oldRil":Z
-    :cond_1
+    .end local v0    # "asuLevel":I
+    :cond_miui_0
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getTdScdmaAsuLevel()I
 
     move-result v0
 
     goto :goto_0
 
-    :cond_2
+    :cond_0
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getLteAsuLevel()I
 
     move-result v0
 
+    .restart local v0    # "asuLevel":I
     goto :goto_0
 
-    .end local v3    # "oldRil":Z
-    :cond_3
+    .end local v0    # "asuLevel":I
+    :cond_1
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getCdmaAsuLevel()I
 
     move-result v1
@@ -1101,30 +1113,37 @@
     move-result v2
 
     .local v2, "evdoAsuLevel":I
-    if-nez v2, :cond_4
+    if-nez v2, :cond_2
 
     move v0, v1
 
+    .restart local v0    # "asuLevel":I
     goto :goto_0
 
+    .end local v0    # "asuLevel":I
+    :cond_2
+    if-nez v1, :cond_3
+
+    move v0, v2
+
+    .restart local v0    # "asuLevel":I
+    goto :goto_0
+
+    .end local v0    # "asuLevel":I
+    :cond_3
+    if-ge v1, v2, :cond_4
+
+    move v0, v1
+
+    .restart local v0    # "asuLevel":I
+    :goto_1
+    goto :goto_0
+
+    .end local v0    # "asuLevel":I
     :cond_4
-    if-nez v1, :cond_5
-
     move v0, v2
 
-    goto :goto_0
-
-    :cond_5
-    if-ge v1, v2, :cond_6
-
-    move v0, v1
-
-    goto :goto_0
-
-    :cond_6
-    move v0, v2
-
-    goto :goto_0
+    goto :goto_1
 .end method
 
 .method public getCdmaAsuLevel()I
@@ -1165,7 +1184,7 @@
 
     .local v4, "level":I
     :goto_2
-    return v4
+    return v0
 
     .end local v0    # "cdmaAsuLevel":I
     .end local v3    # "ecioAsuLevel":I
@@ -1303,14 +1322,18 @@
     move-result v1
 
     .local v1, "cdmaEcio":I
-    const/16 v5, -0x4b
+    const/16 v5, -0x5a
 
     if-lt v0, v5, :cond_0
 
-    const/4 v3, 0x4
+    const/4 v3, 0x5
 
     .local v3, "levelDbm":I
     :goto_0
+    move v2, v3
+
+    goto :goto_2
+
     const/16 v5, -0x5a
 
     if-lt v1, v5, :cond_4
@@ -1331,9 +1354,20 @@
     .end local v3    # "levelDbm":I
     .end local v4    # "levelEcio":I
     :cond_0
-    const/16 v5, -0x55
+    const/16 v5, -0x5d
 
     if-lt v0, v5, :cond_1
+
+    const/4 v3, 0x4
+
+    .restart local v3    # "levelDbm":I
+    goto :goto_0
+
+    .end local v3    # "levelDbm":I
+    :cond_1
+    const/16 v5, -0x61
+
+    if-lt v0, v5, :cond_2
 
     const/4 v3, 0x3
 
@@ -1341,10 +1375,10 @@
     goto :goto_0
 
     .end local v3    # "levelDbm":I
-    :cond_1
-    const/16 v5, -0x5f
+    :cond_2
+    const/16 v5, -0x65
 
-    if-lt v0, v5, :cond_2
+    if-lt v0, v5, :cond_3
 
     const/4 v3, 0x2
 
@@ -1352,18 +1386,16 @@
     goto :goto_0
 
     .end local v3    # "levelDbm":I
-    :cond_2
-    const/16 v5, -0x64
+    :cond_3
+    const/16 v5, -0x6d
 
-    if-lt v0, v5, :cond_3
+    if-lt v0, v5, :cond_miui_4
 
     const/4 v3, 0x1
 
-    .restart local v3    # "levelDbm":I
     goto :goto_0
 
-    .end local v3    # "levelDbm":I
-    :cond_3
+    :cond_miui_4
     const/4 v3, 0x0
 
     .restart local v3    # "levelDbm":I
@@ -1416,61 +1448,64 @@
 .end method
 
 .method public getDbm()I
-    .locals 6
+    .locals 5
 
     .prologue
-    const/16 v5, -0x78
+    const/16 v4, -0x78
 
-    const v1, 0x7fffffff
-
-    .local v1, "dBm":I
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->isGsm()Z
-
-    move-result v4
-
-    if-eqz v4, :cond_3
-
-    const-string v4, "signalstrength"
-
-    invoke-virtual {p0, v4}, Landroid/telephony/SignalStrength;->needsOldRilFeature(Ljava/lang/String;)Z
 
     move-result v3
 
-    .local v3, "oldRil":Z
+    if-eqz v3, :cond_1
+
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getLteDbm()I
 
     move-result v1
 
-    const v4, 0x7fffffff
+    .local v1, "dBm":I
+    const v3, 0x7fffffff
 
-    if-eq v1, v4, :cond_0
+    if-ne v1, v3, :cond_miui_2
 
-    if-eqz v3, :cond_1
-
-    :cond_0
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getTdScdmaLevel()I
 
-    move-result v4
+    move-result v3
 
-    if-nez v4, :cond_2
+    if-nez v3, :cond_miui_1
+
+    invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getTdScdmaAsuLevel()I
+
+    move-result v3
+
+    const/16 v4, 0xff
+
+    if-ne v3, v4, :cond_miui_1
 
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getGsmDbm()I
 
     move-result v1
 
-    :cond_1
+    .end local v1    # "dBm":I
+    :cond_0
     :goto_0
     return v1
 
-    :cond_2
+    :cond_miui_1
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getTdScdmaDbm()I
 
     move-result v1
 
     goto :goto_0
 
-    .end local v3    # "oldRil":Z
-    :cond_3
+    :cond_miui_2
+    invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getLteDbm()I
+
+    move-result v1
+
+    goto :goto_0
+
+    :cond_1
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getCdmaDbm()I
 
     move-result v0
@@ -1481,23 +1516,25 @@
     move-result v2
 
     .local v2, "evdoDbm":I
-    if-ne v2, v5, :cond_5
+    if-ne v2, v4, :cond_3
 
     .end local v0    # "cdmaDbm":I
-    :cond_4
+    :cond_2
     :goto_1
-    return v0
+    move v1, v0
+
+    goto :goto_0
 
     .restart local v0    # "cdmaDbm":I
-    :cond_5
-    if-ne v0, v5, :cond_6
+    :cond_3
+    if-ne v0, v4, :cond_4
 
     move v0, v2
 
     goto :goto_1
 
-    :cond_6
-    if-lt v0, v2, :cond_4
+    :cond_4
+    if-lt v0, v2, :cond_2
 
     move v0, v2
 
@@ -1540,7 +1577,7 @@
 
     .local v2, "level":I
     :goto_2
-    return v2
+    return v3
 
     .end local v2    # "level":I
     .end local v3    # "levelEvdoDbm":I
@@ -1684,14 +1721,17 @@
     move-result v1
 
     .local v1, "evdoSnr":I
-    const/16 v5, -0x41
+    const/16 v5, -0x5a
 
     if-lt v0, v5, :cond_0
 
-    const/4 v3, 0x4
+    const/4 v3, 0x5
 
     .local v3, "levelEvdoDbm":I
     :goto_0
+    move v2, v3
+
+    goto :goto_2
     const/4 v5, 0x7
 
     if-lt v1, v5, :cond_4
@@ -1712,9 +1752,20 @@
     .end local v3    # "levelEvdoDbm":I
     .end local v4    # "levelEvdoSnr":I
     :cond_0
-    const/16 v5, -0x4b
+    const/16 v5, -0x5d
 
     if-lt v0, v5, :cond_1
+
+    const/4 v3, 0x4
+
+    .restart local v3    # "levelEvdoDbm":I
+    goto :goto_0
+
+    .end local v3    # "levelEvdoDbm":I
+    :cond_1
+    const/16 v5, -0x61
+
+    if-lt v0, v5, :cond_2
 
     const/4 v3, 0x3
 
@@ -1722,10 +1773,10 @@
     goto :goto_0
 
     .end local v3    # "levelEvdoDbm":I
-    :cond_1
-    const/16 v5, -0x5a
+    :cond_2
+    const/16 v5, -0x65
 
-    if-lt v0, v5, :cond_2
+    if-lt v0, v5, :cond_3
 
     const/4 v3, 0x2
 
@@ -1733,18 +1784,16 @@
     goto :goto_0
 
     .end local v3    # "levelEvdoDbm":I
-    :cond_2
-    const/16 v5, -0x69
+    :cond_3
+    const/16 v5, -0x6d
 
-    if-lt v0, v5, :cond_3
+    if-lt v0, v5, :cond_miui_4
 
     const/4 v3, 0x1
 
-    .restart local v3    # "levelEvdoDbm":I
     goto :goto_0
 
-    .end local v3    # "levelEvdoDbm":I
-    :cond_3
+    :cond_miui_4
     const/4 v3, 0x0
 
     .restart local v3    # "levelEvdoDbm":I
@@ -1792,7 +1841,6 @@
     :cond_8
     move v2, v4
 
-    .restart local v2    # "level":I
     goto :goto_2
 .end method
 
@@ -1827,24 +1875,24 @@
 .end method
 
 .method public getGsmDbm()I
-    .locals 4
+    .locals 5
 
     .prologue
+    const/4 v3, -0x1
+
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getGsmSignalStrength()I
 
     move-result v2
 
     .local v2, "gsmSignalStrength":I
-    const/16 v3, 0x63
+    const/16 v4, 0x63
 
-    if-ne v2, v3, :cond_0
+    if-ne v2, v4, :cond_0
 
-    const/4 v0, -0x1
+    move v0, v3
 
     .local v0, "asu":I
     :goto_0
-    const/4 v3, -0x1
-
     if-eq v0, v3, :cond_1
 
     mul-int/lit8 v3, v0, 0x2
@@ -1860,9 +1908,9 @@
     :cond_0
     move v0, v2
 
-    .restart local v0    # "asu":I
     goto :goto_0
 
+    .restart local v0    # "asu":I
     :cond_1
     const/4 v1, -0x1
 
@@ -1881,7 +1929,7 @@
     .local v0, "asu":I
     const/4 v2, 0x2
 
-    if-le v0, v2, :cond_0
+    if-lez v0, :cond_0
 
     const/16 v2, 0x63
 
@@ -1900,16 +1948,27 @@
 
     if-lt v0, v2, :cond_2
 
-    const/4 v1, 0x4
+    const/4 v1, 0x5
 
     .restart local v1    # "level":I
     goto :goto_0
 
     .end local v1    # "level":I
     :cond_2
-    const/16 v2, 0x8
+    const/16 v2, 0x9
 
     if-lt v0, v2, :cond_3
+
+    const/4 v1, 0x4
+
+    .restart local v1    # "level":I
+    goto :goto_0
+
+    .end local v1    # "level":I
+    :cond_3
+    const/4 v2, 0x6
+
+    if-lt v0, v2, :cond_4
 
     const/4 v1, 0x3
 
@@ -1917,18 +1976,16 @@
     goto :goto_0
 
     .end local v1    # "level":I
-    :cond_3
-    const/4 v2, 0x5
+    :cond_4
+    const/4 v2, 0x3
 
-    if-lt v0, v2, :cond_4
+    if-lt v0, v2, :cond_miui_5
 
     const/4 v1, 0x2
 
-    .restart local v1    # "level":I
     goto :goto_0
 
-    .end local v1    # "level":I
-    :cond_4
+    :cond_miui_5
     const/4 v1, 0x1
 
     .restart local v1    # "level":I
@@ -1945,48 +2002,30 @@
 .end method
 
 .method public getLevel()I
-    .locals 5
+    .locals 4
 
     .prologue
-    const/4 v2, 0x0
+    iget-boolean v3, p0, Landroid/telephony/SignalStrength;->isGsm:Z
 
-    .local v2, "level":I
-    iget-boolean v4, p0, Landroid/telephony/SignalStrength;->isGsm:Z
+    if-eqz v3, :cond_1
 
-    if-eqz v4, :cond_2
-
-    const-string v4, "signalstrength"
-
-    invoke-virtual {p0, v4}, Landroid/telephony/SignalStrength;->needsOldRilFeature(Ljava/lang/String;)Z
-
-    move-result v3
-
-    .local v3, "oldRil":Z
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getLteLevel()I
 
     move-result v2
 
-    if-eqz v2, :cond_0
-
-    if-eqz v3, :cond_1
-
-    :cond_0
-    invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getTdScdmaLevel()I
-
-    move-result v2
-
-    if-nez v2, :cond_1
+    .local v2, "level":I
+    if-nez v2, :cond_0
 
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getGsmLevel()I
 
     move-result v2
 
-    .end local v3    # "oldRil":Z
-    :cond_1
+    :cond_0
     :goto_0
     return v2
 
-    :cond_2
+    .end local v2    # "level":I
+    :cond_1
     invoke-virtual {p0}, Landroid/telephony/SignalStrength;->getCdmaLevel()I
 
     move-result v0
@@ -1997,30 +2036,37 @@
     move-result v1
 
     .local v1, "evdoLevel":I
-    if-nez v1, :cond_3
+    if-nez v1, :cond_2
 
     move v2, v0
 
+    .restart local v2    # "level":I
     goto :goto_0
 
+    .end local v2    # "level":I
+    :cond_2
+    if-nez v0, :cond_3
+
+    move v2, v1
+
+    .restart local v2    # "level":I
+    goto :goto_0
+
+    .end local v2    # "level":I
     :cond_3
-    if-nez v0, :cond_4
-
-    move v2, v1
-
-    goto :goto_0
-
-    :cond_4
-    if-ge v0, v1, :cond_5
+    if-ge v0, v1, :cond_4
 
     move v2, v0
 
+    .restart local v2    # "level":I
+    :goto_1
     goto :goto_0
 
-    :cond_5
+    .end local v2    # "level":I
+    :cond_4
     move v2, v1
 
-    goto :goto_0
+    goto :goto_1
 .end method
 
 .method public getLteAsuLevel()I
@@ -2069,14 +2115,10 @@
 .end method
 
 .method public getLteLevel()I
-    .locals 11
+    .locals 9
 
     .prologue
-    const/4 v10, 0x5
-
-    const/4 v9, 0x2
-
-    const/4 v8, 0x0
+    const/4 v8, 0x6
 
     const/4 v7, -0x1
 
@@ -2093,22 +2135,43 @@
 
     move-result-object v5
 
-    const v6, 0x10e009c
+    const v6, 0x10e008f
 
     invoke-virtual {v5, v6}, Landroid/content/res/Resources;->getInteger(I)I
 
     move-result v1
 
     .local v1, "rsrpThreshType":I
-    if-nez v1, :cond_2
+    if-eqz v1, :cond_miui_0
 
+    sget-boolean v5, Lmiui/os/Build;->IS_CU_CUSTOMIZATION:Z
+
+    if-nez v5, :cond_miui_0
+
+    sget-boolean v5, Lmiui/os/Build;->IS_CM_CUSTOMIZATION:Z
+
+    if-nez v5, :cond_miui_0
+
+    sget-boolean v5, Lmiui/os/Build;->IS_CT_CUSTOMIZATION:Z
+
+    if-nez v5, :cond_miui_0
+
+    const-string v5, "persist.radio.signal_enhance"
+
+    invoke-static {v5, v8}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_3
+
+    :cond_miui_0
     sget-object v4, Landroid/telephony/SignalStrength;->RSRP_THRESH_STRICT:[I
 
     .local v4, "threshRsrp":[I
     :goto_0
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteRsrp:I
 
-    aget v6, v4, v10
+    aget v6, v4, v8
 
     if-le v5, v6, :cond_4
 
@@ -2116,6 +2179,8 @@
 
     :cond_0
     :goto_1
+    goto :goto_2
+
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteRssnr:I
 
     const/16 v6, 0x12c
@@ -2133,28 +2198,12 @@
     if-ge v0, v3, :cond_e
 
     .end local v0    # "rsrpIconLevel":I
+    :cond_2
     :goto_3
     return v0
 
     .end local v4    # "threshRsrp":[I
     .restart local v0    # "rsrpIconLevel":I
-    :cond_2
-    if-ne v1, v9, :cond_3
-
-    invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
-
-    move-result-object v5
-
-    const v6, 0x1070051
-
-    invoke-virtual {v5, v6}, Landroid/content/res/Resources;->getIntArray(I)[I
-
-    move-result-object v4
-
-    .restart local v4    # "threshRsrp":[I
-    goto :goto_0
-
-    .end local v4    # "threshRsrp":[I
     :cond_3
     sget-object v4, Landroid/telephony/SignalStrength;->RSRP_THRESH_LENIENT:[I
 
@@ -2164,61 +2213,65 @@
     :cond_4
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteRsrp:I
 
-    const/4 v6, 0x4
+    const/4 v6, 0x5
 
     aget v6, v4, v6
 
     if-lt v5, v6, :cond_5
 
-    const/4 v0, 0x4
+    const/4 v0, 0x5
 
     goto :goto_1
 
     :cond_5
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteRsrp:I
 
-    const/4 v6, 0x3
+    const/4 v6, 0x4
 
     aget v6, v4, v6
 
     if-lt v5, v6, :cond_6
 
-    const/4 v0, 0x3
+    const/4 v0, 0x4
 
     goto :goto_1
 
     :cond_6
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteRsrp:I
 
-    aget v6, v4, v9
+    const/4 v6, 0x3
+
+    aget v6, v4, v6
 
     if-lt v5, v6, :cond_7
 
-    const/4 v0, 0x2
+    const/4 v0, 0x3
 
     goto :goto_1
 
     :cond_7
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteRsrp:I
 
-    const/4 v6, 0x1
+    const/4 v6, 0x2
 
     aget v6, v4, v6
 
     if-lt v5, v6, :cond_8
 
-    const/4 v0, 0x1
+    const/4 v0, 0x2
 
     goto :goto_1
 
     :cond_8
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteRsrp:I
 
-    aget v6, v4, v8
+    const/4 v6, 0x1
 
-    if-lt v5, v6, :cond_0
+    aget v6, v4, v6
 
-    const/4 v0, 0x0
+    if-lt v5, v6, :cond_miui_9
+
+    const/4 v0, 0x1
 
     goto :goto_1
 
@@ -2277,6 +2330,19 @@
 
     goto :goto_2
 
+    :cond_miui_9
+    iget v5, p0, Landroid/telephony/SignalStrength;->mLteRsrp:I
+
+    const/4 v6, 0x0
+
+    aget v6, v4, v6
+
+    if-lt v5, v6, :cond_0
+
+    const/4 v0, 0x0
+
+    goto :goto_1
+
     :cond_e
     move v0, v3
 
@@ -2285,30 +2351,42 @@
     :cond_f
     if-eq v3, v7, :cond_10
 
-    return v3
+    move v0, v3
+
+    goto :goto_3
 
     :cond_10
-    if-eq v0, v7, :cond_11
+    if-ne v0, v7, :cond_2
 
-    return v0
-
-    :cond_11
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteSignalStrength:I
 
     const/16 v6, 0x3f
 
-    if-le v5, v6, :cond_13
+    if-le v5, v6, :cond_12
 
     const/4 v2, 0x0
 
-    :cond_12
+    :cond_11
     :goto_4
-    return v2
+    move v0, v2
+
+    goto :goto_3
+
+    :cond_12
+    iget v5, p0, Landroid/telephony/SignalStrength;->mLteSignalStrength:I
+
+    const/16 v6, 0xc
+
+    if-lt v5, v6, :cond_13
+
+    const/4 v2, 0x5
+
+    goto :goto_4
 
     :cond_13
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteSignalStrength:I
 
-    const/16 v6, 0xc
+    const/16 v6, 0x9
 
     if-lt v5, v6, :cond_14
 
@@ -2319,9 +2397,7 @@
     :cond_14
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteSignalStrength:I
 
-    const/16 v6, 0x8
-
-    if-lt v5, v6, :cond_15
+    if-lt v5, v8, :cond_15
 
     const/4 v2, 0x3
 
@@ -2330,16 +2406,18 @@
     :cond_15
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteSignalStrength:I
 
-    if-lt v5, v10, :cond_16
+    const/16 v6, 0x3
+
+    if-lt v5, v6, :cond_miui_12
 
     const/4 v2, 0x2
 
     goto :goto_4
 
-    :cond_16
+    :cond_miui_12
     iget v5, p0, Landroid/telephony/SignalStrength;->mLteSignalStrength:I
 
-    if-ltz v5, :cond_12
+    if-ltz v5, :cond_11
 
     const/4 v2, 0x1
 
@@ -2444,9 +2522,20 @@
 
     .end local v0    # "level":I
     :cond_1
-    const/16 v2, -0x31
+    const/16 v2, -0x58
 
     if-lt v1, v2, :cond_2
+
+    const/4 v0, 0x5
+
+    .restart local v0    # "level":I
+    goto :goto_0
+
+    .end local v0    # "level":I
+    :cond_2
+    const/16 v2, -0x5f
+
+    if-lt v1, v2, :cond_3
 
     const/4 v0, 0x4
 
@@ -2454,10 +2543,10 @@
     goto :goto_0
 
     .end local v0    # "level":I
-    :cond_2
-    const/16 v2, -0x49
+    :cond_3
+    const/16 v2, -0x66
 
-    if-lt v1, v2, :cond_3
+    if-lt v1, v2, :cond_4
 
     const/4 v0, 0x3
 
@@ -2465,10 +2554,10 @@
     goto :goto_0
 
     .end local v0    # "level":I
-    :cond_3
-    const/16 v2, -0x61
+    :cond_4
+    const/16 v2, -0x6d
 
-    if-lt v1, v2, :cond_4
+    if-lt v1, v2, :cond_5
 
     const/4 v0, 0x2
 
@@ -2476,10 +2565,10 @@
     goto :goto_0
 
     .end local v0    # "level":I
-    :cond_4
-    const/16 v2, -0x6e
+    :cond_5
+    const/16 v2, -0x78
 
-    if-lt v1, v2, :cond_5
+    if-lt v1, v2, :cond_6
 
     const/4 v0, 0x1
 
@@ -2487,7 +2576,7 @@
     goto :goto_0
 
     .end local v0    # "level":I
-    :cond_5
+    :cond_6
     const/4 v0, 0x0
 
     .restart local v0    # "level":I
