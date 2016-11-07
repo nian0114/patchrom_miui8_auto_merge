@@ -42,21 +42,7 @@
 
 .field public static final FLAG_RESTRICTED:I = 0x8
 
-.field public static final FLAG_XSPACE_PROFILE:I = 0x800000
-
-.field public static final FLAG__MASK_XSPACE_PROFILE_TYPE:I = 0xf00000
-
 .field public static final NO_PROFILE_GROUP_ID:I = -0x1
-
-.field public static final SS_FLAG_ENCRYPT_SPACE:I = 0x40000000
-
-.field public static final SS_FLAG_HIDDEN_SPACE:I = 0x20000000
-
-.field public static final SS_FLAG_MANAGED_SPACE:I = -0x80000000
-
-.field public static final SS_FLAG_MASK_SPACE_TYPE:I = -0x1000000
-
-.field public static final SS_FLAG_SPACE:I = 0x10000000
 
 
 # instance fields
@@ -365,29 +351,6 @@
     goto :goto_0
 .end method
 
-.method public isEncryptedSpace()Z
-    .locals 2
-
-    .prologue
-    const/high16 v1, 0x40000000    # 2.0f
-
-    iget v0, p0, Landroid/content/pm/UserInfo;->flags:I
-
-    and-int/2addr v0, v1
-
-    if-ne v0, v1, :cond_0
-
-    const/4 v0, 0x1
-
-    :goto_0
-    return v0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    goto :goto_0
-.end method
-
 .method public isGuest()Z
     .locals 2
 
@@ -411,29 +374,6 @@
     goto :goto_0
 .end method
 
-.method public isHidden()Z
-    .locals 2
-
-    .prologue
-    const/high16 v1, 0x20000000
-
-    iget v0, p0, Landroid/content/pm/UserInfo;->flags:I
-
-    and-int/2addr v0, v1
-
-    if-ne v0, v1, :cond_0
-
-    const/4 v0, 0x1
-
-    :goto_0
-    return v0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    goto :goto_0
-.end method
-
 .method public isManagedProfile()Z
     .locals 2
 
@@ -443,29 +383,6 @@
     and-int/lit8 v0, v0, 0x20
 
     const/16 v1, 0x20
-
-    if-ne v0, v1, :cond_0
-
-    const/4 v0, 0x1
-
-    :goto_0
-    return v0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    goto :goto_0
-.end method
-
-.method public isManagedSpace()Z
-    .locals 2
-
-    .prologue
-    const/high16 v1, -0x80000000
-
-    iget v0, p0, Landroid/content/pm/UserInfo;->flags:I
-
-    and-int/2addr v0, v1
 
     if-ne v0, v1, :cond_0
 
@@ -524,29 +441,6 @@
     goto :goto_0
 .end method
 
-.method public isSpace()Z
-    .locals 2
-
-    .prologue
-    const/high16 v1, 0x10000000
-
-    iget v0, p0, Landroid/content/pm/UserInfo;->flags:I
-
-    and-int/2addr v0, v1
-
-    if-ne v0, v1, :cond_0
-
-    const/4 v0, 0x1
-
-    :goto_0
-    return v0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    goto :goto_0
-.end method
-
 .method public supportsSwitchTo()Z
     .locals 2
 
@@ -555,7 +449,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_0
 
     const-string v0, "fw.show_hidden_users"
 
@@ -565,17 +459,10 @@
 
     move-result v0
 
-    :cond_0
     :goto_0
     return v0
 
-    :cond_1
-    invoke-virtual {p0}, Landroid/content/pm/UserInfo;->isSpace()Z
-
-    move-result v1
-
-    if-nez v1, :cond_0
-
+    :cond_0
     const/4 v0, 0x1
 
     goto :goto_0

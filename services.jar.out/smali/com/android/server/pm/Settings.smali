@@ -3388,8 +3388,6 @@
 
     .end local v4    # "p":Lcom/android/server/pm/PackageSetting;
     :cond_11
-    invoke-static {v4}, Lcom/android/server/pm/PackageManagerServiceInjector;->checkPackageForUserModeLPw(Lcom/android/server/pm/PackageSetting;)V
-
     return-object v4
 
     :cond_12
@@ -9378,7 +9376,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_3
+    if-eqz v0, :cond_2
 
     invoke-interface {v7}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
@@ -9397,17 +9395,11 @@
 
     if-eqz v0, :cond_0
 
-    invoke-static {v6, p3}, Lcom/android/server/pm/SettingsInjector;->checkXSpaceApp(Lcom/android/server/pm/PackageSetting;I)Z
-
-    move-result v0
-
-    if-nez v0, :cond_1
-
     iget v0, v6, Lcom/android/server/pm/PackageSetting;->pkgFlags:I
 
     and-int/lit8 v0, v0, 0x1
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_1
 
     iget-object v0, v6, Lcom/android/server/pm/PackageSetting;->name:Ljava/lang/String;
 
@@ -9418,7 +9410,6 @@
     :goto_1
     invoke-virtual {v6, v8, p3}, Lcom/android/server/pm/PackageSetting;->setInstalled(ZI)V
 
-    :cond_1
     iget-object v1, v6, Lcom/android/server/pm/PackageSetting;->volumeUuid:Ljava/lang/String;
 
     iget-object v2, v6, Lcom/android/server/pm/PackageSetting;->name:Ljava/lang/String;
@@ -9443,7 +9434,7 @@
 
     goto :goto_0
 
-    :cond_2
+    :cond_1
     const/4 v8, 0x1
 
     .local v8, "setInstalled":Z
@@ -9451,7 +9442,7 @@
 
     .end local v6    # "ps":Lcom/android/server/pm/PackageSetting;
     .end local v8    # "setInstalled":Z
-    :cond_3
+    :cond_2
     invoke-virtual {p0, p1, p3}, Lcom/android/server/pm/Settings;->applyDefaultPreferredAppsLPw(Lcom/android/server/pm/PackageManagerService;I)V
 
     invoke-virtual {p0, p3}, Lcom/android/server/pm/Settings;->writePackageRestrictionsLPr(I)V
@@ -14218,34 +14209,6 @@
     .param p4, "create"    # Z
 
     .prologue
-    const-string v0, "android.uid.backup"
-
-    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-nez v0, :cond_0
-
-    const-string v0, "android.uid.theme"
-
-    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-nez v0, :cond_0
-
-    const-string v0, "android.uid.updater"
-
-    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    :cond_0
-    const-string p1, "android.uid.system"
-
-    :cond_1
     const/4 v2, 0x0
 
     iget-object v1, p0, Lcom/android/server/pm/Settings;->mSharedUsers:Landroid/util/ArrayMap;
@@ -14257,13 +14220,13 @@
     check-cast v0, Lcom/android/server/pm/SharedUserSetting;
 
     .local v0, "s":Lcom/android/server/pm/SharedUserSetting;
-    if-nez v0, :cond_3
+    if-nez v0, :cond_1
 
-    if-nez p4, :cond_2
+    if-nez p4, :cond_0
 
     return-object v2
 
-    :cond_2
+    :cond_0
     new-instance v0, Lcom/android/server/pm/SharedUserSetting;
 
     .end local v0    # "s":Lcom/android/server/pm/SharedUserSetting;
@@ -14312,13 +14275,13 @@
 
     iget v1, v0, Lcom/android/server/pm/SharedUserSetting;->userId:I
 
-    if-ltz v1, :cond_3
+    if-ltz v1, :cond_1
 
     iget-object v1, p0, Lcom/android/server/pm/Settings;->mSharedUsers:Landroid/util/ArrayMap;
 
     invoke-virtual {v1, p1, v0}, Landroid/util/ArrayMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    :cond_3
+    :cond_1
     return-object v0
 .end method
 
@@ -20449,10 +20412,6 @@
     move/from16 v0, p6
 
     invoke-virtual {v10, v1, v0}, Lcom/android/server/pm/PackageSetting;->setNotLaunched(ZI)V
-
-    move-object v1, p1
-
-    invoke-static {v1, v10, v0}, Lcom/android/server/pm/SettingsInjector;->noftifyFirstLaunch(Lcom/android/server/pm/PackageManagerService;Lcom/android/server/pm/PackageSetting;I)V
 
     :cond_3
     const/4 v1, 0x1

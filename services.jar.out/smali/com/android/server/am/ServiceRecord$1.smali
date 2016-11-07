@@ -193,17 +193,7 @@
 
     const/4 v4, 0x0
 
-    new-instance v5, Landroid/os/UserHandle;
-
-    move-object/from16 v0, p0
-
-    iget-object v6, v0, Lcom/android/server/am/ServiceRecord$1;->this$0:Lcom/android/server/am/ServiceRecord;
-
-    iget v6, v6, Lcom/android/server/am/ServiceRecord;->userId:I
-
-    invoke-direct {v5, v6}, Landroid/os/UserHandle;-><init>(I)V
-
-    invoke-virtual {v2, v3, v4, v5}, Landroid/content/Context;->createPackageContextAsUser(Ljava/lang/String;ILandroid/os/UserHandle;)Landroid/content/Context;
+    invoke-virtual {v2, v3, v4}, Landroid/content/Context;->createPackageContext(Ljava/lang/String;I)Landroid/content/Context;
 
     move-result-object v12
 

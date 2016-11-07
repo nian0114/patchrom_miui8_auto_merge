@@ -395,12 +395,6 @@
 
     move-result-object v14
 
-    iget-object v2, p0, Landroid/app/ContextImpl;->mPackageInfo:Landroid/app/LoadedApk;
-
-    iget-object v2, v2, Landroid/app/LoadedApk;->mPackageName:Ljava/lang/String;
-
-    invoke-static {v14, v2}, Landroid/miui/ResourcesManager;->initMiuiResource(Landroid/content/res/Resources;Ljava/lang/String;)V
-
     :cond_4
     :goto_4
     iput-object v14, p0, Landroid/app/ContextImpl;->mResources:Landroid/content/res/Resources;
@@ -7912,18 +7906,4 @@
 
     .local v0, "e":Landroid/os/RemoteException;
     goto :goto_0
-.end method
-
-.method public getContentResolverForUser(Landroid/os/UserHandle;)Landroid/content/ContentResolver;
-    .locals 2
-    .param p1, "userHandle"    # Landroid/os/UserHandle;
-
-    .prologue
-    new-instance v0, Landroid/app/ContextImpl$ApplicationContentResolver;
-
-    iget-object v1, p0, Landroid/app/ContextImpl;->mMainThread:Landroid/app/ActivityThread;
-
-    invoke-direct {v0, p0, v1, p1}, Landroid/app/ContextImpl$ApplicationContentResolver;-><init>(Landroid/content/Context;Landroid/app/ActivityThread;Landroid/os/UserHandle;)V
-
-    return-object v0
 .end method

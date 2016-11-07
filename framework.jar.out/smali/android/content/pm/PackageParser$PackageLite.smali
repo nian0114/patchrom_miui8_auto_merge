@@ -31,17 +31,6 @@
 
 .field public final multiArch:Z
 
-.field public final originalPackages:Ljava/util/List;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/List",
-            "<",
-            "Ljava/lang/String;",
-            ">;"
-        }
-    .end annotation
-.end field
-
 .field public final packageName:Ljava/lang/String;
 
 .field public final splitCodePaths:[Ljava/lang/String;
@@ -114,10 +103,6 @@
     iget-boolean v0, p2, Landroid/content/pm/PackageParser$ApkLite;->isTheme:Z
 
     iput-boolean v0, p0, Landroid/content/pm/PackageParser$PackageLite;->isTheme:Z
-
-    iget-object v0, p2, Landroid/content/pm/PackageParser$ApkLite;->originalPackages:Ljava/util/List;
-
-    iput-object v0, p0, Landroid/content/pm/PackageParser$PackageLite;->originalPackages:Ljava/util/List;
 
     return-void
 .end method

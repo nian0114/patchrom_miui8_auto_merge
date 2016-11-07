@@ -979,7 +979,7 @@
 .end method
 
 .method private static addEntryAndRemoveExpiredEntries(Landroid/content/Context;Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;
-    .locals 2
+    .locals 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "uri"    # Landroid/net/Uri;
     .param p2, "values"    # Landroid/content/ContentValues;
@@ -995,6 +995,12 @@
     move-result-object v1
 
     .local v1, "result":Landroid/net/Uri;
+    const-string v2, "_id IN (SELECT _id FROM calls ORDER BY date DESC LIMIT -1 OFFSET 500)"
+
+    const/4 v3, 0x0
+
+    invoke-virtual {v0, p1, v2, v3}, Landroid/content/ContentResolver;->delete(Landroid/net/Uri;Ljava/lang/String;[Ljava/lang/String;)I
+
     return-object v1
 .end method
 

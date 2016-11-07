@@ -102,8 +102,6 @@
 
 .field public static final LAYOUT_INFLATER_SERVICE:Ljava/lang/String; = "layout_inflater"
 
-.field public static final LOCATION_POLICY_SERVICE:Ljava/lang/String; = "locationpolicy"
-
 .field public static final LOCATION_SERVICE:Ljava/lang/String; = "location"
 
 .field public static final MEDIA_PROJECTION_SERVICE:Ljava/lang/String; = "media_projection"
@@ -160,8 +158,6 @@
 .field public static final RESTRICTIONS_SERVICE:Ljava/lang/String; = "restrictions"
 
 .field public static final SEARCH_SERVICE:Ljava/lang/String; = "search"
-
-.field public static final SECURITY_SERVICE:Ljava/lang/String; = "security"
 
 .field public static final SENSOR_SERVICE:Ljava/lang/String; = "sensor"
 
@@ -227,25 +223,6 @@
 
 # virtual methods
 .method public abstract bindService(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
-.end method
-
-.method public bindService(Landroid/content/Intent;Landroid/content/ServiceConnection;II)Z
-    .locals 1
-    .param p1, "service"    # Landroid/content/Intent;
-    .param p2, "conn"    # Landroid/content/ServiceConnection;
-    .param p3, "flags"    # I
-    .param p4, "userHandle"    # I
-
-    .prologue
-    new-instance v0, Landroid/os/UserHandle;
-
-    invoke-direct {v0, p4}, Landroid/os/UserHandle;-><init>(I)V
-
-    invoke-virtual {p0, p1, p2, p3, v0}, Landroid/content/Context;->bindServiceAsUser(Landroid/content/Intent;Landroid/content/ServiceConnection;ILandroid/os/UserHandle;)Z
-
-    move-result v0
-
-    return v0
 .end method
 
 .method public bindServiceAsUser(Landroid/content/Intent;Landroid/content/ServiceConnection;ILandroid/os/UserHandle;)Z
@@ -456,16 +433,6 @@
 .end method
 
 .method public abstract getContentResolver()Landroid/content/ContentResolver;
-.end method
-
-.method public getContentResolverForUser(Landroid/os/UserHandle;)Landroid/content/ContentResolver;
-    .locals 1
-    .param p1, "userHandle"    # Landroid/os/UserHandle;
-
-    .prologue
-    const/4 v0, 0x0
-
-    return-object v0
 .end method
 
 .method public abstract getDatabasePath(Ljava/lang/String;)Ljava/io/File;

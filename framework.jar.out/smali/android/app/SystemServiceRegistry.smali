@@ -939,30 +939,3 @@
 
     return-void
 .end method
-
-.method static varargs registerService(Ljava/lang/String;Ljava/lang/Class;Landroid/app/SystemServiceRegistry$ServiceFetcher;[Ljava/lang/Object;)V
-    .locals 0
-    .param p0, "serviceName"    # Ljava/lang/String;
-    .param p3, "unuse"    # [Ljava/lang/Object;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "<T:",
-            "Ljava/lang/Object;",
-            ">(",
-            "Ljava/lang/String;",
-            "Ljava/lang/Class",
-            "<TT;>;",
-            "Landroid/app/SystemServiceRegistry$ServiceFetcher",
-            "<TT;>;[",
-            "Ljava/lang/Object;",
-            ")V"
-        }
-    .end annotation
-
-    .prologue
-    .local p1, "serviceClass":Ljava/lang/Class;, "Ljava/lang/Class<TT;>;"
-    .local p2, "serviceFetcher":Landroid/app/SystemServiceRegistry$ServiceFetcher;, "Landroid/app/SystemServiceRegistry$ServiceFetcher<TT;>;"
-    invoke-static {p0, p1, p2}, Landroid/app/SystemServiceRegistry;->registerService(Ljava/lang/String;Ljava/lang/Class;Landroid/app/SystemServiceRegistry$ServiceFetcher;)V
-
-    return-void
-.end method

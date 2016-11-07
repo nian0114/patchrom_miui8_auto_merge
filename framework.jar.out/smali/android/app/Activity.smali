@@ -9704,13 +9704,3 @@
 
     return-void
 .end method
-
-.method public onEdgeTouchEvent(Landroid/view/MotionEvent;)Z
-    .locals 1
-    .param p1, "event"    # Landroid/view/MotionEvent;
-
-    .prologue
-    const/4 v0, 0x1
-
-    return v0
-.end method

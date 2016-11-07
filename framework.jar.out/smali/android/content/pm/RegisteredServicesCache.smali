@@ -2351,8 +2351,6 @@
     move-result-object v3
 
     .local v3, "packages":[Ljava/lang/String;
-    if-eqz v3, :cond_1
-
     array-length v6, v3
 
     move v4, v5
