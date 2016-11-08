@@ -12,7 +12,7 @@ def RemoveDeviceAssert(info):
 def RemoveDeviceGetprop(info):
   edify = info.script
   for i in xrange(len(edify.script)):
-    if "getprop" in edify.script[i]:
+    if "ro.product" in edify.script[i]:
       edify.script[i] = ''
       return
 
