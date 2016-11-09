@@ -61,15 +61,17 @@
 
     iget-object v0, p0, Lcom/android/server/policy/PhoneWindowManager$13;->this$0:Lcom/android/server/policy/PhoneWindowManager;
 
-    iget-object v0, v0, Lcom/android/server/policy/PhoneWindowManager;->mGlobalActions:Lcom/android/server/policy/GlobalActions;
+    iget-object v0, v0, Lcom/android/server/policy/PhoneWindowManager;->mGlobalActions:Lcom/android/server/policy/MiuiGlobalActions;
+
+    const/4 v0, 0x0
 
     if-eqz v0, :cond_0
 
     iget-object v0, p0, Lcom/android/server/policy/PhoneWindowManager$13;->this$0:Lcom/android/server/policy/PhoneWindowManager;
 
-    iget-object v0, v0, Lcom/android/server/policy/PhoneWindowManager;->mGlobalActions:Lcom/android/server/policy/GlobalActions;
+    iget-object v0, v0, Lcom/android/server/policy/PhoneWindowManager;->mGlobalActions:Lcom/android/server/policy/MiuiGlobalActions;
 
-    invoke-virtual {v0}, Lcom/android/server/policy/GlobalActions;->updatePowerMenuActions()V
+    invoke-virtual {v0}, Lcom/android/server/policy/MiuiGlobalActions;->updatePowerMenuActions()V
 
     :cond_0
     iget-object v0, p0, Lcom/android/server/policy/PhoneWindowManager$13;->this$0:Lcom/android/server/policy/PhoneWindowManager;
