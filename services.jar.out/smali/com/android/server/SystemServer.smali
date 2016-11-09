@@ -563,7 +563,7 @@
 
     iget-object v2, p0, Lcom/android/server/SystemServer;->mSystemServiceManager:Lcom/android/server/SystemServiceManager;
 
-    const-class v5, Lcom/android/server/lights/LightsService;
+    const-class v5, Lcom/android/server/lights/MiuiLightsService;
 
     invoke-virtual {v2, v5}, Lcom/android/server/SystemServiceManager;->startService(Ljava/lang/Class;)Lcom/android/server/SystemService;
 

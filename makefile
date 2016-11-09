@@ -51,6 +51,12 @@ include $(PORT_BUILD)/porting.mk
 #updater := $(ZIP_DIR)/META-INF/com/google/android/updater-script
 #pre_install_data_packages := $(TMP_DIR)/pre_install_apk_pkgname.txt
 local-pre-zip-misc:
+	# to fix settings mod
+	$(PORT_ROOT)/tools/apktool d -r -f $(PORT_ROOT)/miui/system/priv-app/XXHDPI/Settings/Settings.apk -o $(TARGET_OUT_DIR)/Settings
+	sed -i 's/screen_buttons_timeout/button_backlight_timeout/g' `grep -lnr 'screen_buttons_timeout' $(TARGET_OUT_DIR)/Settings/smali`
+	$(PORT_ROOT)/tools/apktool b $(TARGET_OUT_DIR)/Settings
+	cp -rf $(TARGET_OUT_DIR)/Settings/dist/Settings.apk $(ZIP_DIR)/system/priv-app/Settings/Settings.apk
+	# to fix settings mod
 	cp -rf other/system $(ZIP_DIR)/
 	cp -rf ../other/system $(ZIP_DIR)/
 #	cp -rf ../xposed_32/system $(ZIP_DIR)/
