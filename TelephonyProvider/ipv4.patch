@@ -1,0 +1,30 @@
+From 70eea2b9fb5c9892c32c290d02895a6a0470dc5a Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Fri, 11 Nov 2016 04:21:57 +0800
+Subject: [PATCH] no ipv6 on some devices
+
+---
+ .../providers/telephony/TelephonyProvider$DatabaseHelper.smali        | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/TelephonyProvider/smali/com/android/providers/telephony/TelephonyProvider$DatabaseHelper.smali
++++ b/TelephonyProvider/smali/com/android/providers/telephony/TelephonyProvider$DatabaseHelper.smali
+@@ -836,13 +836,13 @@
+ 
+     move-result-object v0
+ 
+-    const-string v1, "protocol TEXT DEFAULT \'IPV4V6\',"
++    const-string v1, "protocol TEXT DEFAULT \'IP\',"
+ 
+     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+     move-result-object v0
+ 
+-    const-string v1, "roaming_protocol TEXT DEFAULT \'IPV4V6\',"
++    const-string v1, "roaming_protocol TEXT DEFAULT \'IP\',"
+ 
+     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+ 
+-- 
+2.10.1
+
