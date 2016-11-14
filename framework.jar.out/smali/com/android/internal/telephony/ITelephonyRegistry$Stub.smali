@@ -1648,6 +1648,67 @@
     .restart local v38    # "_arg0":Z
     goto :goto_14
 
+    :sswitch_fe
+    const-string v1, "com.android.internal.telephony.ITelephonyRegistry"
+
+    move-object/from16 v0, p2
+
+    invoke-virtual {v0, v1}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readStrongBinder()Landroid/os/IBinder;
+
+    move-result-object v1
+
+    invoke-static {v1}, Lmiui/telephony/IMiuiTelephony$Stub;->asInterface(Landroid/os/IBinder;)Lmiui/telephony/IMiuiTelephony;
+
+    move-result-object v2
+
+    .local v2, "_arg0":Lmiui/telephony/IMiuiTelephony;
+    move-object/from16 v0, p0
+
+    invoke-virtual {v0, v2}, Lcom/android/internal/telephony/ITelephonyRegistry$Stub;->setMiuiTelephony(Lmiui/telephony/IMiuiTelephony;)V
+
+    invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
+
+    const/4 v5, 0x1
+
+    return v5
+
+    .end local v2    # "_arg0":Lmiui/telephony/IMiuiTelephony;
+    :sswitch_ff
+    const-string v1, "com.android.internal.telephony.ITelephonyRegistry"
+
+    move-object/from16 v0, p2
+
+    invoke-virtual {v0, v1}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    invoke-virtual/range {p0 .. p0}, Lcom/android/internal/telephony/ITelephonyRegistry$Stub;->getMiuiTelephony()Lmiui/telephony/IMiuiTelephony;
+
+    move-result-object v14
+
+    .local v14, "_result":Lmiui/telephony/IMiuiTelephony;
+    invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
+
+    if-eqz v14, :cond_miui_0
+
+    invoke-interface {v14}, Lmiui/telephony/IMiuiTelephony;->asBinder()Landroid/os/IBinder;
+
+    move-result-object v1
+
+    :goto_miui_0
+    move-object/from16 v0, p3
+
+    invoke-virtual {v0, v1}, Landroid/os/Parcel;->writeStrongBinder(Landroid/os/IBinder;)V
+
+    const/4 v5, 0x1
+
+    return v5
+
+    :cond_miui_0
+    const/4 v1, 0x0
+
+    goto :goto_miui_0
+
     :sswitch_data_0
     .sparse-switch
         0x1 -> :sswitch_1
@@ -1682,6 +1743,8 @@
         0x1e -> :sswitch_1e
         0x1f -> :sswitch_1f
         0x20 -> :sswitch_20
+        0xfe -> :sswitch_fe
+        0xff -> :sswitch_ff
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method

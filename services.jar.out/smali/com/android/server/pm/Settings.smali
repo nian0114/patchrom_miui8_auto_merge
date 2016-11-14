@@ -3388,6 +3388,8 @@
 
     .end local v4    # "p":Lcom/android/server/pm/PackageSetting;
     :cond_11
+    invoke-static {v4}, Lcom/android/server/pm/PackageManagerServiceInjector;->checkPackageForUserModeLPw(Lcom/android/server/pm/PackageSetting;)V
+
     return-object v4
 
     :cond_12
@@ -14209,6 +14211,34 @@
     .param p4, "create"    # Z
 
     .prologue
+    const-string v0, "android.uid.backup"
+
+    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_miui_0
+
+    const-string v0, "android.uid.theme"
+
+    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_miui_0
+
+    const-string v0, "android.uid.updater"
+
+    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_miui_1
+
+    :cond_miui_0
+    const-string p1, "android.uid.system"
+
+    :cond_miui_1
     const/4 v2, 0x0
 
     iget-object v1, p0, Lcom/android/server/pm/Settings;->mSharedUsers:Landroid/util/ArrayMap;
@@ -20412,6 +20442,10 @@
     move/from16 v0, p6
 
     invoke-virtual {v10, v1, v0}, Lcom/android/server/pm/PackageSetting;->setNotLaunched(ZI)V
+
+    move-object v1, p1
+
+    invoke-static {v1, v10, v0}, Lcom/android/server/pm/SettingsInjector;->noftifyFirstLaunch(Lcom/android/server/pm/PackageManagerService;Lcom/android/server/pm/PackageSetting;I)V
 
     :cond_3
     const/4 v1, 0x1

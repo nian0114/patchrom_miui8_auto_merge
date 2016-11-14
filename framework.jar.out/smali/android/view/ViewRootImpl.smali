@@ -13694,7 +13694,11 @@
     .prologue
     monitor-enter p0
 
+    const/4 v7, 0x0
+
     :try_start_0
+    invoke-static {v7, p1}, Landroid/view/ViewRootImplInjector;->transformWindowType(Landroid/view/View;Landroid/view/WindowManager$LayoutParams;)V
+
     iget-object v7, p0, Landroid/view/ViewRootImpl;->mWindowAttributes:Landroid/view/WindowManager$LayoutParams;
 
     iget-object v7, v7, Landroid/view/WindowManager$LayoutParams;->surfaceInsets:Landroid/graphics/Rect;
@@ -13919,6 +13923,8 @@
     iget-object v4, v0, Landroid/view/ViewRootImpl;->mView:Landroid/view/View;
 
     if-nez v4, :cond_13
+
+    invoke-static/range {p1 .. p2}, Landroid/view/ViewRootImplInjector;->transformWindowType(Landroid/view/View;Landroid/view/WindowManager$LayoutParams;)V
 
     move-object/from16 v0, p1
 
@@ -14280,6 +14286,21 @@
     iget v4, v4, Landroid/view/WindowManager$LayoutParams;->inputFeatures:I
 
     and-int/lit8 v4, v4, 0x2
+
+    if-nez v4, :cond_miui_0
+
+    new-instance v4, Landroid/view/InputChannel;
+
+    invoke-direct {v4}, Landroid/view/InputChannel;-><init>()V
+
+    move-object/from16 v0, p0
+
+    iput-object v4, v0, Landroid/view/ViewRootImpl;->mInputChannel:Landroid/view/InputChannel;
+
+    :cond_miui_0
+    move-object/from16 v0, p0
+
+    iget-object v4, v0, Landroid/view/ViewRootImpl;->mInputChannel:Landroid/view/InputChannel;
 
     if-nez v4, :cond_7
 

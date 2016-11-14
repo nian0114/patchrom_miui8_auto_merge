@@ -61,6 +61,9 @@ local-pre-zip-misc:
 	cp -rf ../other/system $(ZIP_DIR)/
 #	cp -rf ../xposed_32/system $(ZIP_DIR)/
 	echo "import /system/default.prop" >> $(ZIP_DIR)/system/build.prop
+	rm -rf $(ZIP_DIR)/system/framework/patchrom-*.jar
+	touch $(ZIP_DIR)/system/framework/patchrom-core.jar
+	touch $(ZIP_DIR)/system/framework/patchrom-server.jar
 	@echo goodbye! miui prebuilt binaries!
 	rm -rf $(ZIP_DIR)/system/bin/app_process32_vendor
 	cp -rf stockrom/system/bin/app_process32 $(ZIP_DIR)/system/bin/app_process32

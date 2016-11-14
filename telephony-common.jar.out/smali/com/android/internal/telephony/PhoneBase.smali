@@ -4962,7 +4962,9 @@
     return-object v0
 
     :cond_0
-    invoke-static {p1, p2}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    iget v0, p0, Lcom/android/internal/telephony/PhoneBase;->mPhoneId:I
+
+    invoke-static {v0, p1, p2}, Landroid/telephony/TelephonyManager;->getTelephonyProperty(ILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
@@ -8633,7 +8635,9 @@
     return-void
 
     :cond_0
-    invoke-static {p1, p2}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
+    iget v0, p0, Lcom/android/internal/telephony/PhoneBase;->mPhoneId:I
+
+    invoke-static {v0, p1, p2}, Landroid/telephony/TelephonyManager;->setTelephonyProperty(ILjava/lang/String;Ljava/lang/String;)V
 
     return-void
 .end method

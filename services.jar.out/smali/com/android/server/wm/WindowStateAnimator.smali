@@ -3194,9 +3194,24 @@
     move-object/from16 v1, p0
 
     iput v0, v1, Lcom/android/server/wm/WindowStateAnimator;->mSurfaceY:F
+
+    iget v2, v9, Landroid/view/WindowManager$LayoutParams;->flags:I
+
+    and-int/lit8 v2, v2, 0x4
+
+    if-eqz v2, :cond_miui_0
+
+    move-object/from16 v1, p0
+
+    iget-object v2, v1, Lcom/android/server/wm/WindowStateAnimator;->mSurfaceControl:Landroid/view/SurfaceControl;
+
+    const/4 v3, 0x1
+
+    invoke-virtual {v2, v3}, Landroid/view/SurfaceControl;->setBlur(Z)V
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
+    :cond_miui_0
     :try_start_2
     move-object/from16 v0, p0
 

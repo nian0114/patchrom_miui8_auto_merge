@@ -34,17 +34,17 @@
 
 .field private mCountryIso:Ljava/lang/String;
 
-.field private mDataRoaming:I
+.field public mDataRoaming:I
 
-.field private mDisplayName:Ljava/lang/CharSequence;
+.field public mDisplayName:Ljava/lang/CharSequence;
 
-.field private mIccId:Ljava/lang/String;
+.field public mIccId:Ljava/lang/String;
 
 .field private mIconBitmap:Landroid/graphics/Bitmap;
 
 .field private mIconTint:I
 
-.field private mId:I
+.field public mId:I
 
 .field private mMcc:I
 
@@ -52,9 +52,9 @@
 
 .field private mNameSource:I
 
-.field private mNumber:Ljava/lang/String;
+.field public mNumber:Ljava/lang/String;
 
-.field private mSimSlotIndex:I
+.field public mSimSlotIndex:I
 
 .field public mUserNwMode:I
 

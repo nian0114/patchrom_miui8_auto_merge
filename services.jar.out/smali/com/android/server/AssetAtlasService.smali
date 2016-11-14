@@ -240,6 +240,8 @@
 
     invoke-virtual {v8}, Ljava/lang/Thread;->start()V
 
+    sput-object p0, Lcom/android/server/AssetAtlasService;->sInstance:Lcom/android/server/AssetAtlasService;
+
     return-void
 .end method
 

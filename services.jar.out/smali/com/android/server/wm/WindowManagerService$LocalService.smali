@@ -671,7 +671,15 @@
 
     if-nez v4, :cond_0
 
-    if-eqz v0, :cond_2
+    if-nez v0, :cond_0
+
+    iget-object v4, v1, Lcom/android/server/wm/WindowState;->mAttrs:Landroid/view/WindowManager$LayoutParams;
+
+    iget v4, v4, Landroid/view/WindowManager$LayoutParams;->type:I
+
+    const/16 v6, 0x7d4
+
+    if-ne v4, v6, :cond_2
 
     :cond_0
     iget-object v4, v1, Lcom/android/server/wm/WindowState;->mWinAnimator:Lcom/android/server/wm/WindowStateAnimator;

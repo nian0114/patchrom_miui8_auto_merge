@@ -129,7 +129,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/view/ScaleGestureDetector$OnScaleGestureListener;Landroid/os/Handler;)V
-    .locals 5
+    .locals 6
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "listener"    # Landroid/view/ScaleGestureDetector$OnScaleGestureListener;
     .param p3, "handler"    # Landroid/os/Handler;
@@ -138,6 +138,8 @@
     const/4 v4, 0x1
 
     const/4 v3, 0x0
+
+    const/high16 v5, 0x7fc00000    # NaNf
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -216,6 +218,12 @@
     invoke-virtual {p0, v4}, Landroid/view/ScaleGestureDetector;->setStylusScaleEnabled(Z)V
 
     :cond_1
+    iput v5, p0, Landroid/view/ScaleGestureDetector;->mTouchUpper:F
+
+    iput v5, p0, Landroid/view/ScaleGestureDetector;->mTouchLower:F
+
+    iput v5, p0, Landroid/view/ScaleGestureDetector;->mTouchHistoryLastAccepted:F
+
     return-void
 
     .end local v0    # "res":Landroid/content/res/Resources;

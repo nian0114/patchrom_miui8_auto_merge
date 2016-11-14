@@ -790,6 +790,12 @@
 
     if-nez v2, :cond_d
 
+    move-object/from16 v0, v44
+
+    iget-object v2, v0, Lcom/android/server/wm/AppWindowToken;->startingData:Lcom/android/server/wm/StartingData;
+
+    if-nez v2, :cond_d
+
     monitor-exit v3
 
     goto :goto_6
