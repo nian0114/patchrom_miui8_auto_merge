@@ -829,11 +829,17 @@
 
     invoke-virtual {p0, v12}, Lcom/android/internal/telephony/imsphone/ImsPhoneCallTracker;->setMute(Z)V
 
+    iget-object v12, p0, Lcom/android/internal/telephony/imsphone/ImsPhoneCallTracker;->mPhone:Lcom/android/internal/telephony/imsphone/ImsPhone;
+
+    invoke-virtual {v12}, Lcom/android/internal/telephony/imsphone/ImsPhone;->getSubId()I
+
+    move-result v12
+
     invoke-virtual/range {p1 .. p1}, Lcom/android/internal/telephony/imsphone/ImsPhoneConnection;->getAddress()Ljava/lang/String;
 
-    move-result-object v12
+    move-result-object v13
 
-    invoke-static {v12}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(Ljava/lang/String;)Z
+    invoke-static {v12, v13}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(ILjava/lang/String;)Z
 
     move-result v12
 
@@ -3210,7 +3216,17 @@
     move-result v15
 
     .local v15, "isPhoneInEcmMode":Z
-    invoke-static/range {p1 .. p1}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(Ljava/lang/String;)Z
+    move-object/from16 v0, p0
+
+    iget-object v4, v0, Lcom/android/internal/telephony/imsphone/ImsPhoneCallTracker;->mPhone:Lcom/android/internal/telephony/imsphone/ImsPhone;
+
+    invoke-virtual {v4}, Lcom/android/internal/telephony/imsphone/ImsPhone;->getSubId()I
+
+    move-result v4
+
+    move-object/from16 v0, p1
+
+    invoke-static {v4, v0}, Landroid/telephony/PhoneNumberUtils;->isEmergencyNumber(ILjava/lang/String;)Z
 
     move-result v9
 
