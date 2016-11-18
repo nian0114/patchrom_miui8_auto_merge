@@ -1,0 +1,25 @@
+From 7cede6b353ddb3a68b56eac823841d49cc07e075 Mon Sep 17 00:00:00 2001
+From: wonitor <wonitor@qq.com>
+Date: Fri, 18 Nov 2016 13:12:57 +0800
+Subject: [PATCH] 12
+
+---
+ DeskClock/smali/com/android/deskclock/util/Util.smali | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/DeskClock/smali/com/android/deskclock/util/Util.smali b/DeskClock/smali/com/android/deskclock/util/Util.smali
+index a3abff4..319ea12 100644
+--- a/DeskClock/smali/com/android/deskclock/util/Util.smali
++++ b/DeskClock/smali/com/android/deskclock/util/Util.smali
+@@ -28,6 +28,8 @@
+ 
+     move-result v0
+ 
++    const/4 v0, 0x1
++
+     sput-boolean v0, Lcom/android/deskclock/util/Util;->IS_NEXUS_5:Z
+ 
+     const/4 v0, 0x3
+-- 
+2.7.4
+

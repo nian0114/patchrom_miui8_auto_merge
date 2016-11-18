@@ -38,6 +38,10 @@ function mergyXmlPart() {
 	done
 }
 
+if [ $1 = "DeskClock" ];then
+    applyPatch $1 $2
+fi
+
 if [ $1 = "MiuiKeyguard" ];then
     applyPatch $1 $2
 fi
