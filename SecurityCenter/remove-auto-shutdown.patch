@@ -1,0 +1,25 @@
+From cbed449d67374836e39626d3555871ee53f7702f Mon Sep 17 00:00:00 2001
+From: wonitor <wonitor@qq.com>
+Date: Fri, 18 Nov 2016 13:16:51 +0800
+Subject: [PATCH] 12
+
+---
+ SecurityCenter/smali/com/miui/powercenter/c/k.smali | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/SecurityCenter/smali/com/miui/powercenter/c/k.smali b/SecurityCenter/smali/com/miui/powercenter/c/k.smali
+index 3ca049d..8565e3d 100644
+--- a/SecurityCenter/smali/com/miui/powercenter/c/k.smali
++++ b/SecurityCenter/smali/com/miui/powercenter/c/k.smali
+@@ -18,6 +18,8 @@
+ 
+     move-result v0
+ 
++    const/4 v0, 0x1
++
+     sput-boolean v0, Lcom/miui/powercenter/c/k;->rH:Z
+ 
+     return-void
+-- 
+2.7.4
+
