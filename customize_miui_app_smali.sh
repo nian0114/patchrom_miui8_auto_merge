@@ -37,3 +37,35 @@ function mergyXmlPart() {
 		$XMLMERGYTOOL $src $dst
 	done
 }
+
+if [ $1 = "MiuiKeyguard" ];then
+    applyPatch $1 $2
+fi
+
+if [ $1 = "MiuiSystemUI" ];then
+    applyPatch $1 $2
+fi
+
+if [ $1 = "TelephonyProvider" ];then
+    applyPatch $1 $2
+fi
+
+if [ $1 = "TeleService" ];then
+    applyPatch $1 $2
+fi
+
+if [ $1 = "SecurityCoreAdd" ];then
+    applyPatch $1 $2
+fi
+
+if [ $1 = "XiaomiServiceFramework" ];then
+    applyPatch $1 $2
+fi
+
+if [ $1 = "SecurityCenter" ];then
+    applyPatch $1 $2
+fi
+
+if [ $1 = "Settings" ];then
+    sed -i 's/screen_buttons_timeout/button_backlight_timeout/g' `grep -lnr 'screen_buttons_timeout' $(TARGET_OUT_DIR)/Settings/smali`
+fi
