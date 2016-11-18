@@ -71,5 +71,5 @@ if [ $1 = "SecurityCenter" ];then
 fi
 
 if [ $1 = "Settings" ];then
-    sed -i 's/screen_buttons_timeout/button_backlight_timeout/g' `grep -lnr 'screen_buttons_timeout' $(TARGET_OUT_DIR)/Settings/smali`
+    sed -i 's/screen_buttons_timeout/button_backlight_timeout/g' `grep -lnr 'screen_buttons_timeout' $2/smali`
 fi
