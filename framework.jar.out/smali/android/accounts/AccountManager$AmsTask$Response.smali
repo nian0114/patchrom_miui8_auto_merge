@@ -108,15 +108,6 @@
 
     if-eqz v2, :cond_0
 
-    invoke-static {v1}, Lmiui/content/pm/ExtraPackageManager;->handleIfContainsXiaomiAccountType(Landroid/content/Intent;)Z
-
-    move-result v2
-
-    if-eqz v2, :cond_miui_0
-
-    goto :goto_0
-
-    :cond_miui_0
     iget-object v2, p0, Landroid/accounts/AccountManager$AmsTask$Response;->this$1:Landroid/accounts/AccountManager$AmsTask;
 
     iget-object v2, v2, Landroid/accounts/AccountManager$AmsTask;->mActivity:Landroid/app/Activity;

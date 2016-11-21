@@ -109,18 +109,8 @@
     move-result v2
 
     .local v2, "result":I
-    const/16 v3, 0x63
-
-    if-ne v2, v3, :cond_miui_0
-
-    move v5, v4
-
-    goto :goto_miui_0
-
-    :cond_miui_0
     if-ne v2, v5, :cond_2
 
-    :goto_miui_0
     return v5
 
     :cond_2

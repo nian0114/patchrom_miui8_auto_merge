@@ -818,11 +818,11 @@
     :cond_0
     new-instance v0, Landroid/content/Intent;
 
-    invoke-direct {v0}, Landroid/content/Intent;-><init>()V
+    const-class v1, Landroid/accounts/ChooseAccountTypeActivity;
+
+    invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
     .local v0, "intent":Landroid/content/Intent;
-    invoke-static {v0}, Landroid/accounts/ChooseTypeAndAccountActivityInjector;->toMiuiChooseAccountTypeActivity(Landroid/content/Intent;)V
-
     const/high16 v1, 0x80000
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;

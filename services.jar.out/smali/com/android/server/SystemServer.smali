@@ -145,14 +145,6 @@
 
     invoke-virtual {v1, v2}, Landroid/content/Context;->setTheme(I)V
 
-    invoke-static {}, Landroid/app/ActivityThread;->currentApplication()Landroid/app/Application;
-
-    move-result-object v1
-
-    const/4 v2, 0x0
-
-    invoke-static {v1, v2}, Lmiui/core/SdkManager;->initialize(Landroid/app/Application;Ljava/util/Map;)I
-
     return-void
 .end method
 
@@ -162,7 +154,6 @@
 
     .prologue
     invoke-static {}, Lmiui/patchrom/ClassHook;->initServerHook()V
-    
     new-instance v0, Lcom/android/server/SystemServer;
 
     invoke-direct {v0}, Lcom/android/server/SystemServer;-><init>()V
@@ -618,12 +609,6 @@
 
     :cond_0
     :goto_0
-    iget-object v2, p0, Lcom/android/server/SystemServer;->mSystemContext:Landroid/content/Context;
-
-    iget-boolean v5, p0, Lcom/android/server/SystemServer;->mOnlyCore:Z
-
-    invoke-static {v2, v5}, Lcom/android/server/SystemServerInjector;->addExtraServicesBeforePMS(Landroid/content/Context;Z)V
-
     const-string v2, "SystemServer"
 
     const-string v5, "Package Manager"
@@ -2280,12 +2265,6 @@
     .end local v94    # "serial":Lcom/android/server/SerialService;
     :cond_14
     :goto_20
-    move-object/from16 v0, p0
-
-    iget-boolean v3, v0, Lcom/android/server/SystemServer;->mOnlyCore:Z
-
-    invoke-static {v10, v3}, Lcom/android/server/SystemServerInjector;->addExtraServices(Landroid/content/Context;Z)V
-
     move-object/from16 v0, p0
 
     iget-object v3, v0, Lcom/android/server/SystemServer;->mSystemServiceManager:Lcom/android/server/SystemServiceManager;

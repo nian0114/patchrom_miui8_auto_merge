@@ -330,8 +330,6 @@
 
     iput v5, p0, Lcom/android/server/TelephonyRegistry;->next:I
 
-    iput-object v7, p0, Lcom/android/server/TelephonyRegistry;->mMiuiTelephony:Lmiui/telephony/IMiuiTelephony;
-
     invoke-static {}, Landroid/telephony/CellLocation;->getEmpty()Landroid/telephony/CellLocation;
 
     move-result-object v1
@@ -3751,21 +3749,15 @@
     goto :goto_1
 
     :cond_3
-    if-eq p1, p2, :cond_4
+    if-ne p1, p2, :cond_4
 
-    invoke-static {p1}, Landroid/telephony/SubscriptionManager;->getPhoneId(I)I
-
-    move-result v2
-
-    if-ne v2, p3, :cond_miui_0
+    :goto_2
+    return v0
 
     :cond_4
-    move v1, v0
-
-    :cond_miui_0
     move v0, v1
 
-    return v0
+    goto :goto_2
 .end method
 
 .method public listen(Ljava/lang/String;Lcom/android/internal/telephony/IPhoneStateListener;IZ)V

@@ -224,9 +224,9 @@
     return v0
 
     :pswitch_2
-    invoke-static {p1, p2}, Landroid/util/TypedValueInjector;->miuiScale(FLandroid/util/DisplayMetrics;)F
+    iget v0, p2, Landroid/util/DisplayMetrics;->scaledDensity:F
 
-    move-result v0
+    mul-float/2addr v0, p1
 
     return v0
 

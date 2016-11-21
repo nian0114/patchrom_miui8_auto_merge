@@ -387,8 +387,6 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    invoke-static {p1}, Landroid/preference/RingtonePreferenceInjector;->specifyRingtonePickIntentActivity(Landroid/content/Intent;)V
-
     return-void
 
     :cond_2

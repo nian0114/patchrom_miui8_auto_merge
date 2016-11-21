@@ -2445,10 +2445,6 @@
     .local v8, "systemDir":Ljava/io/File;
     invoke-virtual {v8}, Ljava/io/File;->mkdirs()Z
 
-    iget-object v0, p0, Lcom/android/server/am/ActivityManagerService;->mContext:Landroid/content/Context;
-
-    invoke-static {v0}, Lcom/android/server/am/ActivityManagerServiceInjector;->init(Landroid/content/Context;)V
-
     new-instance v0, Lcom/android/server/am/BatteryStatsService;
 
     iget-object v1, p0, Lcom/android/server/am/ActivityManagerService;->mHandler:Lcom/android/server/am/ActivityManagerService$MainHandler;
@@ -52839,10 +52835,6 @@
     .param p4, "finishTask"    # Z
 
     .prologue
-    invoke-static/range {p0 .. p3}, Lcom/android/server/am/ActivityManagerServiceInjector;->finishActivity(Lcom/android/server/am/ActivityManagerService;Landroid/os/IBinder;ILandroid/content/Intent;)Landroid/os/IBinder;
-
-    move-result-object p1
-
     if-eqz p3, :cond_0
 
     invoke-virtual/range {p3 .. p3}, Landroid/content/Intent;->hasFileDescriptors()Z
@@ -53717,15 +53709,13 @@
     .end local v29    # "uss":Lcom/android/server/am/UserState;
     :cond_8
     invoke-virtual/range {p0 .. p0}, Lcom/android/server/am/ActivityManagerService;->scheduleStartProfilesLocked()V
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
     .end local v23    # "i":I
     .end local v26    # "nmsg":Landroid/os/Message;
     :cond_9
     monitor-exit p0
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_1
-
-    invoke-static/range {p0 .. p0}, Lcom/android/server/am/ActivityManagerServiceInjector;->finishBooting(Lcom/android/server/am/ActivityManagerService;)V
 
     return-void
 
@@ -53733,10 +53723,7 @@
     :catchall_1
     move-exception v2
 
-    :try_start_3
     monitor-exit p0
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
     throw v2
 .end method
@@ -55940,6 +55927,8 @@
     .param p1, "token"    # Landroid/os/IBinder;
 
     .prologue
+    const/4 v1, 0x0
+
     monitor-enter p0
 
     :try_start_0
@@ -55950,33 +55939,22 @@
     .local v0, "r":Lcom/android/server/am/ActivityRecord;
     if-eqz v0, :cond_0
 
-    iget-object v1, v0, Lcom/android/server/am/ActivityRecord;->app:Lcom/android/server/am/ProcessRecord;
-
-    if-eqz v1, :cond_0
-
     iget-object v1, v0, Lcom/android/server/am/ActivityRecord;->info:Landroid/content/pm/ActivityInfo;
 
     iget-object v1, v1, Landroid/content/pm/ActivityInfo;->packageName:Ljava/lang/String;
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    :goto_0
+    :cond_0
     monitor-exit p0
 
     return-object v1
-
-    :cond_0
-    invoke-static {p0, p1}, Lcom/android/server/am/ActivityManagerServiceInjector;->getCallingUidPackage(Lcom/android/server/am/ActivityManagerService;Landroid/os/IBinder;)Ljava/lang/String;
-
-    move-result-object v1
-
-    goto :goto_0
 
     .end local v0    # "r":Lcom/android/server/am/ActivityRecord;
     :catchall_0
     move-exception v1
 
     monitor-exit p0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v1
 .end method

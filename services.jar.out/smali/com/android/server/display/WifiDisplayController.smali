@@ -709,12 +709,6 @@
 
     invoke-direct {p0}, Lcom/android/server/display/WifiDisplayController;->updateSettings()V
 
-    iget-object v3, p0, Lcom/android/server/display/WifiDisplayController;->mContext:Landroid/content/Context;
-
-    iget-object v4, p0, Lcom/android/server/display/WifiDisplayController;->mHandler:Landroid/os/Handler;
-
-    invoke-static {v3, v4, p0}, Lcom/android/server/display/WifiDisplayControllerInjector;->registerProjectionReceiver(Landroid/content/Context;Landroid/os/Handler;Lcom/android/server/display/WifiDisplayController;)V
-
     return-void
 .end method
 
@@ -2163,7 +2157,7 @@
 
     iput-object v0, v7, Landroid/net/wifi/p2p/WifiP2pConfig;->deviceAddress:Ljava/lang/String;
 
-    const/16 v0, 0xf
+    const/4 v0, 0x0
 
     iput v0, v7, Landroid/net/wifi/p2p/WifiP2pConfig;->groupOwnerIntent:I
 

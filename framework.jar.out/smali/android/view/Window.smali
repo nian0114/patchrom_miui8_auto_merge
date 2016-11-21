@@ -1583,13 +1583,11 @@
 .end method
 
 .method public setFlags(II)V
-    .locals 4
+    .locals 3
     .param p1, "flags"    # I
     .param p2, "mask"    # I
 
     .prologue
-    const/high16 v3, 0x4000000
-
     invoke-virtual {p0}, Landroid/view/Window;->getAttributes()Landroid/view/WindowManager$LayoutParams;
 
     move-result-object v0
@@ -1607,25 +1605,6 @@
 
     iput v1, v0, Landroid/view/WindowManager$LayoutParams;->flags:I
 
-    and-int v1, p2, v3
-
-    if-eqz v1, :cond_miui_0
-
-    and-int v1, p1, v3
-
-    if-nez v1, :cond_miui_0
-
-    iget v1, v0, Landroid/view/WindowManager$LayoutParams;->extraFlags:I
-
-    and-int/lit8 v1, v1, 0x1
-
-    if-eqz v1, :cond_miui_0
-
-    const/4 v1, 0x1
-
-    invoke-virtual {p0, v1}, Landroid/view/Window;->clearExtraFlags(I)V
-
-    :cond_miui_0
     iget v1, p0, Landroid/view/Window;->mForcedWindowFlags:I
 
     or-int/2addr v1, p2

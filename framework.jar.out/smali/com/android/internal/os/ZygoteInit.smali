@@ -1649,10 +1649,6 @@
 
     invoke-static {v6, v7}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
 
-    sget-object v6, Lcom/android/internal/os/ZygoteInit;->mResources:Landroid/content/res/Resources;
-
-    invoke-static {v6}, Lcom/android/internal/os/ZygoteInitInjector;->preloadMiuiResources(Landroid/content/res/Resources;)V
-
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
     move-result-wide v4
@@ -2179,7 +2175,7 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "--setgroups=1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1018,1021,1032,3001,3002,3003,3006,3007,9801"
+    const-string v1, "--setgroups=1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1018,1021,1032,3001,3002,3003,3006,3007"
 
     const/4 v2, 0x2
 

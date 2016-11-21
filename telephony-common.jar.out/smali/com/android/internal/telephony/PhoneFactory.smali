@@ -2161,8 +2161,6 @@
 
     invoke-virtual {v0, v1}, Lcom/android/internal/telephony/SubscriptionController;->updatePhonesAvailability([Lcom/android/internal/telephony/PhoneProxy;)V
 
-    invoke-static/range {p0 .. p0}, Lmiui/telephony/MiuiTelephony;->init(Landroid/content/Context;)V
-
     invoke-static {}, Lcom/android/internal/telephony/TelephonyPluginDelegate;->getInstance()Lcom/android/internal/telephony/TelephonyPluginDelegate;
 
     move-result-object v22

@@ -3661,18 +3661,9 @@
 
     if-eqz v0, :cond_0
 
-    :cond_miui_0
     return-void
 
     :cond_0
-    iget-object v0, p0, Landroid/media/MediaScanner$MyMediaScannerClient;->mMimeType:Ljava/lang/String;
-
-    invoke-static {v0, p1}, Landroid/media/MediaScannerInjector;->keepMimeType(Ljava/lang/String;Ljava/lang/String;)Z
-
-    move-result v0
-
-    if-nez v0, :cond_miui_0
-
     iput-object p1, p0, Landroid/media/MediaScanner$MyMediaScannerClient;->mMimeType:Ljava/lang/String;
 
     invoke-static {p1}, Landroid/media/MediaFile;->getFileTypeForMimeType(Ljava/lang/String;)I

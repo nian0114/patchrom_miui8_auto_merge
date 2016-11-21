@@ -3269,19 +3269,11 @@
     .prologue
     iget-object v0, p0, Lcom/android/internal/telephony/cat/CommandParamsFactory;->mCaller:Lcom/android/internal/telephony/cat/RilMessageDecoder;
 
-    if-nez v0, :cond_miui_0
-
-    :goto_miui_0
-    return-void
-
-    :cond_miui_0
-    iget-object v0, p0, Lcom/android/internal/telephony/cat/CommandParamsFactory;->mCaller:Lcom/android/internal/telephony/cat/RilMessageDecoder;
-
     iget-object v1, p0, Lcom/android/internal/telephony/cat/CommandParamsFactory;->mCmdParams:Lcom/android/internal/telephony/cat/CommandParams;
 
     invoke-virtual {v0, p1, v1}, Lcom/android/internal/telephony/cat/RilMessageDecoder;->sendMsgParamsDecoded(Lcom/android/internal/telephony/cat/ResultCode;Lcom/android/internal/telephony/cat/CommandParams;)V
 
-    goto :goto_miui_0
+    return-void
 .end method
 
 .method private setIcons(Ljava/lang/Object;)Lcom/android/internal/telephony/cat/ResultCode;

@@ -1740,48 +1740,6 @@
     .param p2, "value"    # Ljava/lang/String;
 
     .prologue
-    const-string v5, "gsm.sim.operator.alpha"
-
-    invoke-virtual {v5, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v5
-
-    if-nez v5, :cond_miui_0
-
-    const-string v5, "gsm.operator.alpha"
-
-    invoke-virtual {v5, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v5
-
-    if-nez v5, :cond_miui_0
-
-    const-string v5, "gsm.sim.operator.numeric"
-
-    invoke-virtual {v5, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v5
-
-    if-nez v5, :cond_miui_0
-
-    const-string v5, "gsm.operator.numeric"
-
-    invoke-virtual {v5, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v5
-
-    if-eqz v5, :cond_miui_1
-
-    :cond_miui_0
-    invoke-static {}, Lmiui/telephony/TelephonyManagerEx;->getDefault()Lmiui/telephony/TelephonyManagerEx;
-
-    move-result-object v5
-
-    invoke-virtual {v5, p0, p1, p2}, Lmiui/telephony/TelephonyManagerEx;->onOperatorNumericOrNameSet(ILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object p2
-
-    :cond_miui_1
     const-string v3, ""
 
     .local v3, "propVal":Ljava/lang/String;
@@ -8053,23 +8011,6 @@
     move-result-object v8
 
     .local v8, "notifyNow":Ljava/lang/Boolean;
-    sget-object v0, Landroid/telephony/TelephonyManager;->sRegistry:Lcom/android/internal/telephony/ITelephonyRegistry;
-
-    if-nez v0, :cond_miui_0
-
-    const-string v0, "telephony.registry"
-
-    invoke-static {v0}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/android/internal/telephony/ITelephonyRegistry$Stub;->asInterface(Landroid/os/IBinder;)Lcom/android/internal/telephony/ITelephonyRegistry;
-
-    move-result-object v0
-
-    sput-object v0, Landroid/telephony/TelephonyManager;->sRegistry:Lcom/android/internal/telephony/ITelephonyRegistry;
-
-    :cond_miui_0
     sget-object v0, Landroid/telephony/TelephonyManager;->sRegistry:Lcom/android/internal/telephony/ITelephonyRegistry;
 
     iget v1, p1, Landroid/telephony/PhoneStateListener;->mSubId:I

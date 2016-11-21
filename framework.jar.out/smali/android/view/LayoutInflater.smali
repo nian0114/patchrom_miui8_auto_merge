@@ -1943,14 +1943,6 @@
     move-result-object v1
 
     .local v1, "res":Landroid/content/res/Resources;
-    invoke-virtual {p0}, Landroid/view/LayoutInflater;->getContext()Landroid/content/Context;
-
-    move-result-object v2
-
-    invoke-static {v2, p1}, Landroid/view/LayoutInflaterMap;->getResourceId(Landroid/content/Context;I)I
-
-    move-result p1
-
     invoke-virtual {v1, p1}, Landroid/content/res/Resources;->getLayout(I)Landroid/content/res/XmlResourceParser;
 
     move-result-object v0
