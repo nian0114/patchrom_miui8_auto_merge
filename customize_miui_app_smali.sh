@@ -38,6 +38,11 @@ function mergyXmlPart() {
 	done
 }
 
+function changeID() {
+  $PORT_ROOT/tools/idtoname.py $PORT_ROOT/tools/public-$2.xml $1/smali
+  $PORT_ROOT/tools/nametoid.py out/framework-res/res/values/public.xml $1/smali
+}
+
 if [ $1 = "DeskClock" ];then
     applyPatch $1 $2
 fi
@@ -72,4 +77,5 @@ fi
 
 if [ $1 = "Settings" ];then
     sed -i 's/screen_buttons_timeout/button_backlight_timeout/g' `grep -lnr 'screen_buttons_timeout' $2/smali`
+    changeID $2 XXHDPI
 fi
