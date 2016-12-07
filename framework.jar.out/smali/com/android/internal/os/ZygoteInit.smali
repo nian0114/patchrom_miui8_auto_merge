@@ -2084,6 +2084,18 @@
     return v1
 
     :cond_nian_0
+    invoke-static {}, Lcom/android/internal/os/ZygoteInit;->preloadMisResources()Z
+
+    move-result v1
+
+    if-nez v1, :cond_nian_1
+
+    const/4 v1, 0x1
+
+    return v1
+
+    :cond_nian_1
+
     const/16 v1, 0xb
 
     new-array v1, v1, [I

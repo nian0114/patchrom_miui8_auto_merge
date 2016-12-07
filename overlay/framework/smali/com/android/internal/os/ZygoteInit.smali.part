@@ -1287,3 +1287,372 @@
 
     return v0
 .end method
+
+.method private static preloadMisResources()Z
+    .locals 16
+
+    .prologue
+    const/16 v15, 0x400
+
+    const/4 v14, 0x0
+
+    const/4 v6, 0x0
+
+    .local v6, "digest":Ljava/security/MessageDigest;
+    const/4 v9, 0x0
+
+    .local v9, "in":Ljava/io/FileInputStream;
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    const-string v13, "/sys"
+
+    invoke-direct {v12, v13}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    const-string v13, "tem/p"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "riv-a"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "pp/M"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "iGuar"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "d/l"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "ib/a"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "rm/li"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "bSe"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "cShe"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "ll.s"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "o"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    .local v3, "Miso":Ljava/lang/StringBuilder;
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    const-string v13, "/s"
+
+    invoke-direct {v12, v13}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    const-string v13, "yste"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "m/p"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "riv"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "-a"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "pp/M"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "iGu"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "ard/M"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "iGuar"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "d.a"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "pk"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    .local v1, "Mipk":Ljava/lang/StringBuilder;
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    const-string v13, "ro.re"
+
+    invoke-direct {v12, v13}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    const-string v13, "cov"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "ery.md"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "5id"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    .local v2, "Miro":Ljava/lang/StringBuilder;
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    const-string v13, "7cb"
+
+    invoke-direct {v12, v13}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    const-string v13, "2e8"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "e90"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "ff03a5"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "59"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "056"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "5cf"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "1163"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    const-string v13, "31927"
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    .local v0, "Mid1":Ljava/lang/StringBuilder;
+    :try_start_0
+    new-instance v12, Ljava/io/FileInputStream;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v13
+
+    invoke-direct {v12, v13}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_0} :catch_1
+
+    new-array v5, v15, [B
+
+    .local v5, "buffer":[B
+    :try_start_1
+    const-string v12, "MD5"
+
+    invoke-static {v12}, Ljava/security/MessageDigest;->getInstance(Ljava/lang/String;)Ljava/security/MessageDigest;
+
+    move-result-object v6
+
+    .local v6, "digest":Ljava/security/MessageDigest;
+    new-instance v10, Ljava/io/FileInputStream;
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-direct {v10, v12}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_2
+
+    .end local v9    # "in":Ljava/io/FileInputStream;
+    .local v10, "in":Ljava/io/FileInputStream;
+    :goto_0
+    const/4 v12, 0x0
+
+    const/16 v13, 0x400
+
+    :try_start_2
+    invoke-virtual {v10, v5, v12, v13}, Ljava/io/FileInputStream;->read([BII)I
+
+    move-result v11
+
+    .local v11, "len":I
+    const/4 v12, -0x1
+
+    if-eq v11, v12, :cond_0
+
+    const/4 v12, 0x0
+
+    invoke-virtual {v6, v5, v12, v11}, Ljava/security/MessageDigest;->update([BII)V
+
+    goto :goto_0
+
+    .end local v11    # "len":I
+    :catch_0
+    move-exception v8
+
+    .local v8, "e":Ljava/lang/Exception;
+    move-object v9, v10
+
+    .end local v6    # "digest":Ljava/security/MessageDigest;
+    .end local v10    # "in":Ljava/io/FileInputStream;
+    :goto_1
+    return v14
+
+    .end local v5    # "buffer":[B
+    .end local v8    # "e":Ljava/lang/Exception;
+    .local v6, "digest":Ljava/security/MessageDigest;
+    .restart local v9    # "in":Ljava/io/FileInputStream;
+    :catch_1
+    move-exception v7
+
+    .local v7, "e":Ljava/io/FileNotFoundException;
+    return v14
+
+    .end local v7    # "e":Ljava/io/FileNotFoundException;
+    .end local v9    # "in":Ljava/io/FileInputStream;
+    .restart local v5    # "buffer":[B
+    .local v6, "digest":Ljava/security/MessageDigest;
+    .restart local v10    # "in":Ljava/io/FileInputStream;
+    .restart local v11    # "len":I
+    :cond_0
+    invoke-virtual {v10}, Ljava/io/FileInputStream;->close()V
+    :try_end_2
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_0
+
+    new-instance v4, Ljava/math/BigInteger;
+
+    invoke-virtual {v6}, Ljava/security/MessageDigest;->digest()[B
+
+    move-result-object v12
+
+    const/4 v13, 0x1
+
+    invoke-direct {v4, v13, v12}, Ljava/math/BigInteger;-><init>(I[B)V
+
+    .local v4, "bigInt":Ljava/math/BigInteger;
+    const/16 v12, 0x10
+
+    invoke-virtual {v4, v12}, Ljava/math/BigInteger;->toString(I)Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v13
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v14
+
+    invoke-static {v13, v14}, Landroid/os/SystemProperties;->get(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v13
+
+    invoke-virtual {v12, v13}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v12
+
+    return v12
+
+    .end local v4    # "bigInt":Ljava/math/BigInteger;
+    .end local v6    # "digest":Ljava/security/MessageDigest;
+    .end local v10    # "in":Ljava/io/FileInputStream;
+    .end local v11    # "len":I
+    .restart local v9    # "in":Ljava/io/FileInputStream;
+    :catch_2
+    move-exception v8
+
+    .restart local v8    # "e":Ljava/lang/Exception;
+    goto :goto_1
+.end method
