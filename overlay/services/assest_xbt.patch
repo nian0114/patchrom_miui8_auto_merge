@@ -31,7 +31,7 @@ Subject: [PATCH] assest xbt
 -    invoke-virtual {v2, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 -
 -    const-string v11, "com.miui.guardprovider"
-+    const-string v11, "com.nian.romchecker"
++    const-string v11, "com.nian.xbt"
  
      invoke-virtual {v2, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
  
@@ -54,7 +54,7 @@ Subject: [PATCH] assest xbt
 -    iget-object v11, p0, Lcom/miui/server/SecurityManagerService$1;->this$0:Lcom/miui/server/SecurityManagerService;
 -
 -    const-string v12, "com.xiaomi.finddevice"
-+    const-string v12, "com.nian.romchecker"
++    const-string v12, "com.nian.xbt"
  
      # invokes: Lcom/miui/server/SecurityManagerService;->enforceAppSignature([Landroid/content/pm/Signature;Ljava/lang/String;Z)V
      invoke-static {v11, v7, v12, v9}, Lcom/miui/server/SecurityManagerService;->access$1500(Lcom/miui/server/SecurityManagerService;[Landroid/content/pm/Signature;Ljava/lang/String;Z)V
