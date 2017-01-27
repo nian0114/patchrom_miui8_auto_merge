@@ -1,0 +1,69 @@
+From 48e654244cb879854b78d5213e123fcbf4bc7e05 Mon Sep 17 00:00:00 2001
+From: garyyiu2015 <garyyiu2015@gmail.com>
+Date: Mon, 7 Nov 2016 14:19:09 +0800
+Subject: [PATCH] crack miui thememanager
+
+---
+ miuisystem/smali/miui/drm/DrmManager.smali | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+--- a/miuisystem/smali/miui/drm/DrmManager.smali
++++ b/miuisystem/smali/miui/drm/DrmManager.smali
+@@ -649,6 +649,10 @@
+     .param p2, "rightsFile"    # Ljava/io/File;
+ 
+     .prologue
++    sget-object v0, Lmiui/drm/DrmManager$DrmResult;->DRM_SUCCESS:Lmiui/drm/DrmManager$DrmResult;
++
++    return-object v0
++
+     invoke-static {p1}, Lmiui/util/HashUtils;->getSHA1(Ljava/io/File;)Ljava/lang/String;
+ 
+     move-result-object v0
+@@ -668,6 +672,10 @@
+     .param p2, "rightsFile"    # Ljava/io/File;
+ 
+     .prologue
++    sget-object v0, Lmiui/drm/DrmManager$DrmResult;->DRM_SUCCESS:Lmiui/drm/DrmManager$DrmResult;
++
++    return-object v0
++
+     invoke-virtual {p2}, Ljava/io/File;->exists()Z
+ 
+     move-result v7
+@@ -832,6 +840,10 @@
+     .param p2, "ro"    # Lmiui/drm/DrmManager$RightObject;
+ 
+     .prologue
++    sget-object v0, Lmiui/drm/DrmManager$DrmResult;->DRM_SUCCESS:Lmiui/drm/DrmManager$DrmResult;
++
++    return-object v0
++
+     const-wide/16 v10, 0x0
+ 
+     if-nez p2, :cond_0
+@@ -1080,6 +1092,10 @@
+     .param p0, "rightsFile"    # Ljava/io/File;
+ 
+     .prologue
++    const/4 v0, 0x1
++
++    return v0
++
+     invoke-static {p0}, Lmiui/drm/DrmManager;->parseRightsFile(Ljava/io/File;)Lmiui/drm/DrmManager$RightObject;
+ 
+     move-result-object v0
+@@ -1096,6 +1112,10 @@
+     .param p0, "ro"    # Lmiui/drm/DrmManager$RightObject;
+ 
+     .prologue
++    const/4 v0, 0x1
++
++    return v0
++
+     const-wide/16 v2, 0x0
+ 
+     if-eqz p0, :cond_0
+-- 
+2.9.0
+

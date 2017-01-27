@@ -85,3 +85,7 @@ if [ $1 = "Settings" ];then
     sed -i 's/screen_buttons_timeout/button_backlight_timeout/g' `grep -lnr 'screen_buttons_timeout' $2/smali`
     changeID $2 XXHDPI
 fi
+
+if [ $1 = "miuisystem" ];then
+    applyPatch $1 $2
+fi
