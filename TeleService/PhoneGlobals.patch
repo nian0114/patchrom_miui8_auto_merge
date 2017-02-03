@@ -25,7 +25,7 @@ Subject: [PATCH] fix com.android.phone fc java.lang.NullPointerException:
 +    move-result-object v10
 +
 +    invoke-virtual {v10, p0}, Lcom/android/internal/telephony/TelephonyPluginDelegate;->makeDefaultPhones(Landroid/content/Context;)V
- 
+
      new-instance v5, Landroid/content/Intent;
  
 -- 
