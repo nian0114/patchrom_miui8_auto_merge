@@ -1733,7 +1733,7 @@
     return-void
 .end method
 
-.method getCDMAIndex()I
+.method public getCDMAIndex()I
     .locals 2
     .annotation system Ldalvik/annotation/Throws;
         value = {

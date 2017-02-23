@@ -22,7 +22,7 @@ local-miui-removed-apps := FM
 local-miui-modified-apps :=
 
 local-miui-modified-apps-smali := TelephonyProvider TeleService SecurityCoreAdd \
-XiaomiServiceFramework MiuiSystemUI MiuiKeyguard SecurityCenter DeskClock Settings miuisystem ThemeManager
+XiaomiServiceFramework MiuiSystemUI MiuiKeyguard SecurityCenter DeskClock Settings miuisystem ThemeManager Telecom
 
 PORT_PRODUCT := nian_m7
 
