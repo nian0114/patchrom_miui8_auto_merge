@@ -1695,7 +1695,7 @@
     return-wide v0
 .end method
 
-.method public getGSMIndex()I
+.method getGSMIndex()I
     .locals 2
     .annotation system Ldalvik/annotation/Throws;
         value = {
