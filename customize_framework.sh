@@ -48,6 +48,7 @@ then
     cp -rf $1/smali/android/widget/Editor*.smali $2/smali/android/widget/
     rm -rf $2/smali/android/app/AppOpsManager*
     cp -rf $1/smali/android/app/AppOpsManager*.smali $2/smali/android/app/
+    cp -rf overlay/framework/smali/miui/provider/ExtraGuard.smali $2/smali/miui/provider/
     applyPatch "overlay/framework"
     appendSmaliPart "framework"
 fi
@@ -57,7 +58,10 @@ then
     applyPatch "overlay/services"
     rm -rf $2/smali/com/android/server/power/ShutdownThread*.smali
     cp -rf $1/smali/com/android/server/power/ShutdownThread*.smali $2/smali/com/android/server/power/
-	sed -i 's/user_setup_complete/xbt_setup_complete/g' `grep -lnr "user_setup_complete" $2/smali`
+    cp -rf overlay/services/smali/com/android/server/AppOpsServiceState.smali $2/smali/com/android/server/
+    cp -rf overlay/services/smali/com/android/server/pm/DefaultPermissionGrantPolicyInjector.smali $2/smali/com/android/server/pm/
+    sed -i 's/user_setup_complete/xbt_setup_complete/g' `grep -lnr "user_setup_complete" $2/smali`
+    sed -i 's/device_provisioned/xbt_setup_complete/g' `grep -lnr "device_provisioned" $2/smali`
 fi
 
 if [ $2 = "$BUILD_OUT/telephony-common" ]
