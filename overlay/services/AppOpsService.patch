@@ -1,0 +1,40 @@
+From 05966f47737b094749ea99f61bc3ee354b890ad2 Mon Sep 17 00:00:00 2001
+From: nian0114 <268078545@qq.com>
+Date: Thu, 29 Dec 2016 14:54:57 +0800
+Subject: [PATCH] fix appops
+
+---
+ services/smali/com/android/server/AppOpsService.smali | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+--- a/services/smali/com/android/server/AppOpsService.smali
++++ b/services/smali/com/android/server/AppOpsService.smali
+@@ -2592,7 +2592,7 @@
+     .prologue
+     if-ltz p1, :cond_1
+
+-    const/16 v0, 0x3f
++    sget v0, Landroid/app/AppOpsManager;->_NUM_OP:I
+
+     if-ge p1, v0, :cond_1
+
+@@ -8823,7 +8823,7 @@
+     .local v1, "opRestrictions":[Z
+     if-nez v1, :cond_0
+
+-    const/16 v3, 0x3f
++    sget v3, Landroid/app/AppOpsManager;->_NUM_OP:I
+
+     new-array v1, v3, [Z
+
+@@ -9304,7 +9304,7 @@
+     .prologue
+     const/4 v4, -0x1
+
+-    const/16 v2, 0x3f
++    sget v2, Landroid/app/AppOpsManager;->_NUM_OP:I
+
+     if-le p1, v2, :cond_0
+
+--
+2.10.1
