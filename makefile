@@ -17,7 +17,7 @@ local-modified-apps :=
 local-modified-jars := org.cyanogenmod.platform
 
 # All apks from MIUI
-local-miui-removed-apps := FM MiuiVideo SystemAdSolution SogouInput
+local-miui-removed-apps := FM
 
 local-miui-modified-apps := FindDevice
 
