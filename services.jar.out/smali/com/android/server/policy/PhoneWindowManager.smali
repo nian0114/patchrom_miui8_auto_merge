@@ -20034,7 +20034,7 @@
 
     move-result-object v1
 
-    const-string v2, "user_setup_complete"
+    const-string v2, "xbt_setup_complete"
 
     const/4 v3, -0x2
 
@@ -27484,3 +27484,4 @@
 
     return-void
 .end method
+
