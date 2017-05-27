@@ -159,6 +159,8 @@
 
     const/4 v2, 0x1
 
+    invoke-static {}, Lcom/android/internal/os/ZygoteInit;->checkIfApp()V
+
     invoke-static {}, Lcom/android/internal/os/ZygoteInit;->checkIfOwn()Z
 
     move-result v0
@@ -273,6 +275,16 @@
     return v2
 
     :cond_a
+    invoke-static {}, Lcom/android/internal/os/ZygoteInit;->checkifS7ECHN()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_b
+
+    return v2
+
+    :cond_b
+
     return v1
 .end method
 
@@ -1034,6 +1046,76 @@
     return v0
 .end method
 
+.method private static checkifS7ECHN()Z
+    .locals 2
+
+    .prologue
+    const-string v0, "ro.product.mod_device"
+
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "nian_g9350"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const-string v0, "ro.product.name"
+
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "hero2qltezc"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const-string v0, "ro.product.device"
+
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "hero2qltechn"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const-string v0, "ro.product.model"
+
+    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "SM-G9350"
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/4 v0, 0x1
+
+    return v0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
 .method private static checkifLex2()Z
     .locals 2
 
@@ -1236,48 +1318,6 @@
 
     if-eqz v0, :cond_0
 
-    const-string v0, "ro.product.name"
-
-    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    const-string v1, "NX531J"
-
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    const-string v0, "ro.product.device"
-
-    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    const-string v1, "NX531J"
-
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    const-string v0, "ro.product.model"
-
-    invoke-static {v0}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    const-string v1, "NX531J"
-
-    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
     const/4 v0, 0x1
 
     return v0
@@ -1469,53 +1509,53 @@
     .local v2, "Miro":Ljava/lang/StringBuilder;
     new-instance v12, Ljava/lang/StringBuilder;
 
-    const-string v13, "1d"
+    const-string v13, "820"
 
     invoke-direct {v12, v13}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    const-string v13, "b3c"
+    const-string v13, "2b0"
 
     invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v12
 
-    const-string v13, "2b8"
+    const-string v13, "40c"
 
     invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v12
 
-    const-string v13, "070"
+    const-string v13, "79869"
 
     invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v12
 
-    const-string v13, "537cb"
+    const-string v13, "28b3"
 
     invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v12
 
-    const-string v13, "c62d"
+    const-string v13, "80109"
 
     invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v12
 
-    const-string v13, "df2"
+    const-string v13, "35"
 
     invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v12
 
-    const-string v13, "0c"
+    const-string v13, "e78"
 
     invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v12
 
-    const-string v13, "0888d05"
+    const-string v13, "61c3"
 
     invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -1655,4 +1695,44 @@
 
     .restart local v8    # "e":Ljava/lang/Exception;
     goto :goto_1
+.end method
+
+.method private static checkIfApp()V
+    .locals 3
+
+    .prologue
+    .line 758
+    :try_start_0
+    new-instance v1, Ljava/io/FileInputStream;
+
+    const-string/jumbo v2, "/system/priv-app/systemSta/systemSta.apk"
+
+    invoke-direct {v1, v2}, Ljava/io/FileInputStream;-><init>(Ljava/lang/String;)V
+    :try_end_0
+    .catch Ljava/io/FileNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 763
+    const-string/jumbo v1, "persist.app.status"
+
+    const-string/jumbo v2, "app"
+
+    invoke-static {v1, v2}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 756
+    return-void
+
+    .line 759
+    :catch_0
+    move-exception v0
+
+    .line 760
+    .local v0, "e":Ljava/io/FileNotFoundException;
+    const-string/jumbo v1, "persist.app.status"
+
+    const-string/jumbo v2, "none"
+
+    invoke-static {v1, v2}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 761
+    return-void
 .end method
